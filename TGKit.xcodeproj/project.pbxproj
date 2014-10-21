@@ -44,7 +44,6 @@
 		DA37916219F6F281009749A4 /* libTGKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTGKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA37916519F6F281009749A4 /* TGKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGKit.h; sourceTree = "<group>"; };
 		DA37916719F6F281009749A4 /* TGKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGKit.m; sourceTree = "<group>"; };
-		DA37917319F6F281009749A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA37917D19F6F843009749A4 /* tools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tools.c; path = libtgl/tools.c; sourceTree = "<group>"; };
 		DA37917E19F6F843009749A4 /* tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tools.h; path = libtgl/tools.h; sourceTree = "<group>"; };
 		DA37918019F6F873009749A4 /* mtproto-client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "mtproto-client.c"; path = "libtgl/mtproto-client.c"; sourceTree = "<group>"; };
@@ -101,7 +100,6 @@
 				DA3791A119F70473009749A4 /* openssl */,
 				DA37917C19F6F29F009749A4 /* libtgl */,
 				DA37916419F6F281009749A4 /* TGKit */,
-				DA37917119F6F281009749A4 /* TGKitTests */,
 				DA37916319F6F281009749A4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,22 +119,6 @@
 				DA37916719F6F281009749A4 /* TGKit.m */,
 			);
 			path = TGKit;
-			sourceTree = "<group>";
-		};
-		DA37917119F6F281009749A4 /* TGKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				DA37917219F6F281009749A4 /* Supporting Files */,
-			);
-			path = TGKitTests;
-			sourceTree = "<group>";
-		};
-		DA37917219F6F281009749A4 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DA37917319F6F281009749A4 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		DA37917C19F6F29F009749A4 /* libtgl */ = {
