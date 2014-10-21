@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA37916619F6F281009749A4 /* TGKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA37916519F6F281009749A4 /* TGKit.h */; };
+		DA37916819F6F281009749A4 /* TGKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37916719F6F281009749A4 /* TGKit.m */; };
+		DA37916E19F6F281009749A4 /* libTGKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA37916219F6F281009749A4 /* libTGKit.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DA37916F19F6F281009749A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA37915A19F6F281009749A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA37916119F6F281009749A4;
+			remoteInfo = TGKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DA37916019F6F281009749A4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				DA37916619F6F281009749A4 /* TGKit.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DA37916219F6F281009749A4 /* libTGKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTGKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA37916519F6F281009749A4 /* TGKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGKit.h; sourceTree = "<group>"; };
+		DA37916719F6F281009749A4 /* TGKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGKit.m; sourceTree = "<group>"; };
+		DA37916D19F6F281009749A4 /* TGKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TGKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA37917319F6F281009749A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DA37915F19F6F281009749A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA37916A19F6F281009749A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA37916E19F6F281009749A4 /* libTGKit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DA37915919F6F281009749A4 = {
+			isa = PBXGroup;
+			children = (
+				DA37916419F6F281009749A4 /* TGKit */,
+				DA37917119F6F281009749A4 /* TGKitTests */,
+				DA37916319F6F281009749A4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DA37916319F6F281009749A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA37916219F6F281009749A4 /* libTGKit.a */,
+				DA37916D19F6F281009749A4 /* TGKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA37916419F6F281009749A4 /* TGKit */ = {
+			isa = PBXGroup;
+			children = (
+				DA37916519F6F281009749A4 /* TGKit.h */,
+				DA37916719F6F281009749A4 /* TGKit.m */,
+			);
+			path = TGKit;
+			sourceTree = "<group>";
+		};
+		DA37917119F6F281009749A4 /* TGKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				DA37917219F6F281009749A4 /* Supporting Files */,
+			);
+			path = TGKitTests;
+			sourceTree = "<group>";
+		};
+		DA37917219F6F281009749A4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA37917319F6F281009749A4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DA37916119F6F281009749A4 /* TGKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA37917619F6F281009749A4 /* Build configuration list for PBXNativeTarget "TGKit" */;
+			buildPhases = (
+				DA37915E19F6F281009749A4 /* Sources */,
+				DA37915F19F6F281009749A4 /* Frameworks */,
+				DA37916019F6F281009749A4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TGKit;
+			productName = TGKit;
+			productReference = DA37916219F6F281009749A4 /* libTGKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DA37916C19F6F281009749A4 /* TGKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA37917919F6F281009749A4 /* Build configuration list for PBXNativeTarget "TGKitTests" */;
+			buildPhases = (
+				DA37916919F6F281009749A4 /* Sources */,
+				DA37916A19F6F281009749A4 /* Frameworks */,
+				DA37916B19F6F281009749A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA37917019F6F281009749A4 /* PBXTargetDependency */,
+			);
+			name = TGKitTests;
+			productName = TGKitTests;
+			productReference = DA37916D19F6F281009749A4 /* TGKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA37915A19F6F281009749A4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = nKey;
+				TargetAttributes = {
+					DA37916119F6F281009749A4 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					DA37916C19F6F281009749A4 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = DA37915D19F6F281009749A4 /* Build configuration list for PBXProject "TGKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DA37915919F6F281009749A4;
+			productRefGroup = DA37916319F6F281009749A4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA37916119F6F281009749A4 /* TGKit */,
+				DA37916C19F6F281009749A4 /* TGKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DA37916B19F6F281009749A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA37915E19F6F281009749A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA37916819F6F281009749A4 /* TGKit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA37916919F6F281009749A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DA37917019F6F281009749A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA37916119F6F281009749A4 /* TGKit */;
+			targetProxy = DA37916F19F6F281009749A4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DA37917419F6F281009749A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DA37917519F6F281009749A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DA37917719F6F281009749A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DA37917819F6F281009749A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		DA37917A19F6F281009749A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TGKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DA37917B19F6F281009749A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TGKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA37915D19F6F281009749A4 /* Build configuration list for PBXProject "TGKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA37917419F6F281009749A4 /* Debug */,
+				DA37917519F6F281009749A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA37917619F6F281009749A4 /* Build configuration list for PBXNativeTarget "TGKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA37917719F6F281009749A4 /* Debug */,
+				DA37917819F6F281009749A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DA37917919F6F281009749A4 /* Build configuration list for PBXNativeTarget "TGKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA37917A19F6F281009749A4 /* Debug */,
+				DA37917B19F6F281009749A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA37915A19F6F281009749A4 /* Project object */;
+}
