@@ -10,6 +10,17 @@
 		DA37916619F6F281009749A4 /* TGKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA37916519F6F281009749A4 /* TGKit.h */; };
 		DA37916819F6F281009749A4 /* TGKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37916719F6F281009749A4 /* TGKit.m */; };
 		DA37916E19F6F281009749A4 /* libTGKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA37916219F6F281009749A4 /* libTGKit.a */; };
+		DA37917F19F6F843009749A4 /* tools.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37917D19F6F843009749A4 /* tools.c */; };
+		DA37918619F6F873009749A4 /* mtproto-client.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37918019F6F873009749A4 /* mtproto-client.c */; };
+		DA37918719F6F873009749A4 /* mtproto-common.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37918219F6F873009749A4 /* mtproto-common.c */; };
+		DA37918819F6F873009749A4 /* net.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37918419F6F873009749A4 /* net.c */; };
+		DA37918B19F6F884009749A4 /* queries.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37918919F6F884009749A4 /* queries.c */; };
+		DA37918E19F6F88A009749A4 /* structures.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37918C19F6F88A009749A4 /* structures.c */; };
+		DA37919119F6F8AF009749A4 /* binlog.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37918F19F6F8AF009749A4 /* binlog.c */; };
+		DA37919419F6F8C0009749A4 /* tgl.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919219F6F8C0009749A4 /* tgl.c */; };
+		DA37919719F6F8D1009749A4 /* updates.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919519F6F8D1009749A4 /* updates.c */; };
+		DA37919C19F6FAE9009749A4 /* auto.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919A19F6FAE9009749A4 /* auto.c */; };
+		DA37919F19F6FB1E009749A4 /* auto-static.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919E19F6FB1E009749A4 /* auto-static.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +52,30 @@
 		DA37916719F6F281009749A4 /* TGKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGKit.m; sourceTree = "<group>"; };
 		DA37916D19F6F281009749A4 /* TGKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TGKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA37917319F6F281009749A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA37917D19F6F843009749A4 /* tools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tools.c; path = libtgl/tools.c; sourceTree = "<group>"; };
+		DA37917E19F6F843009749A4 /* tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tools.h; path = libtgl/tools.h; sourceTree = "<group>"; };
+		DA37918019F6F873009749A4 /* mtproto-client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "mtproto-client.c"; path = "libtgl/mtproto-client.c"; sourceTree = "<group>"; };
+		DA37918119F6F873009749A4 /* mtproto-client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "mtproto-client.h"; path = "libtgl/mtproto-client.h"; sourceTree = "<group>"; };
+		DA37918219F6F873009749A4 /* mtproto-common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "mtproto-common.c"; path = "libtgl/mtproto-common.c"; sourceTree = "<group>"; };
+		DA37918319F6F873009749A4 /* mtproto-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "mtproto-common.h"; path = "libtgl/mtproto-common.h"; sourceTree = "<group>"; };
+		DA37918419F6F873009749A4 /* net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = net.c; path = libtgl/net.c; sourceTree = "<group>"; };
+		DA37918519F6F873009749A4 /* net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = net.h; path = libtgl/net.h; sourceTree = "<group>"; };
+		DA37918919F6F884009749A4 /* queries.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = queries.c; path = libtgl/queries.c; sourceTree = "<group>"; };
+		DA37918A19F6F884009749A4 /* queries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = queries.h; path = libtgl/queries.h; sourceTree = "<group>"; };
+		DA37918C19F6F88A009749A4 /* structures.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = structures.c; path = libtgl/structures.c; sourceTree = "<group>"; };
+		DA37918D19F6F88A009749A4 /* structures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = structures.h; path = libtgl/structures.h; sourceTree = "<group>"; };
+		DA37918F19F6F8AF009749A4 /* binlog.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = binlog.c; path = libtgl/binlog.c; sourceTree = "<group>"; };
+		DA37919019F6F8AF009749A4 /* binlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = binlog.h; path = libtgl/binlog.h; sourceTree = "<group>"; };
+		DA37919219F6F8C0009749A4 /* tgl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tgl.c; path = libtgl/tgl.c; sourceTree = "<group>"; };
+		DA37919319F6F8C0009749A4 /* tgl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tgl.h; path = libtgl/tgl.h; sourceTree = "<group>"; };
+		DA37919519F6F8D1009749A4 /* updates.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = updates.c; path = libtgl/updates.c; sourceTree = "<group>"; };
+		DA37919619F6F8D1009749A4 /* updates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = updates.h; path = libtgl/updates.h; sourceTree = "<group>"; };
+		DA37919919F6FAE9009749A4 /* auto-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "auto-header.h"; path = "libtgl/auto/auto-header.h"; sourceTree = "<group>"; };
+		DA37919A19F6FAE9009749A4 /* auto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = auto.c; path = libtgl/auto/auto.c; sourceTree = "<group>"; };
+		DA37919B19F6FAE9009749A4 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = constants.h; path = libtgl/auto/constants.h; sourceTree = "<group>"; };
+		DA37919D19F6FB0D009749A4 /* auto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = auto.h; path = libtgl/auto.h; sourceTree = "<group>"; };
+		DA37919E19F6FB1E009749A4 /* auto-static.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "auto-static.c"; path = "libtgl/auto-static.c"; sourceTree = "<group>"; };
+		DA3791A019F6FB5B009749A4 /* tgl-layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "tgl-layout.h"; path = "libtgl/tgl-layout.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +100,7 @@
 		DA37915919F6F281009749A4 = {
 			isa = PBXGroup;
 			children = (
+				DA37917C19F6F29F009749A4 /* libtgl */,
 				DA37916419F6F281009749A4 /* TGKit */,
 				DA37917119F6F281009749A4 /* TGKitTests */,
 				DA37916319F6F281009749A4 /* Products */,
@@ -103,6 +139,45 @@
 				DA37917319F6F281009749A4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA37917C19F6F29F009749A4 /* libtgl */ = {
+			isa = PBXGroup;
+			children = (
+				DA37919819F6FADE009749A4 /* auto */,
+				DA37919D19F6FB0D009749A4 /* auto.h */,
+				DA37919E19F6FB1E009749A4 /* auto-static.c */,
+				DA37918F19F6F8AF009749A4 /* binlog.c */,
+				DA37919019F6F8AF009749A4 /* binlog.h */,
+				DA37918019F6F873009749A4 /* mtproto-client.c */,
+				DA37918119F6F873009749A4 /* mtproto-client.h */,
+				DA37918219F6F873009749A4 /* mtproto-common.c */,
+				DA37918319F6F873009749A4 /* mtproto-common.h */,
+				DA37918419F6F873009749A4 /* net.c */,
+				DA37918519F6F873009749A4 /* net.h */,
+				DA37918919F6F884009749A4 /* queries.c */,
+				DA37918A19F6F884009749A4 /* queries.h */,
+				DA37918C19F6F88A009749A4 /* structures.c */,
+				DA37918D19F6F88A009749A4 /* structures.h */,
+				DA3791A019F6FB5B009749A4 /* tgl-layout.h */,
+				DA37919219F6F8C0009749A4 /* tgl.c */,
+				DA37919319F6F8C0009749A4 /* tgl.h */,
+				DA37917D19F6F843009749A4 /* tools.c */,
+				DA37917E19F6F843009749A4 /* tools.h */,
+				DA37919519F6F8D1009749A4 /* updates.c */,
+				DA37919619F6F8D1009749A4 /* updates.h */,
+			);
+			name = libtgl;
+			sourceTree = "<group>";
+		};
+		DA37919819F6FADE009749A4 /* auto */ = {
+			isa = PBXGroup;
+			children = (
+				DA37919919F6FAE9009749A4 /* auto-header.h */,
+				DA37919A19F6FAE9009749A4 /* auto.c */,
+				DA37919B19F6FAE9009749A4 /* constants.h */,
+			);
+			name = auto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,7 +268,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA37919419F6F8C0009749A4 /* tgl.c in Sources */,
+				DA37918E19F6F88A009749A4 /* structures.c in Sources */,
+				DA37918719F6F873009749A4 /* mtproto-common.c in Sources */,
+				DA37918619F6F873009749A4 /* mtproto-client.c in Sources */,
+				DA37919F19F6FB1E009749A4 /* auto-static.c in Sources */,
+				DA37918B19F6F884009749A4 /* queries.c in Sources */,
+				DA37919119F6F8AF009749A4 /* binlog.c in Sources */,
+				DA37919719F6F8D1009749A4 /* updates.c in Sources */,
 				DA37916819F6F281009749A4 /* TGKit.m in Sources */,
+				DA37917F19F6F843009749A4 /* tools.c in Sources */,
+				DA37918819F6F873009749A4 /* net.c in Sources */,
+				DA37919C19F6FAE9009749A4 /* auto.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -282,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -356,6 +442,7 @@
 				DA37917819F6F281009749A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DA37917919F6F281009749A4 /* Build configuration list for PBXNativeTarget "TGKitTests" */ = {
 			isa = XCConfigurationList;
@@ -364,6 +451,7 @@
 				DA37917B19F6F281009749A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
