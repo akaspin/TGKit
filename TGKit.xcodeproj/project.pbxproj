@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		DA37916619F6F281009749A4 /* TGKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA37916519F6F281009749A4 /* TGKit.h */; };
 		DA37916819F6F281009749A4 /* TGKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37916719F6F281009749A4 /* TGKit.m */; };
-		DA37916E19F6F281009749A4 /* libTGKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA37916219F6F281009749A4 /* libTGKit.a */; };
 		DA37917F19F6F843009749A4 /* tools.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37917D19F6F843009749A4 /* tools.c */; };
 		DA37918619F6F873009749A4 /* mtproto-client.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37918019F6F873009749A4 /* mtproto-client.c */; };
 		DA37918719F6F873009749A4 /* mtproto-common.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37918219F6F873009749A4 /* mtproto-common.c */; };
@@ -20,7 +19,6 @@
 		DA37919419F6F8C0009749A4 /* tgl.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919219F6F8C0009749A4 /* tgl.c */; };
 		DA37919719F6F8D1009749A4 /* updates.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919519F6F8D1009749A4 /* updates.c */; };
 		DA37919C19F6FAE9009749A4 /* auto.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919A19F6FAE9009749A4 /* auto.c */; };
-		DA37919F19F6FB1E009749A4 /* auto-static.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919E19F6FB1E009749A4 /* auto-static.c */; };
 		DA3791A519F70481009749A4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA3791A319F70481009749A4 /* libcrypto.a */; };
 		DA3791A619F70481009749A4 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA3791A419F70481009749A4 /* libssl.a */; };
 		DA3791AD19F708D7009749A4 /* libevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA3791A919F708D7009749A4 /* libevent.a */; };
@@ -28,16 +26,6 @@
 		DA3791AF19F708D7009749A4 /* libevent_extra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA3791AB19F708D7009749A4 /* libevent_extra.a */; };
 		DA3791B019F708D7009749A4 /* libevent_pthreads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA3791AC19F708D7009749A4 /* libevent_pthreads.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DA37916F19F6F281009749A4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA37915A19F6F281009749A4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DA37916119F6F281009749A4;
-			remoteInfo = TGKit;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		DA37916019F6F281009749A4 /* CopyFiles */ = {
@@ -56,7 +44,6 @@
 		DA37916219F6F281009749A4 /* libTGKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTGKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA37916519F6F281009749A4 /* TGKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGKit.h; sourceTree = "<group>"; };
 		DA37916719F6F281009749A4 /* TGKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGKit.m; sourceTree = "<group>"; };
-		DA37916D19F6F281009749A4 /* TGKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TGKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA37917319F6F281009749A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA37917D19F6F843009749A4 /* tools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tools.c; path = libtgl/tools.c; sourceTree = "<group>"; };
 		DA37917E19F6F843009749A4 /* tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tools.h; path = libtgl/tools.h; sourceTree = "<group>"; };
@@ -104,14 +91,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA37916A19F6F281009749A4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DA37916E19F6F281009749A4 /* libTGKit.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -131,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				DA37916219F6F281009749A4 /* libTGKit.a */,
-				DA37916D19F6F281009749A4 /* TGKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,24 +236,6 @@
 			productReference = DA37916219F6F281009749A4 /* libTGKit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		DA37916C19F6F281009749A4 /* TGKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DA37917919F6F281009749A4 /* Build configuration list for PBXNativeTarget "TGKitTests" */;
-			buildPhases = (
-				DA37916919F6F281009749A4 /* Sources */,
-				DA37916A19F6F281009749A4 /* Frameworks */,
-				DA37916B19F6F281009749A4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DA37917019F6F281009749A4 /* PBXTargetDependency */,
-			);
-			name = TGKitTests;
-			productName = TGKitTests;
-			productReference = DA37916D19F6F281009749A4 /* TGKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -286,9 +246,6 @@
 				ORGANIZATIONNAME = nKey;
 				TargetAttributes = {
 					DA37916119F6F281009749A4 = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					DA37916C19F6F281009749A4 = {
 						CreatedOnToolsVersion = 6.1;
 					};
 				};
@@ -306,57 +263,30 @@
 			projectRoot = "";
 			targets = (
 				DA37916119F6F281009749A4 /* TGKit */,
-				DA37916C19F6F281009749A4 /* TGKitTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		DA37916B19F6F281009749A4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DA37915E19F6F281009749A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA37919419F6F8C0009749A4 /* tgl.c in Sources */,
-				DA37918E19F6F88A009749A4 /* structures.c in Sources */,
+				DA37918819F6F873009749A4 /* net.c in Sources */,
 				DA37918719F6F873009749A4 /* mtproto-common.c in Sources */,
 				DA37918619F6F873009749A4 /* mtproto-client.c in Sources */,
-				DA37919F19F6FB1E009749A4 /* auto-static.c in Sources */,
 				DA37918B19F6F884009749A4 /* queries.c in Sources */,
+				DA37918E19F6F88A009749A4 /* structures.c in Sources */,
 				DA37919119F6F8AF009749A4 /* binlog.c in Sources */,
+				DA37919C19F6FAE9009749A4 /* auto.c in Sources */,
+				DA37919419F6F8C0009749A4 /* tgl.c in Sources */,
 				DA37919719F6F8D1009749A4 /* updates.c in Sources */,
 				DA37916819F6F281009749A4 /* TGKit.m in Sources */,
 				DA37917F19F6F843009749A4 /* tools.c in Sources */,
-				DA37918819F6F873009749A4 /* net.c in Sources */,
-				DA37919C19F6FAE9009749A4 /* auto.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA37916919F6F281009749A4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DA37917019F6F281009749A4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DA37916119F6F281009749A4 /* TGKit */;
-			targetProxy = DA37916F19F6F281009749A4 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DA37917419F6F281009749A4 /* Debug */ = {
@@ -436,7 +366,8 @@
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
-					"EVENT_V2=1",
+					EVENT_V2,
+					"HAVE___BUILTIN_BSWAP32",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -457,7 +388,10 @@
 		DA37917819F6F281009749A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PREPROCESSOR_DEFINITIONS = "EVENT_V2=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					EVENT_V2,
+					"HAVE___BUILTIN_BSWAP32",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -471,36 +405,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/libtgl $(SRCROOT)/openssl/include $(SRCROOT)/libevent/include";
-			};
-			name = Release;
-		};
-		DA37917A19F6F281009749A4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TGKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		DA37917B19F6F281009749A4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TGKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -521,15 +425,6 @@
 			buildConfigurations = (
 				DA37917719F6F281009749A4 /* Debug */,
 				DA37917819F6F281009749A4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DA37917919F6F281009749A4 /* Build configuration list for PBXNativeTarget "TGKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DA37917A19F6F281009749A4 /* Debug */,
-				DA37917B19F6F281009749A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
