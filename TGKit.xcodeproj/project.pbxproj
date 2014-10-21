@@ -21,6 +21,8 @@
 		DA37919719F6F8D1009749A4 /* updates.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919519F6F8D1009749A4 /* updates.c */; };
 		DA37919C19F6FAE9009749A4 /* auto.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919A19F6FAE9009749A4 /* auto.c */; };
 		DA37919F19F6FB1E009749A4 /* auto-static.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37919E19F6FB1E009749A4 /* auto-static.c */; };
+		DA3791A519F70481009749A4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA3791A319F70481009749A4 /* libcrypto.a */; };
+		DA3791A619F70481009749A4 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA3791A419F70481009749A4 /* libssl.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		DA37919D19F6FB0D009749A4 /* auto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = auto.h; path = libtgl/auto.h; sourceTree = "<group>"; };
 		DA37919E19F6FB1E009749A4 /* auto-static.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "auto-static.c"; path = "libtgl/auto-static.c"; sourceTree = "<group>"; };
 		DA3791A019F6FB5B009749A4 /* tgl-layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "tgl-layout.h"; path = "libtgl/tgl-layout.h"; sourceTree = "<group>"; };
+		DA3791A319F70481009749A4 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		DA3791A419F70481009749A4 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA3791A619F70481009749A4 /* libssl.a in Frameworks */,
+				DA3791A519F70481009749A4 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +106,7 @@
 		DA37915919F6F281009749A4 = {
 			isa = PBXGroup;
 			children = (
+				DA3791A119F70473009749A4 /* openssl */,
 				DA37917C19F6F29F009749A4 /* libtgl */,
 				DA37916419F6F281009749A4 /* TGKit */,
 				DA37917119F6F281009749A4 /* TGKitTests */,
@@ -178,6 +185,24 @@
 				DA37919B19F6FAE9009749A4 /* constants.h */,
 			);
 			name = auto;
+			sourceTree = "<group>";
+		};
+		DA3791A119F70473009749A4 /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				DA3791A219F70481009749A4 /* lib */,
+			);
+			name = openssl;
+			sourceTree = "<group>";
+		};
+		DA3791A219F70481009749A4 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				DA3791A319F70481009749A4 /* libcrypto.a */,
+				DA3791A419F70481009749A4 /* libssl.a */,
+			);
+			name = lib;
+			path = openssl/lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,10 +405,14 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/openssl/lib",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/libtgl";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/libtgl $(SRCROOT)/openssl/include\n$(SRCROOT)/openssl/include";
 			};
 			name = Debug;
 		};
@@ -394,10 +423,14 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/openssl/lib",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/libtgl";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/libtgl $(SRCROOT)/openssl/include\n$(SRCROOT)/openssl/include";
 			};
 			name = Release;
 		};
