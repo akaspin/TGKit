@@ -425,6 +425,7 @@ int loop(struct tgl_update_callback *upd_cb) {
         }
         bl_do_reset_authorization ();
     }
+    net_loop (0, all_authorized);
     if (!tgl_signed_dc(tgl_state.DC_working)) {
         logprintf("Need to login first");
         tgl_do_send_code(get_default_username(), sign_in_callback, 0);
