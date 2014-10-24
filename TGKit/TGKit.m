@@ -8,40 +8,8 @@
 
 #import "TGKit.h"
 #import "tgl.h"
+#import "loop.h"
 
-
-// loop
-
-#import <event2/event.h>
-
-struct event *term_ev = 0;
-void net_loop (int flags, int (*is_end)(void)) {
-    int last_get_state = (int)(time (0));
-    while (!is_end || !is_end ()) {
-        event_base_loop (tgl_state.ev_base, EVLOOP_ONCE);
-        if (time (0) - last_get_state > 3600) {
-            tgl_do_lookup_state ();
-            last_get_state = (int)(time (0));
-        }
-    }
-    if (term_ev) {
-        event_free (term_ev);
-        term_ev = 0;
-    }
-}
-
-// missing functions
-
-char *get_downloads_directory (void) {
-    return "";
-}
-
-char *get_binlog_file_name (void) {
-    return "";
-}
-
-
-// classes
 
 @implementation TGPeer
 @end
@@ -66,63 +34,18 @@ TGKit *delegate; // global for now, need to add userdata to callbacks
     self = [super init];
     NSLog(@"Init with key path: [%@]", serverRsaKey);
     delegate = self;
+    tgl_state.verbosity = 3;
     tgl_set_rsa_key([serverRsaKey cStringUsingEncoding:NSUTF8StringEncoding]);
-    tgl_set_callback(&upd_cb);
-    tgl_init();
-    const char *default_username = "+554899170146";
-    const char *sms_code = "62933";
-    if (!tgl_signed_dc(tgl_state.DC_working)) {
-        NSLog(@"Need to login first");
-        tgl_do_send_code(default_username, sign_in_callback, 0);
-        net_loop(0, sent_code);
-        if (!should_register) {
-            NSLog(@"Enter SMS code");
-            while (true) {
-                if (tgl_do_send_code_result (default_username, hash, sms_code, sign_in_result, 0) >= 0) {
-                    break;
-                }
-                break;
-            }
-        }
-        net_loop (0, signed_in);
-    }
     return self;
+}
+
+- (void)run {
+    loop(&upd_cb);
 }
 
 - (void)didGetNewMessage:(TGMessage *)message {
     NSLog(@"%@", message.text);
 }
-
-// C event callbacks
-
-int signed_in_ok;
-void sign_in_result (void *extra, int success, struct tgl_user *U) {
-    if (!success) {
-        NSLog(@"Can not login");
-        exit(1);
-    }
-    signed_in_ok = 1;
-}
-
-int signed_in (void) {
-    return signed_in_ok;
-}
-
-int should_register;
-char *hash;
-void sign_in_callback (void *extra, int success, int registered, const char *mhash) {
-    if (!success) {
-        NSLog(@"Can not send code");
-        exit(1);
-    }
-    should_register = !registered;
-    hash = strdup (mhash);
-}
-
-int sent_code (void) {
-    return hash != 0;
-}
-
 
 // C handlers
 
@@ -277,17 +200,17 @@ void our_id_gw(int id) {
     NSLog(@"our_id_gw");
 }
 
-void logprintf(const char *format, ...) {
+void nslog_logprintf(const char *format, ...) {
     va_list ap;
     va_start(ap, format);
-    NSLog([NSString stringWithCString:format encoding:NSUTF8StringEncoding], ap);
+    NSLog(@"%@", [[NSString alloc] initWithFormat:[NSString stringWithUTF8String:format] arguments:ap]);
     va_end (ap);
 }
 
 struct tgl_update_callback upd_cb = {
     .new_msg = print_message_gw,
     .marked_read = mark_read_upd,
-    .logprintf = logprintf,
+    .logprintf = nslog_logprintf,
     .type_notification = type_notification_upd,
     .type_in_chat_notification = type_in_chat_notification_upd,
     .type_in_secret_chat_notification = 0,

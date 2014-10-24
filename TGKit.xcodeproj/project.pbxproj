@@ -38,6 +38,7 @@
 		DABC873319FACECD0091B26D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DABC873119FACE4E0091B26D /* libz.dylib */; };
 		DABC873419FACF190091B26D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DABC873119FACE4E0091B26D /* libz.dylib */; };
 		DABC873619FAD5CA0091B26D /* server.pub in Resources */ = {isa = PBXBuildFile; fileRef = DABC870019FAB8020091B26D /* server.pub */; };
+		DABC873919FAE8470091B26D /* loop.c in Sources */ = {isa = PBXBuildFile; fileRef = DABC873719FAE8470091B26D /* loop.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,8 @@
 		DABC871519FAC85E0091B26D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DABC871819FAC85E0091B26D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DABC873119FACE4E0091B26D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		DABC873719FAE8470091B26D /* loop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loop.c; sourceTree = "<group>"; };
+		DABC873819FAE8470091B26D /* loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loop.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +195,8 @@
 			children = (
 				DA37916519F6F281009749A4 /* TGKit.h */,
 				DA37916719F6F281009749A4 /* TGKit.m */,
+				DABC873719FAE8470091B26D /* loop.c */,
+				DABC873819FAE8470091B26D /* loop.h */,
 			);
 			path = TGKit;
 			sourceTree = "<group>";
@@ -454,6 +459,7 @@
 				DA37919C19F6FAE9009749A4 /* auto.c in Sources */,
 				DA37919419F6F8C0009749A4 /* tgl.c in Sources */,
 				DA37919719F6F8D1009749A4 /* updates.c in Sources */,
+				DABC873919FAE8470091B26D /* loop.c in Sources */,
 				DA37916819F6F281009749A4 /* TGKit.m in Sources */,
 				DA37917F19F6F843009749A4 /* tools.c in Sources */,
 			);

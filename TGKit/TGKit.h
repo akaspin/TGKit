@@ -67,5 +67,6 @@
 @interface TGKit : NSObject <TGKitDelegate>
 
 - (instancetype)initWithKey:(NSString *)serverRsaKey;
+- (void)run;
 
 @end
