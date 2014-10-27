@@ -23,12 +23,15 @@
 
 @interface TGKit ()
 
+@property NSString *username;
+
 @end
 
 
 @implementation TGKit
 
 TGKit *delegate; // global for now, need to add userdata to callbacks
+dispatch_queue_t loop_queue;
 
 - (instancetype)initWithKey:(NSString *)serverRsaKey {
     self = [super init];
@@ -36,18 +39,41 @@ TGKit *delegate; // global for now, need to add userdata to callbacks
     delegate = self;
     tgl_state.verbosity = 3;
     tgl_set_rsa_key([serverRsaKey cStringUsingEncoding:NSUTF8StringEncoding]);
+    loop_queue = dispatch_queue_create("tgkit-loop", DISPATCH_QUEUE_CONCURRENT);
     return self;
 }
 
 - (void)run {
-    loop(&upd_cb);
+    dispatch_async(loop_queue, ^{
+        loop(&upd_cb);
+    });
 }
 
 - (void)didGetNewMessage:(TGMessage *)message {
     NSLog(@"%@", message.text);
 }
 
-// C handlers
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertViewCancel:(UIAlertView *)alertView {
+    if (alertView.tag == 1) {
+        username_ok = 1;
+    } else if (alertView.tag == 2){
+        sms_code_ok = 1;
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == 1) {
+        username_ok = 1;
+    } else if (alertView.tag == 2){
+        sms_code_ok = 1;
+    }
+}
+
+
+#pragma mark - TGKit classes
 
 TGPeer *make_peer(tgl_peer_id_t peer_id, tgl_peer_t *P) {
     TGPeer *peer = [[TGPeer alloc] init];
@@ -142,7 +168,7 @@ TGMedia *make_media(struct tgl_message_media *M) {
     return media;
 }
 
-// callbacks
+#pragma mark - C callbacks
 
 void print_message_gw(struct tgl_message *M) {
     NSLog(@"print_message_gw");
@@ -225,6 +251,96 @@ struct tgl_update_callback upd_cb = {
     .our_id = our_id_gw
 };
 
+#pragma mark - C Config
+
+int username_ok = 0;
+int has_username(void) {
+    return username_ok;
+}
+
+int sms_code_ok = 0;
+int has_sms_code(void) {
+    return sms_code_ok;
+}
+
+void set_default_username(const char* username) {
+    delegate.username = [NSString stringWithUTF8String:username];
+}
+
+const char *get_default_username(void) {
+    username_ok = 0;
+    if (delegate.username) {
+        return delegate.username.UTF8String;
+    }
+    __block UITextField *textField;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Telephone" message:@"Telephone number (with '+' sign):" delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        alertView.tag = 1;
+        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+        textField = [alertView textFieldAtIndex:0];
+        [alertView show];
+    });
+    wait_loop(has_username);
+    delegate.username = textField.text;
+    return textField.text.UTF8String;
+}
+
+const char *get_sms_code (void) {
+    sms_code_ok = 0;
+    __block UITextField *textField;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Activation" message:@"Code from SMS:" delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        alertView.tag = 2;
+        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+        textField = [alertView textFieldAtIndex:0];
+        [alertView show];
+    });
+    wait_loop(has_sms_code);
+    return textField.text.UTF8String;
+}
+
+const char *get_auth_key_filename (void) {
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"auth_file"];
+    return filePath.UTF8String;
+}
+
+const char *get_state_filename (void) {
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"state_file"];
+    return filePath.UTF8String;
+}
+
+const char *get_secret_chat_filename (void) {
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"secret"];
+    return filePath.UTF8String;
+}
+
+const char *get_binlog_filename (void) {
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"binlog"];
+    return filePath.UTF8String;
+}
+
+const char *get_download_directory (void) {
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    return documentsPath.UTF8String;
+}
+
+struct tgl_config config = {
+    .set_default_username = set_default_username,
+    .get_default_username = get_default_username,
+    .get_sms_code = get_sms_code,
+    .get_auth_key_filename = get_auth_key_filename,
+    .get_state_filename = get_state_filename,
+    .get_secret_chat_filename = get_secret_chat_filename,
+    .get_download_directory = get_download_directory,
+    .get_binlog_filename = get_binlog_filename,
+    .sync_from_start = 0,
+    .wait_dialog_list = 0,
+    .reset_authorization = 0,
+};
 
 @end
 

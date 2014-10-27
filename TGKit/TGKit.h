@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
 @interface TGPeer : NSObject
@@ -57,7 +58,7 @@
 @end
 
 
-@protocol TGKitDelegate <NSObject>
+@protocol TGKitDelegate <NSObject, UIAlertViewDelegate>
 
 - (void)didGetNewMessage:(TGMessage *)message;
 

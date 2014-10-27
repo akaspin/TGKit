@@ -400,6 +400,7 @@
 					};
 					DABC870519FAC85D0091B26D = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 8LGTBBXKRY;
 					};
 				};
 			};

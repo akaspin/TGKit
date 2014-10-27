@@ -20,6 +20,7 @@
     NSString *keyPath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"pub"];
     TGKit *tg = [[TGKit alloc] initWithKey:keyPath];
     [tg run];
+    NSLog(@"Running...");
     // Do any additional setup after loading the view, typically from a nib.
 }
 
