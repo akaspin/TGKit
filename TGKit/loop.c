@@ -26,43 +26,19 @@ void (*logprintf)(const char *format, ...) = _dummy_logprintf;
 
 // config functions
 
-char *get_default_username (void) {
-    return "+554899170146";
+const char *get_downloads_directory (void) {
+    return config.get_download_directory ();
 }
 
-char *get_sms_code (void) {
-    return "62933";
+const char *get_binlog_file_name (void) {
+    return config.get_binlog_filename ();
 }
-
-char *get_auth_key_filename (void) {
-    return "auth_file";
-}
-
-char *get_state_filename (void) {
-    return "state_file";
-}
-
-char *get_secret_chat_filename (void) {
-    return "secret";
-}
-
-char *get_downloads_directory (void) {
-    return ".";
-}
-
-char *get_binlog_file_name (void) {
-    return "binlog";
-}
-
-int sync_from_start = 0;
-int wait_dialog_list = 0;
-int reset_authorization = 0;
 
 
 // loader functions
 
 void read_state_file (void) {
-    int state_file_fd = open (get_state_filename (), O_CREAT | O_RDWR, 0600);
+    int state_file_fd = open (config.get_state_filename (), O_CREAT | O_RDWR, 0600);
     if (state_file_fd < 0) {
         return;
     }
@@ -94,9 +70,9 @@ void write_state_file (void) {
     static int wdate;
     if (wseq >= tgl_state.seq && wpts >= tgl_state.pts && wqts >= tgl_state.qts && wdate >= tgl_state.date) { return; }
     wseq = tgl_state.seq; wpts = tgl_state.pts; wqts = tgl_state.qts; wdate = tgl_state.date;
-    int state_file_fd = open (get_state_filename (), O_CREAT | O_RDWR, 0600);
+    int state_file_fd = open (config.get_state_filename (), O_CREAT | O_RDWR, 0600);
     if (state_file_fd < 0) {
-        logprintf ("Can not write state file '%s': %m\n", get_state_filename ());
+        logprintf ("Can not write state file '%s': %m\n", config.get_state_filename ());
         exit (1);
     }
     int x[6];
@@ -132,7 +108,7 @@ void write_dc (struct tgl_dc *DC, void *extra) {
 }
 
 void write_auth_file (void) {
-    int auth_file_fd = open (get_auth_key_filename (), O_CREAT | O_RDWR, 0600);
+    int auth_file_fd = open (config.get_auth_key_filename (), O_CREAT | O_RDWR, 0600);
     assert (auth_file_fd >= 0);
     int x = DC_SERIALIZED_MAGIC;
     assert (write (auth_file_fd, &x, 4) == 4);
@@ -171,7 +147,7 @@ void write_secret_chat (tgl_peer_t *_P, void *extra) {
 }
 
 void write_secret_chat_file (void) {
-    int secret_chat_fd = open (get_secret_chat_filename (), O_CREAT | O_RDWR, 0600);
+    int secret_chat_fd = open (config.get_secret_chat_filename (), O_CREAT | O_RDWR, 0600);
     assert (secret_chat_fd >= 0);
     int x = SECRET_CHAT_FILE_MAGIC;
     assert (write (secret_chat_fd, &x, 4) == 4);
@@ -228,7 +204,7 @@ void empty_auth_file (void) {
 }
 
 void read_auth_file (void) {
-    int auth_file_fd = open (get_auth_key_filename (), O_CREAT | O_RDWR, 0600);
+    int auth_file_fd = open (config.get_auth_key_filename (), O_CREAT | O_RDWR, 0600);
     if (auth_file_fd < 0) {
         empty_auth_file ();
         return;
@@ -298,7 +274,7 @@ void read_secret_chat (int fd) {
 }
 
 void read_secret_chat_file (void) {
-    int secret_chat_fd = open (get_secret_chat_filename (), O_RDWR, 0600);
+    int secret_chat_fd = open (config.get_secret_chat_filename (), O_RDWR, 0600);
     if (secret_chat_fd < 0) { return; }
     //assert (secret_chat_fd >= 0);
     int x;
@@ -388,7 +364,6 @@ int dc_signed_in (void) {
 
 // main loops
 
-struct event *term_ev = 0;
 void net_loop (int flags, int (*is_end)(void)) {
     int last_get_state = (int)(time (0));
     while (!is_end || !is_end ()) {
@@ -398,10 +373,10 @@ void net_loop (int flags, int (*is_end)(void)) {
             last_get_state = (int)(time (0));
         }
     }
-    if (term_ev) {
-        event_free (term_ev);
-        term_ev = 0;
-    }
+}
+
+void wait_loop(int (*is_end)(void)) {
+    net_loop (0, is_end);
 }
 
 int main_loop (void) {
@@ -412,29 +387,30 @@ int main_loop (void) {
 int loop(struct tgl_update_callback *upd_cb) {
     logprintf = upd_cb->logprintf;
     tgl_set_binlog_mode (0);
-    tgl_set_download_directory(get_downloads_directory());
+    tgl_set_download_directory(config.get_download_directory ());
     tgl_set_callback(upd_cb);
     tgl_init();
     read_auth_file ();
     read_state_file ();
     read_secret_chat_file ();
-    if (reset_authorization) {
+    if (config.reset_authorization) {
         tgl_peer_t *P = tgl_peer_get (TGL_MK_USER (tgl_state.our_id));
-        if (P && P->user.phone && reset_authorization == 1) {
+        if (P && P->user.phone && config.reset_authorization == 1) {
             logprintf("Try to login as %s", P->user.phone);
+            config.set_default_username(P->user.phone);
         }
         bl_do_reset_authorization ();
     }
     net_loop (0, all_authorized);
     if (!tgl_signed_dc(tgl_state.DC_working)) {
         logprintf("Need to login first");
-        tgl_do_send_code(get_default_username(), sign_in_callback, 0);
+        tgl_do_send_code(config.get_default_username (), sign_in_callback, 0);
         net_loop(0, sent_code);
         logprintf ("%s\n", should_register ? "phone not registered" : "phone registered");
         if (!should_register) {
             logprintf("Enter SMS code");
             while (1) {
-                if (tgl_do_send_code_result (get_default_username(), hash, get_sms_code(), sign_in_result, 0) >= 0) {
+                if (tgl_do_send_code_result (config.get_default_username (), hash, config.get_sms_code (), sign_in_result, 0) >= 0) {
                     break;
                 }
                 break;
@@ -450,11 +426,11 @@ int loop(struct tgl_update_callback *upd_cb) {
     }
     write_auth_file ();
     tglm_send_all_unsent ();
-    tgl_do_get_difference (sync_from_start, get_difference_callback, 0);
+    tgl_do_get_difference (config.sync_from_start, get_difference_callback, 0);
     net_loop (0, dgot);
     assert (!(tgl_state.locks & TGL_LOCK_DIFF));
     tgl_state.started = 1;
-    if (wait_dialog_list) {
+    if (config.wait_dialog_list) {
         d_got_ok = 0;
         tgl_do_get_dialog_list (dlist_cb, 0);
         net_loop (0, dgot);
