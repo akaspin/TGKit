@@ -24,6 +24,8 @@
     [tg run];
     NSLog(@"Running...");
     // Do any additional setup after loading the view, typically from a nib.
+    self.peerId = [[UITextField alloc] init];
+    self.messageInput = [[UITextField alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,6 +51,8 @@
 
 - (void)didReceiveNewMessage:(TGMessage *)message {
     NSLog(@"%@", message.text);
+    NSString *line = [message.text stringByAppendingString:@"\n---\n"];
+    self.messageView.text = [self.messageView.text stringByAppendingString:line];
 }
 
 - (void)getLoginUsernameWithCompletionBlock:(TGKitStringCompletionBlock)completion {

@@ -172,7 +172,9 @@ void print_message_gw(struct tgl_message *M) {
             message.media = make_media(&M->media);
         }
     }
-    [_delegate didReceiveNewMessage:message];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_delegate didReceiveNewMessage:message];
+    });
 }
 
 void mark_read_upd(int num, struct tgl_message *list[]) {
