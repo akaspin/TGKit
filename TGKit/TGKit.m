@@ -1,10 +1,11 @@
-//
-//  TGKit.m
-//  TGKit
-//
-//  Created by Paul Eipper on 21/10/2014.
-//  Copyright (c) 2014 nKey. All rights reserved.
-//
+
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ 
+ Copyright (c) 2014 nKey.
+ */
 
 #import "TGKit.h"
 #import "tgl.h"
@@ -30,7 +31,7 @@
 
 @implementation TGKit
 
-TGKit *delegate; // global for now, need to add userdata to callbacks
+TGKit *delegate; // global for now, need to add userdata to callbacks or singleton
 dispatch_queue_t loop_queue;
 
 - (instancetype)initWithKey:(NSString *)serverRsaKey {
