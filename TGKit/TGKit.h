@@ -8,7 +8,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 
 @interface TGPeer : NSObject
@@ -59,16 +58,23 @@
 @end
 
 
-@protocol TGKitDelegate <NSObject, UIAlertViewDelegate>
+typedef void (^TGKitStringCompletionBlock)(NSString *text);
 
-- (void)didGetNewMessage:(TGMessage *)message;
+
+@protocol TGKitDelegate <NSObject>
+
+@property (atomic, strong) NSString *username;
+
+- (void)didReceiveNewMessage:(TGMessage *)message;
+- (void)getLoginUsernameWithCompletionBlock:(TGKitStringCompletionBlock)completion;
+- (void)getLoginCodeWithCompletionBlock:(TGKitStringCompletionBlock)completion;
 
 @end
 
 
-@interface TGKit : NSObject <TGKitDelegate>
+@interface TGKit : NSObject
 
-- (instancetype)initWithKey:(NSString *)serverRsaKey;
+- (instancetype)initWithDelegate:(id<TGKitDelegate>)delegate andKey:(NSString *)serverRsaKey;
 - (void)run;
 
 @end

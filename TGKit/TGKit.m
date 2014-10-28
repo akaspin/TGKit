@@ -23,54 +23,30 @@
 
 
 @interface TGKit ()
-
-@property NSString *username;
-
 @end
 
 
 @implementation TGKit
 
-TGKit *delegate; // global for now, need to add userdata to callbacks or singleton
-dispatch_queue_t loop_queue;
+id<TGKitDelegate> _delegate;
+dispatch_queue_t _loop_queue;
 
-- (instancetype)initWithKey:(NSString *)serverRsaKey {
-    self = [super init];
+- (instancetype)initWithDelegate:(id<TGKitDelegate>)delegate andKey:(NSString *)serverRsaKey {
+    static TGKit *sharedInstance = nil;
+    assert(sharedInstance == nil);  // multiple init called, only single instance allowed
+    sharedInstance = [super init];
     NSLog(@"Init with key path: [%@]", serverRsaKey);
-    delegate = self;
+    _delegate = delegate;
     tgl_state.verbosity = 3;
     tgl_set_rsa_key([serverRsaKey cStringUsingEncoding:NSUTF8StringEncoding]);
-    loop_queue = dispatch_queue_create("tgkit-loop", DISPATCH_QUEUE_CONCURRENT);
-    return self;
+    _loop_queue = dispatch_queue_create("tgkit-loop", DISPATCH_QUEUE_CONCURRENT);
+    return sharedInstance;
 }
 
 - (void)run {
-    dispatch_async(loop_queue, ^{
+    dispatch_async(_loop_queue, ^{
         loop(&upd_cb);
     });
-}
-
-- (void)didGetNewMessage:(TGMessage *)message {
-    NSLog(@"%@", message.text);
-}
-
-
-#pragma mark - UIAlertViewDelegate
-
-- (void)alertViewCancel:(UIAlertView *)alertView {
-    if (alertView.tag == 1) {
-        username_ok = 1;
-    } else if (alertView.tag == 2){
-        sms_code_ok = 1;
-    }
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 1) {
-        username_ok = 1;
-    } else if (alertView.tag == 2){
-        sms_code_ok = 1;
-    }
 }
 
 
@@ -196,7 +172,7 @@ void print_message_gw(struct tgl_message *M) {
             message.media = make_media(&M->media);
         }
     }
-    [delegate didGetNewMessage:message];
+    [_delegate didReceiveNewMessage:message];
 }
 
 void mark_read_upd(int num, struct tgl_message *list[]) {
@@ -265,39 +241,35 @@ int has_sms_code(void) {
 }
 
 void set_default_username(const char* username) {
-    delegate.username = [NSString stringWithUTF8String:username];
+    _delegate.username = [NSString stringWithUTF8String:username];
 }
 
 const char *get_default_username(void) {
     username_ok = 0;
-    if (delegate.username) {
-        return delegate.username.UTF8String;
+    if (_delegate.username) {
+        return _delegate.username.UTF8String;
     }
-    __block UITextField *textField;
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Telephone" message:@"Telephone number (with '+' sign):" delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
-        alertView.tag = 1;
-        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-        textField = [alertView textFieldAtIndex:0];
-        [alertView show];
+        [_delegate getLoginUsernameWithCompletionBlock:^(NSString *text) {
+            username_ok = 1;
+            _delegate.username = text;
+        }];
     });
     wait_loop(has_username);
-    delegate.username = textField.text;
-    return textField.text.UTF8String;
+    return _delegate.username.UTF8String;
 }
 
 const char *get_sms_code (void) {
     sms_code_ok = 0;
-    __block UITextField *textField;
+    __block NSString *code;
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Activation" message:@"Code from SMS:" delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
-        alertView.tag = 2;
-        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-        textField = [alertView textFieldAtIndex:0];
-        [alertView show];
+        [_delegate getLoginCodeWithCompletionBlock:^(NSString *text) {
+            sms_code_ok = 1;
+            code = text;
+        }];
     });
     wait_loop(has_sms_code);
-    return textField.text.UTF8String;
+    return code.UTF8String;
 }
 
 const char *get_auth_key_filename (void) {

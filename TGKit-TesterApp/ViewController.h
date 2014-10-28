@@ -3,8 +3,9 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 #import <UIKit/UIKit.h>
+#import "TGKit.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <TGKitDelegate, UIAlertViewDelegate>
 
 
 @end
