@@ -126,8 +126,8 @@
 		DABC871519FAC85E0091B26D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DABC871819FAC85E0091B26D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DABC873119FACE4E0091B26D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		DABC873719FAE8470091B26D /* loop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loop.c; sourceTree = "<group>"; };
-		DABC873819FAE8470091B26D /* loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loop.h; sourceTree = "<group>"; };
+		DABC873719FAE8470091B26D /* loop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = loop.c; path = libtgl/loop.c; sourceTree = "<group>"; };
+		DABC873819FAE8470091B26D /* loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = loop.h; path = libtgl/loop.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,8 +195,6 @@
 			children = (
 				DA37916519F6F281009749A4 /* TGKit.h */,
 				DA37916719F6F281009749A4 /* TGKit.m */,
-				DABC873719FAE8470091B26D /* loop.c */,
-				DABC873819FAE8470091B26D /* loop.h */,
 			);
 			path = TGKit;
 			sourceTree = "<group>";
@@ -208,6 +206,8 @@
 				DA37919D19F6FB0D009749A4 /* auto.h */,
 				DA37918F19F6F8AF009749A4 /* binlog.c */,
 				DA37919019F6F8AF009749A4 /* binlog.h */,
+				DABC873719FAE8470091B26D /* loop.c */,
+				DABC873819FAE8470091B26D /* loop.h */,
 				DA37918019F6F873009749A4 /* mtproto-client.c */,
 				DA37918119F6F873009749A4 /* mtproto-client.h */,
 				DA37918219F6F873009749A4 /* mtproto-common.c */,
