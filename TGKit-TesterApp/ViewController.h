@@ -1,10 +1,6 @@
-//
-//  ViewController.h
-//  TGKit Tester
-//
-//  Created by Paul Eipper on 24/10/2014.
-//  Copyright (c) 2014 nKey. All rights reserved.
-//
+
+/* Any copyright in this file is dedicated to the Public Domain.
+ * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 #import <UIKit/UIKit.h>
 
