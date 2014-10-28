@@ -180,27 +180,27 @@ void mark_read_upd(int num, struct tgl_message *list[]) {
 }
 
 void type_notification_upd(struct tgl_user *U, enum tgl_typing_status status) {
-    NSLog(@"type_notification_upd");
+    NSLog(@"type_notification_upd status:[%d]", status);
 }
 
 void type_in_chat_notification_upd(struct tgl_user *U, struct tgl_chat *C, enum tgl_typing_status status) {
-    NSLog(@"type_in_chat_notification_upd");
+    NSLog(@"type_in_chat_notification_upd status:[%d]", status);
 }
 
 void user_update_gw(struct tgl_user *U, unsigned flags) {
-    NSLog(@"user_update_gw");
+    NSLog(@"user_update_gw flags:[%d]", flags);
 }
 
 void chat_update_gw(struct tgl_chat *U, unsigned flags) {
-    NSLog(@"chat_update_gw");
+    NSLog(@"chat_update_gw flags:[%d]", flags);
 }
 
 void secret_chat_update_gw(struct tgl_secret_chat *U, unsigned flags) {
-    NSLog(@"secret_chat_update_gw");
+    NSLog(@"secret_chat_update_gw flags:[%d]", flags);
 }
 
-void our_id_gw(int id) {
-    NSLog(@"our_id_gw");
+void our_id_gw(int our_id) {
+    NSLog(@"our_id_gw id:[%d]", our_id);
 }
 
 void nslog_logprintf(const char *format, ...) {
