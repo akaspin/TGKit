@@ -72,21 +72,21 @@ TGPeer *make_peer(tgl_peer_id_t peer_id, tgl_peer_t *P) {
         peer.printName = [NSString stringWithFormat:@"%@#%d", peer.type, peer.peerId];
         return peer;
     }
-    peer.printName = [NSString stringWithCString:P->print_name encoding:NSUTF8StringEncoding];
+    peer.printName = NSStringFromUTF8String(P->print_name);
     peer.flags = P->flags;
     switch (tgl_get_peer_type(peer_id)) {
         case TGL_PEER_USER:
-            peer.userFirstName = [NSString stringWithCString:P->user.first_name encoding:NSUTF8StringEncoding];
-            peer.userLastName = [NSString stringWithCString:P->user.last_name encoding:NSUTF8StringEncoding];
-            peer.userRealFirstName = [NSString stringWithCString:P->user.real_first_name encoding:NSUTF8StringEncoding];
-            peer.userRealLastName = [NSString stringWithCString:P->user.real_last_name encoding:NSUTF8StringEncoding];
-            peer.userPhone = [NSString stringWithCString:P->user.phone encoding:NSUTF8StringEncoding];
+            peer.userFirstName = NSStringFromUTF8String(P->user.first_name);
+            peer.userLastName = NSStringFromUTF8String(P->user.last_name);
+            peer.userRealFirstName = NSStringFromUTF8String(P->user.real_first_name);
+            peer.userRealLastName = NSStringFromUTF8String(P->user.real_last_name);
+            peer.userPhone = NSStringFromUTF8String(P->user.phone);
             if (P->user.access_hash) {
                 peer.userAccessHash = 1;
             }
             break;
         case TGL_PEER_CHAT:
-            peer.chatTitle = [NSString stringWithCString:P->chat.title encoding:NSUTF8StringEncoding];
+            peer.chatTitle = NSStringFromUTF8String(P->chat.title);
             if (P->chat.user_list) {
                 NSMutableArray *members = [NSMutableArray arrayWithCapacity:P->chat.users_num];
                 for (int i = 0; i < P->chat.users_num; i++) {
@@ -152,7 +152,7 @@ void print_message_gw(struct tgl_message *M) {
     TGMessage *message = [[TGMessage alloc] init];
     static char s[30];
     snprintf(s, 30, "%lld", M->id);
-    message.msgId = [NSString stringWithCString:s encoding:NSUTF8StringEncoding];
+    message.msgId = [NSString stringWithUTF8String:s];
     message.flags = M->flags;
     message.isOut = M->out;
     message.isUnread = M->unread;
@@ -166,7 +166,7 @@ void print_message_gw(struct tgl_message *M) {
     message.to = make_peer(M->to_id, tgl_peer_get (M->to_id));
     if (!M->service) {
         if (M->message_len && M->message) {
-            message.text = [NSString stringWithCString:M->message encoding:NSUTF8StringEncoding];
+            message.text = [NSString stringWithUTF8String:M->message];
         }
         if (M->media.type && M->media.type != tgl_message_media_none) {
             message.media = make_media(&M->media);
@@ -316,6 +316,12 @@ struct tgl_config config = {
     .wait_dialog_list = 0,
     .reset_authorization = 0,
 };
+
+#pragma mark - Helper functions
+
+static inline NSString *NSStringFromUTF8String (const char *cString) {
+    return cString ? [NSString stringWithUTF8String:cString] : nil;
+}
 
 @end
 
