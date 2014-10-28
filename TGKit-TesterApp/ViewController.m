@@ -9,6 +9,7 @@
 @interface ViewController ()
 
 @property (nonatomic, strong) TGKitStringCompletionBlock alertCompletion;
+@property (nonatomic, strong) TGKit *tg;
 
 @end
 
@@ -20,12 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *keyPath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"pub"];
-    TGKit *tg = [[TGKit alloc] initWithDelegate:self andKey:keyPath];
-    [tg run];
+    self.tg = [[TGKit alloc] initWithDelegate:self andKey:keyPath];
+    [self.tg run];
     NSLog(@"Running...");
     // Do any additional setup after loading the view, typically from a nib.
-    self.peerId = [[UITextField alloc] init];
-    self.messageInput = [[UITextField alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,6 +32,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)sendButtonPressed:(id)sender {
+    if (!self.peerId.text.length || !self.messageInput.text.length) {
+        return;
+    }
+    [self.tg sendMessage:self.messageInput.text toPeer:self.peerId.text.intValue];
+}
 
 #pragma mark - UIAlertViewDelegate
 
@@ -50,7 +55,7 @@
 #pragma mark - TGKitDelegate
 
 - (void)didReceiveNewMessage:(TGMessage *)message {
-    NSLog(@"%@", message.text);
+    NSLog(@"%d", message.from.peerId);
     NSString *line = [message.text stringByAppendingString:@"\n---\n"];
     self.messageView.text = [self.messageView.text stringByAppendingString:line];
 }

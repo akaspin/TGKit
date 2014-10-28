@@ -11,6 +11,9 @@
 #import "tgl.h"
 #import "loop.h"
 
+// Forward declarations
+void print_secret_chat_gw (void *extra, int success, struct tgl_secret_chat *E);
+
 
 @implementation TGPeer
 @end
@@ -47,6 +50,12 @@ dispatch_queue_t _loop_queue;
     dispatch_async(_loop_queue, ^{
         loop(&upd_cb);
     });
+}
+
+- (void)sendMessage:(NSString *)text toPeer:(int)peerId {
+    NSLog(@"Send msg:[%@] to peer:[%d]", text, peerId);
+    const char *msg = text.UTF8String;
+    tgl_do_send_message(tgl_set_peer_id(TGL_PEER_USER, peerId), msg, (int)(strlen (msg)), 0, 0);
 }
 
 
@@ -146,6 +155,10 @@ TGMedia *make_media(struct tgl_message_media *M) {
 }
 
 #pragma mark - C callbacks
+
+void print_secret_chat_gw (void *extra, int success, struct tgl_secret_chat *E) {
+    NSLog(@"print_secret_chat_gw sucess:[%d]", success);
+}
 
 void print_message_gw(struct tgl_message *M) {
     NSLog(@"print_message_gw");

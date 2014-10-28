@@ -76,5 +76,6 @@ typedef void (^TGKitStringCompletionBlock)(NSString *text);
 
 - (instancetype)initWithDelegate:(id<TGKitDelegate>)delegate andKey:(NSString *)serverRsaKey;
 - (void)run;
+- (void)sendMessage:(NSString *)text toPeer:(int)peerId;
 
 @end
