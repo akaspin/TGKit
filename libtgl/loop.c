@@ -417,8 +417,25 @@ int loop(struct tgl_update_callback *upd_cb) {
         logprintf ("%s\n", should_register ? "phone not registered" : "phone registered");
         if (!should_register) {
             logprintf("Enter SMS code");
+            const char *username = config.get_default_username ();
             while (1) {
-                tgl_do_send_code_result (config.get_default_username (), hash, config.get_sms_code (), sign_in_result, 0);
+                const char *sms_code = config.get_sms_code ();
+                tgl_do_send_code_result (username, hash, sms_code, sign_in_result, 0);
+                net_loop (0, signed_in);
+                if (signed_in_result == 1) {
+                    break;
+                }
+                logprintf("Invalid code");
+                signed_in_result = 0;
+            }
+        } else {
+            logprintf("User is not registered");
+            const char *username = config.get_default_username ();
+            const char *first_name = config.get_first_name ();
+            const char *last_name = config.get_last_name ();
+            while (1) {
+                const char *sms_code = config.get_sms_code ();
+                tgl_do_send_code_result_auth (username, hash, sms_code, first_name, last_name, sign_in_result, 0);
                 net_loop (0, signed_in);
                 if (signed_in_result == 1) {
                     break;

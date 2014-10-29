@@ -255,6 +255,16 @@ int has_sms_code(void) {
     return sms_code_ok;
 }
 
+int first_name_ok = 0;
+int has_first_name(void) {
+    return first_name_ok;
+}
+
+int last_name_ok = 0;
+int has_last_name(void) {
+    return last_name_ok;
+}
+
 void set_default_username(const char* username) {
     _delegate.username = [NSString stringWithUTF8String:username];
 }
@@ -287,28 +297,46 @@ const char *get_sms_code (void) {
     return code.UTF8String;
 }
 
+const char *get_first_name (void) {
+    first_name_ok = 0;
+    __block NSString *first_name;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_delegate getSignupFirstNameWithCompletionBlock:^(NSString *text) {
+            first_name_ok = 1;
+            first_name = text;
+        }];
+    });
+    wait_loop(has_first_name);
+    return first_name.UTF8String;
+}
+
+const char *get_last_name (void) {
+    last_name_ok = 0;
+    __block NSString *last_name;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_delegate getSignupLastNameWithCompletionBlock:^(NSString *text) {
+            last_name_ok = 1;
+            last_name = text;
+        }];
+    });
+    wait_loop(has_last_name);
+    return last_name.UTF8String;
+}
+
 const char *get_auth_key_filename (void) {
-    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"auth_file"];
-    return filePath.UTF8String;
+    return documentPathWithFilename(@"auth_file");
 }
 
 const char *get_state_filename (void) {
-    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"state_file"];
-    return filePath.UTF8String;
+    return documentPathWithFilename(@"state_file");
 }
 
 const char *get_secret_chat_filename (void) {
-    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"secret"];
-    return filePath.UTF8String;
+    return documentPathWithFilename(@"secret");
 }
 
 const char *get_binlog_filename (void) {
-    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"binlog"];
-    return filePath.UTF8String;
+    return documentPathWithFilename(@"binlog");
 }
 
 const char *get_download_directory (void) {
@@ -317,6 +345,8 @@ const char *get_download_directory (void) {
 }
 
 struct tgl_config config = {
+    .get_first_name = get_first_name,
+    .get_last_name = get_last_name,
     .set_default_username = set_default_username,
     .get_default_username = get_default_username,
     .get_sms_code = get_sms_code,
@@ -334,6 +364,10 @@ struct tgl_config config = {
 
 static inline NSString *NSStringFromUTF8String (const char *cString) {
     return cString ? [NSString stringWithUTF8String:cString] : nil;
+}
+
+static inline const char *documentPathWithFilename (NSString *filename) {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:filename].UTF8String;
 }
 
 @end

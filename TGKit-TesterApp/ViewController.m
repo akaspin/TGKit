@@ -39,6 +39,7 @@
     [self.tg sendMessage:self.messageInput.text toPeer:self.peerId.text.intValue];
 }
 
+
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertViewCancel:(UIAlertView *)alertView {
@@ -72,6 +73,22 @@
     self.alertCompletion = completion;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Activation" message:@"Code from SMS:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
     alertView.tag = 2;
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+}
+
+- (void)getSignupFirstNameWithCompletionBlock:(TGKitStringCompletionBlock)completion {
+    self.alertCompletion = completion;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sign Up" message:@"First name:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    alertView.tag = 3;
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+}
+
+- (void)getSignupLastNameWithCompletionBlock:(TGKitStringCompletionBlock)completion {
+    self.alertCompletion = completion;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sign Up" message:@"Last name:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    alertView.tag = 4;
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView show];
 }

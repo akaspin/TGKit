@@ -27,6 +27,8 @@ struct tgl_config {
     int sync_from_start;
     int wait_dialog_list;
     int reset_authorization;
+    const char *(*get_first_name) (void);
+    const char *(*get_last_name) (void);
     const char *(*get_default_username) (void);
     const char *(*get_sms_code) (void);
     const char *(*get_auth_key_filename) (void);

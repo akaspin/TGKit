@@ -68,6 +68,8 @@ typedef void (^TGKitStringCompletionBlock)(NSString *text);
 - (void)didReceiveNewMessage:(TGMessage *)message;
 - (void)getLoginUsernameWithCompletionBlock:(TGKitStringCompletionBlock)completion;
 - (void)getLoginCodeWithCompletionBlock:(TGKitStringCompletionBlock)completion;
+- (void)getSignupFirstNameWithCompletionBlock:(TGKitStringCompletionBlock)completion;
+- (void)getSignupLastNameWithCompletionBlock:(TGKitStringCompletionBlock)completion;
 
 @end
 
