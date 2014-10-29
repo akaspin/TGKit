@@ -319,17 +319,13 @@ void dlist_cb (void *callback_extra, int success, int size, tgl_peer_id_t peers[
     d_got_ok = 1;
 }
 
-int signed_in_ok;
+int signed_in_result;
 void sign_in_result (void *extra, int success, struct tgl_user *U) {
-    if (!success) {
-        logprintf("Can not login");
-        exit (1);
-    }
-    signed_in_ok = 1;
+    signed_in_result = success ? 1 : 2;
 }
 
 int signed_in (void) {
-    return signed_in_ok;
+    return signed_in_result;
 }
 
 int should_register;
@@ -422,13 +418,15 @@ int loop(struct tgl_update_callback *upd_cb) {
         if (!should_register) {
             logprintf("Enter SMS code");
             while (1) {
-                if (tgl_do_send_code_result (config.get_default_username (), hash, config.get_sms_code (), sign_in_result, 0) >= 0) {
+                tgl_do_send_code_result (config.get_default_username (), hash, config.get_sms_code (), sign_in_result, 0);
+                net_loop (0, signed_in);
+                if (signed_in_result == 1) {
                     break;
                 }
-                break;
+                logprintf("Invalid code");
+                signed_in_result = 0;
             }
         }
-        net_loop (0, signed_in);
     }
     for (int i = 0; i <= tgl_state.max_dc_num; i++) if (tgl_state.DC_list[i] && !tgl_signed_dc (tgl_state.DC_list[i])) {
         tgl_do_export_auth (i, export_auth_callback, (void*)(long)tgl_state.DC_list[i]);
