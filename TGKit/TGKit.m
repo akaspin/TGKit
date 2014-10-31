@@ -197,7 +197,7 @@ void send_message_to_user_id(const char *text, int user_id) {
 #pragma mark - C callbacks
 
 void print_message_gw(struct tgl_message *M) {
-    NSLog(@"print_message_gw from [%d] to: [%d] text: [%@] service: [%d]", M->from_id.id, M->to_id.id, NSStringFromUTF8String(M->message), M->service);
+    NSLog(@"print_message_gw from [%d] to: [%d] service: [%d]", M->from_id.id, M->to_id.id, M->service);
     if (M->service) {
         log_service(M);
     }
