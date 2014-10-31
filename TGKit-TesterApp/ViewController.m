@@ -39,6 +39,10 @@
     [self.tg sendMessage:self.messageInput.text toPeer:self.peerId.text.intValue];
 }
 
+- (IBAction)doneEditing:(id)sender {
+    [sender resignFirstResponder];
+}
+
 
 #pragma mark - UIAlertViewDelegate
 
