@@ -43,5 +43,6 @@ extern struct tgl_config config; // must be defined by caller
 
 int loop(struct tgl_update_callback *upd_cb);
 void wait_loop(int (*is_end)(void));
+void write_secret_chat_file (void);
 
 #endif /* defined(__TGKit__loop__) */

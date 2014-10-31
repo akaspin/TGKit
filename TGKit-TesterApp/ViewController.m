@@ -56,8 +56,10 @@
 #pragma mark - TGKitDelegate
 
 - (void)didReceiveNewMessage:(TGMessage *)message {
-    NSLog(@"%d", message.from.peerId);
-    NSString *line = [message.text stringByAppendingString:@"\n---\n"];
+    if (message.isService || !message.text.length) {
+        return;
+    }
+    NSString *line = [NSString stringWithFormat:@"%@ %@\n---\n", message.isOut ? @">" : @"<", message.text];
     self.messageView.text = [self.messageView.text stringByAppendingString:line];
 }
 
