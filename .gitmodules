@@ -1,0 +1,3 @@
+[submodule "external/tg"]
+	path = external/tg
+	url = git@github.com:nKey/tg.git
