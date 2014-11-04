@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA2D40F81A098D8100A782C0 /* tgl-timers.c in Sources */ = {isa = PBXBuildFile; fileRef = DA2D40F61A098D8100A782C0 /* tgl-timers.c */; };
 		DA37916619F6F281009749A4 /* TGKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA37916519F6F281009749A4 /* TGKit.h */; };
 		DA37916819F6F281009749A4 /* TGKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37916719F6F281009749A4 /* TGKit.m */; };
 		DA37917F19F6F843009749A4 /* tools.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37917D19F6F843009749A4 /* tools.c */; };
@@ -79,6 +80,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DA2D40F61A098D8100A782C0 /* tgl-timers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "tgl-timers.c"; path = "libtgl/tgl-timers.c"; sourceTree = "<group>"; };
+		DA2D40F71A098D8100A782C0 /* tgl-timers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "tgl-timers.h"; path = "libtgl/tgl-timers.h"; sourceTree = "<group>"; };
 		DA37916219F6F281009749A4 /* libTGKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTGKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA37916519F6F281009749A4 /* TGKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGKit.h; sourceTree = "<group>"; };
 		DA37916719F6F281009749A4 /* TGKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGKit.m; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				DA37918C19F6F88A009749A4 /* structures.c */,
 				DA37918D19F6F88A009749A4 /* structures.h */,
 				DA3791A019F6FB5B009749A4 /* tgl-layout.h */,
+				DA2D40F61A098D8100A782C0 /* tgl-timers.c */,
+				DA2D40F71A098D8100A782C0 /* tgl-timers.h */,
 				DA37919219F6F8C0009749A4 /* tgl.c */,
 				DA37919319F6F8C0009749A4 /* tgl.h */,
 				DA37917D19F6F843009749A4 /* tools.c */,
@@ -458,6 +463,7 @@
 				DA37918E19F6F88A009749A4 /* structures.c in Sources */,
 				DA37919119F6F8AF009749A4 /* binlog.c in Sources */,
 				DA37919C19F6FAE9009749A4 /* auto.c in Sources */,
+				DA2D40F81A098D8100A782C0 /* tgl-timers.c in Sources */,
 				DA37919419F6F8C0009749A4 /* tgl.c in Sources */,
 				DA37919719F6F8D1009749A4 /* updates.c in Sources */,
 				DABC873919FAE8470091B26D /* loop.c in Sources */,

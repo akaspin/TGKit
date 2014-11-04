@@ -28,6 +28,7 @@
 
 @implementation TGKit
 
+struct tgl_state *TLS;  // C global state
 id<TGKitDelegate> _delegate;
 dispatch_queue_t _loop_queue;
 
@@ -37,8 +38,8 @@ dispatch_queue_t _loop_queue;
     sharedInstance = [super init];
     NSLog(@"Init with key path: [%@]", serverRsaKey);
     _delegate = delegate;
-    tgl_state.verbosity = 3;
-    tgl_set_rsa_key([serverRsaKey cStringUsingEncoding:NSUTF8StringEncoding]);
+    TLS->verbosity = 3;
+    tgl_set_rsa_key(TLS, [serverRsaKey cStringUsingEncoding:NSUTF8StringEncoding]);
     _loop_queue = dispatch_queue_create("tgkit-loop", DISPATCH_QUEUE_CONCURRENT);
     return sharedInstance;
 }
@@ -51,13 +52,13 @@ dispatch_queue_t _loop_queue;
 
 - (void)sendMessage:(NSString *)text toPeer:(int)peerId {
     NSLog(@"Send msg:[%@] to peer:[%d]", text, peerId);
-    send_message_to_user_id(text.UTF8String, peerId);
+    send_message_to_user_id(TLS, text.UTF8String, peerId);
 }
 
 
 #pragma mark - TGKit classes
 
-TGPeer *make_peer(tgl_peer_id_t peer_id, tgl_peer_t *P) {
+TGPeer *make_peer(struct tgl_state *TLSR, tgl_peer_id_t peer_id, tgl_peer_t *P) {
     TGPeer *peer = [[TGPeer alloc] init];
     peer.peerId = tgl_get_peer_id(peer_id);
     switch (tgl_get_peer_type(peer_id)) {
@@ -96,13 +97,13 @@ TGPeer *make_peer(tgl_peer_id_t peer_id, tgl_peer_t *P) {
                 NSMutableArray *members = [NSMutableArray arrayWithCapacity:P->chat.users_num];
                 for (int i = 0; i < P->chat.users_num; i++) {
                     tgl_peer_id_t member_id = TGL_MK_USER (P->chat.user_list[i].user_id);
-                    [members addObject:make_peer(member_id, tgl_peer_get(member_id))];
+                    [members addObject:make_peer(TLSR, member_id, tgl_peer_get(TLSR, member_id))];
                 }
                 peer.chatMembers = members;
             }
             break;
         case TGL_PEER_ENCR_CHAT:
-            peer.encrChatPeer = make_peer(TGL_MK_USER (P->encr_chat.user_id), tgl_peer_get (TGL_MK_USER (P->encr_chat.user_id)));
+            peer.encrChatPeer = make_peer(TLSR, TGL_MK_USER (P->encr_chat.user_id), tgl_peer_get (TLSR, TGL_MK_USER (P->encr_chat.user_id)));
             break;
         default:
             break;
@@ -153,21 +154,21 @@ TGMedia *make_media(struct tgl_message_media *M) {
 
 #pragma mark - C workflow
 
-void did_create_secret_chat (void *extra, int success, struct tgl_secret_chat *E) {
+void did_create_secret_chat (struct tgl_state *TLSR, void *extra, int success, struct tgl_secret_chat *E) {
     NSLog(@"did_create_secret_chat success:[%d]", success);
-    tgl_do_send_message(E->id, extra, (int)(strlen(extra)), did_send_message, 0);
+    tgl_do_send_message(TLSR, E->id, extra, (int)(strlen(extra)), did_send_message, 0);
 }
 
-void did_get_user_info(void *callback_extra, int success, struct tgl_user *U) {
+void did_get_user_info(struct tgl_state *TLSR, void *callback_extra, int success, struct tgl_user *U) {
     if (!success) {
         NSLog(@"Error fetching user info");
     } else {
         NSLog(@"Create new secret chat [from user info]");
-        tgl_do_create_secret_chat(U->id, did_create_secret_chat, callback_extra);
+        tgl_do_create_secret_chat(TLSR, U->id, did_create_secret_chat, callback_extra);
     }
 }
 
-void did_send_message(void *callback_extra, int success, struct tgl_message *M) {
+void did_send_message(struct tgl_state *TLSR, void *callback_extra, int success, struct tgl_message *M) {
     if (!success) {
         write_secret_chat_file();
     } else {
@@ -175,31 +176,31 @@ void did_send_message(void *callback_extra, int success, struct tgl_message *M) 
     }
 }
 
-void send_message_to_user_id(const char *text, int user_id) {
+void send_message_to_user_id(struct tgl_state *TLSR, const char *text, int user_id) {
     tgl_peer_id_t user = TGL_MK_USER(user_id);
-    int encr_chat_id = tgl_get_secret_chat_for_user(user);
+    int encr_chat_id = tgl_get_secret_chat_for_user(TLSR, user);
     if (encr_chat_id == -1) {
-        if (!tgl_peer_get(user)) {
+        if (!tgl_peer_get(TLSR, user)) {
             NSLog(@"Get user info");
-            tgl_do_get_user_info(user, 0, did_get_user_info, &text);
+            tgl_do_get_user_info(TLSR, user, 0, did_get_user_info, &text);
         } else {
             NSLog(@"Create new secret chat");
-            tgl_do_create_secret_chat(user, did_create_secret_chat, &text);
+            tgl_do_create_secret_chat(TLSR, user, did_create_secret_chat, &text);
         }
     } else {
         NSLog(@"Found secret chat id [%d]", encr_chat_id);
         tgl_peer_id_t encr_chat = TGL_MK_ENCR_CHAT(encr_chat_id);
-        tgl_do_send_message(encr_chat, text, (int)(strlen(text)), did_send_message, &user);
+        tgl_do_send_message(TLSR, encr_chat, text, (int)(strlen(text)), did_send_message, &user);
     }
 }
 
 
 #pragma mark - C callbacks
 
-void print_message_gw(struct tgl_message *M) {
+void print_message_gw(struct tgl_state *TLSR, struct tgl_message *M) {
     NSLog(@"print_message_gw from [%d] to: [%d] service: [%d]", M->from_id.id, M->to_id.id, M->service);
     if (M->service) {
-        log_service(M);
+        log_service(TLSR, M);
     }
     TGMessage *message = [[TGMessage alloc] init];
     static char s[30];
@@ -212,10 +213,10 @@ void print_message_gw(struct tgl_message *M) {
     message.isService = M->service;
     if (tgl_get_peer_type(M->fwd_from_id)) {
         message.fwdDate = M->fwd_date;
-        message.fwdFrom = make_peer(M->fwd_from_id, tgl_peer_get(M->fwd_from_id));
+        message.fwdFrom = make_peer(TLSR, M->fwd_from_id, tgl_peer_get(TLSR, M->fwd_from_id));
     }
-    message.from = make_peer(M->from_id, tgl_peer_get(M->from_id));
-    message.to = make_peer(M->to_id, tgl_peer_get (M->to_id));
+    message.from = make_peer(TLSR, M->from_id, tgl_peer_get(TLSR, M->from_id));
+    message.to = make_peer(TLSR, M->to_id, tgl_peer_get(TLSR, M->to_id));
     if (!M->service) {
         if (M->message_len && M->message) {
             message.text = [NSString stringWithUTF8String:M->message];
@@ -229,42 +230,42 @@ void print_message_gw(struct tgl_message *M) {
     });
 }
 
-void mark_read_upd(int num, struct tgl_message *list[]) {
+void mark_read_upd(struct tgl_state *TLSR, int num, struct tgl_message *list[]) {
     NSLog(@"mark_read_upd");
 }
 
-void type_notification_upd(struct tgl_user *U, enum tgl_typing_status status) {
+void type_notification_upd(struct tgl_state *TLSR, struct tgl_user *U, enum tgl_typing_status status) {
     NSLog(@"type_notification_upd status:[%d]", status);
     NSLog(@"User [%@] id [%d] status is %@", NSStringFromUTF8String(U->print_name), tgl_get_peer_id(U->id), log_typing(status));
 }
 
-void type_in_chat_notification_upd(struct tgl_user *U, struct tgl_chat *C, enum tgl_typing_status status) {
+void type_in_chat_notification_upd(struct tgl_state *TLSR, struct tgl_user *U, struct tgl_chat *C, enum tgl_typing_status status) {
     NSLog(@"type_in_chat_notification_upd status:[%d]", status);
     NSLog(@"User [%@] id [%d] status is %@ in chat [%@] id [%d]", NSStringFromUTF8String(U->print_name), tgl_get_peer_id(U->id), log_typing(status), NSStringFromUTF8String(C->title), tgl_get_peer_id(C->id));
 }
 
-void user_update_gw(struct tgl_user *U, unsigned flags) {
+void user_update_gw(struct tgl_state *TLSR, struct tgl_user *U, unsigned flags) {
     NSLog(@"user_update_gw flags:[%d]", flags);
     log_updates("User", U->print_name, tgl_get_peer_id(U->id), flags);
 }
 
-void chat_update_gw(struct tgl_chat *U, unsigned flags) {
+void chat_update_gw(struct tgl_state *TLSR, struct tgl_chat *U, unsigned flags) {
     NSLog(@"chat_update_gw flags:[%d]", flags);
     log_updates("Chat", U->title, tgl_get_peer_id(U->id), flags);
 }
 
-void secret_chat_update_gw(struct tgl_secret_chat *U, unsigned flags) {
+void secret_chat_update_gw(struct tgl_state *TLSR, struct tgl_secret_chat *U, unsigned flags) {
     NSLog(@"secret_chat_update_gw flags:[%d]", flags);
     if ((flags & TGL_UPDATE_WORKING) || (flags & TGL_UPDATE_DELETED)) {
         write_secret_chat_file ();
     }
     if ((flags & TGL_UPDATE_REQUESTED))  {
-        tgl_do_accept_encr_chat_request (U, 0, 0);
+        tgl_do_accept_encr_chat_request (TLSR, U, 0, 0);
     }
     log_updates("Secret chat", U->print_name, tgl_get_peer_id(U->id), flags);
 }
 
-void our_id_gw(int our_id) {
+void our_id_gw(struct tgl_state *TLSR, int our_id) {
     NSLog(@"our_id_gw id:[%d]", our_id);
 }
 
@@ -500,9 +501,9 @@ static inline NSString *log_typing(enum tgl_typing_status status) {
     }
 }
 
-static inline void log_service(struct tgl_message *M) {
-    tgl_peer_t *to_peer = tgl_peer_get(M->to_id);
-    tgl_peer_t *from_user = tgl_peer_get(M->from_id);
+static inline void log_service(struct tgl_state *TLSR, struct tgl_message *M) {
+    tgl_peer_t *to_peer = tgl_peer_get(TLSR, M->to_id);
+    tgl_peer_t *from_user = tgl_peer_get(TLSR, M->from_id);
     NSString *to_name = tgl_get_peer_type(M->to_id) == TGL_PEER_CHAT ? NSStringFromUTF8String(to_peer->chat.title) : NSStringFromUTF8String(to_peer->print_name);
     NSString *from_name = NSStringFromUTF8String(from_user->print_name);
     NSString *action;
@@ -529,11 +530,11 @@ static inline void log_service(struct tgl_message *M) {
             action = @"deleted photo";
         } break;
         case tgl_message_action_chat_add_user: {
-            tgl_peer_t *user = tgl_peer_get(tgl_set_peer_id(TGL_PEER_USER, M->action.user));
+            tgl_peer_t *user = tgl_peer_get(TLSR, tgl_set_peer_id(TGL_PEER_USER, M->action.user));
             action = [@"added user " stringByAppendingFormat:@"[%@] id: [%d]", NSStringFromUTF8String(user->print_name), M->action.user];
         } break;
         case tgl_message_action_chat_delete_user: {
-            tgl_peer_t *user = tgl_peer_get(tgl_set_peer_id(TGL_PEER_USER, M->action.user));
+            tgl_peer_t *user = tgl_peer_get(TLSR, tgl_set_peer_id(TGL_PEER_USER, M->action.user));
             action = [@"deleted user " stringByAppendingFormat:@"[%@] id: [%d]", NSStringFromUTF8String(user->print_name), M->action.user];
         } break;
         case tgl_message_action_set_message_ttl: {

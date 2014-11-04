@@ -1094,6 +1094,10 @@ int skip_constructor_binlog_encr_chat_update_seq (struct paramed_type *T);
 int store_constructor_binlog_encr_chat_update_seq (struct paramed_type *T);
 int fetch_constructor_binlog_encr_chat_update_seq (struct paramed_type *T);
 int autocomplete_constructor_binlog_encr_chat_update_seq (struct paramed_type *T);
+int skip_constructor_binlog_encr_chat_set_seq (struct paramed_type *T);
+int store_constructor_binlog_encr_chat_set_seq (struct paramed_type *T);
+int fetch_constructor_binlog_encr_chat_set_seq (struct paramed_type *T);
+int autocomplete_constructor_binlog_encr_chat_set_seq (struct paramed_type *T);
 int skip_constructor_binlog_chat_create (struct paramed_type *T);
 int store_constructor_binlog_chat_create (struct paramed_type *T);
 int fetch_constructor_binlog_chat_create (struct paramed_type *T);
@@ -3847,14 +3851,14 @@ static struct tl_type_descr tl_type_bare_binlog_file_location = {
 };
 static struct tl_type_descr tl_type_binlog_update __attribute__ ((unused));
 static struct tl_type_descr tl_type_binlog_update = {
-  .name = 0xa86feb09,
+  .name = 0xc0a2ce4b,
   .id = "binlog.Update"
 ,  .params_num = 0,
   .params_types = 0
 };
 static struct tl_type_descr tl_type_bare_binlog_update __attribute__ ((unused));
 static struct tl_type_descr tl_type_bare_binlog_update = {
-  .name = 0x579014f6,
+  .name = 0x3f5d31b4,
   .id = "Bare_binlog.Update",
   .params_num = 0,
   .params_types = 0

@@ -26762,25 +26762,25 @@ int autocomplete_constructor_binlog_file_location (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_start (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   return 0;
 }
 int store_constructor_binlog_start (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   return 0;
 }
 int fetch_constructor_binlog_start (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.start");
   if (multiline_output >= 2) { eprintf ("\n"); }
   return 0;
 }
 int autocomplete_constructor_binlog_start (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   return 0;
 }
 int skip_constructor_binlog_dc_option (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -26808,7 +26808,7 @@ int skip_constructor_binlog_dc_option (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_dc_option (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -26852,7 +26852,7 @@ int store_constructor_binlog_dc_option (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_dc_option (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.dcOption");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -26894,7 +26894,7 @@ int fetch_constructor_binlog_dc_option (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_dc_option (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -26954,7 +26954,7 @@ int autocomplete_constructor_binlog_dc_option (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_auth_key (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -26980,7 +26980,7 @@ int skip_constructor_binlog_auth_key (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_auth_key (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "dc", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27020,7 +27020,7 @@ int store_constructor_binlog_auth_key (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_auth_key (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.authKey");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27064,7 +27064,7 @@ int fetch_constructor_binlog_auth_key (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_auth_key (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "dc", cur_token_real_len)) {
     set_autocomplete_string ("dc");
     return -1;
@@ -27116,7 +27116,7 @@ int autocomplete_constructor_binlog_auth_key (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_default_dc (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -27126,7 +27126,7 @@ int skip_constructor_binlog_default_dc (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_default_dc (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "dc", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27140,7 +27140,7 @@ int store_constructor_binlog_default_dc (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_default_dc (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.defaultDc");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27155,7 +27155,7 @@ int fetch_constructor_binlog_default_dc (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_default_dc (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "dc", cur_token_real_len)) {
     set_autocomplete_string ("dc");
     return -1;
@@ -27173,7 +27173,7 @@ int autocomplete_constructor_binlog_default_dc (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_our_id (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -27183,7 +27183,7 @@ int skip_constructor_binlog_our_id (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_our_id (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27197,7 +27197,7 @@ int store_constructor_binlog_our_id (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_our_id (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.ourId");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27212,7 +27212,7 @@ int fetch_constructor_binlog_our_id (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_our_id (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -27230,7 +27230,7 @@ int autocomplete_constructor_binlog_our_id (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_dc_signed (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -27240,7 +27240,7 @@ int skip_constructor_binlog_dc_signed (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_dc_signed (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27254,7 +27254,7 @@ int store_constructor_binlog_dc_signed (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_dc_signed (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.dcSigned");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27269,7 +27269,7 @@ int fetch_constructor_binlog_dc_signed (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_dc_signed (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -27287,7 +27287,7 @@ int autocomplete_constructor_binlog_dc_signed (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_dc_salt (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -27303,7 +27303,7 @@ int skip_constructor_binlog_dc_salt (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_dc_salt (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27327,7 +27327,7 @@ int store_constructor_binlog_dc_salt (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_dc_salt (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.dcSalt");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27351,7 +27351,7 @@ int fetch_constructor_binlog_dc_salt (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_dc_salt (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -27383,7 +27383,7 @@ int autocomplete_constructor_binlog_dc_salt (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_set_dh_params (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -27409,7 +27409,7 @@ int skip_constructor_binlog_set_dh_params (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_set_dh_params (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 4 && !cur_token_quoted && !memcmp (cur_token, "root", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27449,7 +27449,7 @@ int store_constructor_binlog_set_dh_params (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_set_dh_params (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.setDhParams");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27493,7 +27493,7 @@ int fetch_constructor_binlog_set_dh_params (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_set_dh_params (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 4 && !cur_token_quoted && !memcmp (cur_token, "root", cur_token_real_len)) {
     set_autocomplete_string ("root");
     return -1;
@@ -27545,7 +27545,7 @@ int autocomplete_constructor_binlog_set_dh_params (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_set_pts (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -27555,7 +27555,7 @@ int skip_constructor_binlog_set_pts (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_set_pts (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 3 && !cur_token_quoted && !memcmp (cur_token, "pts", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27569,7 +27569,7 @@ int store_constructor_binlog_set_pts (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_set_pts (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.setPts");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27584,7 +27584,7 @@ int fetch_constructor_binlog_set_pts (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_set_pts (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 3 && !cur_token_quoted && !memcmp (cur_token, "pts", cur_token_real_len)) {
     set_autocomplete_string ("pts");
     return -1;
@@ -27602,7 +27602,7 @@ int autocomplete_constructor_binlog_set_pts (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_set_qts (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -27612,7 +27612,7 @@ int skip_constructor_binlog_set_qts (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_set_qts (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 3 && !cur_token_quoted && !memcmp (cur_token, "qts", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27626,7 +27626,7 @@ int store_constructor_binlog_set_qts (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_set_qts (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.setQts");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27641,7 +27641,7 @@ int fetch_constructor_binlog_set_qts (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_set_qts (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 3 && !cur_token_quoted && !memcmp (cur_token, "qts", cur_token_real_len)) {
     set_autocomplete_string ("qts");
     return -1;
@@ -27659,7 +27659,7 @@ int autocomplete_constructor_binlog_set_qts (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -27669,7 +27669,7 @@ int skip_constructor_binlog_set_date (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 4 && !cur_token_quoted && !memcmp (cur_token, "date", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27683,7 +27683,7 @@ int store_constructor_binlog_set_date (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.setDate");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27698,7 +27698,7 @@ int fetch_constructor_binlog_set_date (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 4 && !cur_token_quoted && !memcmp (cur_token, "date", cur_token_real_len)) {
     set_autocomplete_string ("date");
     return -1;
@@ -27716,7 +27716,7 @@ int autocomplete_constructor_binlog_set_date (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_set_seq (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -27726,7 +27726,7 @@ int skip_constructor_binlog_set_seq (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_set_seq (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 3 && !cur_token_quoted && !memcmp (cur_token, "seq", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27740,7 +27740,7 @@ int store_constructor_binlog_set_seq (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_set_seq (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.setSeq");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27755,7 +27755,7 @@ int fetch_constructor_binlog_set_seq (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_set_seq (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 3 && !cur_token_quoted && !memcmp (cur_token, "seq", cur_token_real_len)) {
     set_autocomplete_string ("seq");
     return -1;
@@ -27773,7 +27773,7 @@ int autocomplete_constructor_binlog_set_seq (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_user_add (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -27813,7 +27813,7 @@ int skip_constructor_binlog_user_add (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_add (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -27877,7 +27877,7 @@ int store_constructor_binlog_user_add (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_add (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userAdd");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -27937,7 +27937,7 @@ int fetch_constructor_binlog_user_add (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_add (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -28025,7 +28025,7 @@ int autocomplete_constructor_binlog_user_add (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_user_delete (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -28035,7 +28035,7 @@ int skip_constructor_binlog_user_delete (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_delete (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -28049,7 +28049,7 @@ int store_constructor_binlog_user_delete (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_delete (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userDelete");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -28064,7 +28064,7 @@ int fetch_constructor_binlog_user_delete (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_delete (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -28082,7 +28082,7 @@ int autocomplete_constructor_binlog_user_delete (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_user_set_access_hash (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -28098,7 +28098,7 @@ int skip_constructor_binlog_user_set_access_hash (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_set_access_hash (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -28122,7 +28122,7 @@ int store_constructor_binlog_user_set_access_hash (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_set_access_hash (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userSetAccessHash");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -28146,7 +28146,7 @@ int fetch_constructor_binlog_user_set_access_hash (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_set_access_hash (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -28178,7 +28178,7 @@ int autocomplete_constructor_binlog_user_set_access_hash (struct paramed_type *T
   return 0;
 }
 int skip_constructor_binlog_user_set_phone (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -28194,7 +28194,7 @@ int skip_constructor_binlog_user_set_phone (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_set_phone (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -28218,7 +28218,7 @@ int store_constructor_binlog_user_set_phone (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_set_phone (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userSetPhone");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -28242,7 +28242,7 @@ int fetch_constructor_binlog_user_set_phone (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_set_phone (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -28274,7 +28274,7 @@ int autocomplete_constructor_binlog_user_set_phone (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_user_set_friend (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -28290,7 +28290,7 @@ int skip_constructor_binlog_user_set_friend (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_set_friend (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -28314,7 +28314,7 @@ int store_constructor_binlog_user_set_friend (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_set_friend (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userSetFriend");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -28338,7 +28338,7 @@ int fetch_constructor_binlog_user_set_friend (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_set_friend (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -28370,7 +28370,7 @@ int autocomplete_constructor_binlog_user_set_friend (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_user_set_full_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -28386,7 +28386,7 @@ int skip_constructor_binlog_user_set_full_photo (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_set_full_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -28410,7 +28410,7 @@ int store_constructor_binlog_user_set_full_photo (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_set_full_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userSetFullPhoto");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -28434,7 +28434,7 @@ int fetch_constructor_binlog_user_set_full_photo (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_set_full_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -28466,7 +28466,7 @@ int autocomplete_constructor_binlog_user_set_full_photo (struct paramed_type *T)
   return 0;
 }
 int skip_constructor_binlog_user_set_blocked (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -28482,7 +28482,7 @@ int skip_constructor_binlog_user_set_blocked (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_set_blocked (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -28506,7 +28506,7 @@ int store_constructor_binlog_user_set_blocked (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_set_blocked (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userSetBlocked");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -28530,7 +28530,7 @@ int fetch_constructor_binlog_user_set_blocked (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_set_blocked (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -28562,7 +28562,7 @@ int autocomplete_constructor_binlog_user_set_blocked (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_user_set_real_name (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -28584,7 +28584,7 @@ int skip_constructor_binlog_user_set_real_name (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_set_real_name (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -28618,7 +28618,7 @@ int store_constructor_binlog_user_set_real_name (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_set_real_name (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userSetRealName");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -28651,7 +28651,7 @@ int fetch_constructor_binlog_user_set_real_name (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_set_real_name (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -28697,7 +28697,7 @@ int autocomplete_constructor_binlog_user_set_real_name (struct paramed_type *T) 
   return 0;
 }
 int skip_constructor_binlog_user_set_name (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -28719,7 +28719,7 @@ int skip_constructor_binlog_user_set_name (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_set_name (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -28753,7 +28753,7 @@ int store_constructor_binlog_user_set_name (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_set_name (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userSetName");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -28786,7 +28786,7 @@ int fetch_constructor_binlog_user_set_name (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_set_name (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -28832,7 +28832,7 @@ int autocomplete_constructor_binlog_user_set_name (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_user_set_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -28848,7 +28848,7 @@ int skip_constructor_binlog_user_set_photo (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_set_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -28872,7 +28872,7 @@ int store_constructor_binlog_user_set_photo (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_set_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userSetPhoto");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -28896,7 +28896,7 @@ int fetch_constructor_binlog_user_set_photo (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_set_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -28928,7 +28928,7 @@ int autocomplete_constructor_binlog_user_set_photo (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_user_set_username (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -28944,7 +28944,7 @@ int skip_constructor_binlog_user_set_username (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_user_set_username (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -28968,7 +28968,7 @@ int store_constructor_binlog_user_set_username (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_user_set_username (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.userSetUsername");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -28992,7 +28992,7 @@ int fetch_constructor_binlog_user_set_username (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_user_set_username (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -29024,7 +29024,7 @@ int autocomplete_constructor_binlog_user_set_username (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_encr_chat_delete (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -29034,7 +29034,7 @@ int skip_constructor_binlog_encr_chat_delete (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_delete (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -29048,7 +29048,7 @@ int store_constructor_binlog_encr_chat_delete (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_delete (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatDelete");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -29063,7 +29063,7 @@ int fetch_constructor_binlog_encr_chat_delete (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_delete (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -29081,7 +29081,7 @@ int autocomplete_constructor_binlog_encr_chat_delete (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_encr_chat_requested (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -29135,7 +29135,7 @@ int skip_constructor_binlog_encr_chat_requested (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_requested (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -29221,7 +29221,7 @@ int store_constructor_binlog_encr_chat_requested (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_requested (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatRequested");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -29312,7 +29312,7 @@ int fetch_constructor_binlog_encr_chat_requested (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_requested (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -29426,7 +29426,7 @@ int autocomplete_constructor_binlog_encr_chat_requested (struct paramed_type *T)
   return 0;
 }
 int skip_constructor_binlog_encr_chat_accepted (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -29462,7 +29462,7 @@ int skip_constructor_binlog_encr_chat_accepted (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_accepted (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -29518,7 +29518,7 @@ int store_constructor_binlog_encr_chat_accepted (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_accepted (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatAccepted");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -29582,7 +29582,7 @@ int fetch_constructor_binlog_encr_chat_accepted (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_accepted (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -29654,7 +29654,7 @@ int autocomplete_constructor_binlog_encr_chat_accepted (struct paramed_type *T) 
   return 0;
 }
 int skip_constructor_binlog_encr_chat_init (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -29690,7 +29690,7 @@ int skip_constructor_binlog_encr_chat_init (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_init (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -29746,7 +29746,7 @@ int store_constructor_binlog_encr_chat_init (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_init (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatInit");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -29810,7 +29810,7 @@ int fetch_constructor_binlog_encr_chat_init (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_init (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -29882,7 +29882,7 @@ int autocomplete_constructor_binlog_encr_chat_init (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_encr_chat_create (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -29910,7 +29910,7 @@ int skip_constructor_binlog_encr_chat_create (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_create (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -29954,7 +29954,7 @@ int store_constructor_binlog_encr_chat_create (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_create (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatCreate");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -29996,7 +29996,7 @@ int fetch_constructor_binlog_encr_chat_create (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_create (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -30056,7 +30056,7 @@ int autocomplete_constructor_binlog_encr_chat_create (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_encr_chat_set_access_hash (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -30072,7 +30072,7 @@ int skip_constructor_binlog_encr_chat_set_access_hash (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_set_access_hash (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -30096,7 +30096,7 @@ int store_constructor_binlog_encr_chat_set_access_hash (struct paramed_type *T) 
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_set_access_hash (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatSetAccessHash");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -30120,7 +30120,7 @@ int fetch_constructor_binlog_encr_chat_set_access_hash (struct paramed_type *T) 
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_set_access_hash (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -30152,7 +30152,7 @@ int autocomplete_constructor_binlog_encr_chat_set_access_hash (struct paramed_ty
   return 0;
 }
 int skip_constructor_binlog_encr_chat_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -30168,7 +30168,7 @@ int skip_constructor_binlog_encr_chat_set_date (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -30192,7 +30192,7 @@ int store_constructor_binlog_encr_chat_set_date (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatSetDate");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -30216,7 +30216,7 @@ int fetch_constructor_binlog_encr_chat_set_date (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -30248,7 +30248,7 @@ int autocomplete_constructor_binlog_encr_chat_set_date (struct paramed_type *T) 
   return 0;
 }
 int skip_constructor_binlog_encr_chat_set_ttl (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -30264,7 +30264,7 @@ int skip_constructor_binlog_encr_chat_set_ttl (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_set_ttl (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -30288,7 +30288,7 @@ int store_constructor_binlog_encr_chat_set_ttl (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_set_ttl (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatSetTtl");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -30312,7 +30312,7 @@ int fetch_constructor_binlog_encr_chat_set_ttl (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_set_ttl (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -30344,7 +30344,7 @@ int autocomplete_constructor_binlog_encr_chat_set_ttl (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_encr_chat_set_layer (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -30360,7 +30360,7 @@ int skip_constructor_binlog_encr_chat_set_layer (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_set_layer (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -30384,7 +30384,7 @@ int store_constructor_binlog_encr_chat_set_layer (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_set_layer (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatSetLayer");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -30408,7 +30408,7 @@ int fetch_constructor_binlog_encr_chat_set_layer (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_set_layer (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -30440,7 +30440,7 @@ int autocomplete_constructor_binlog_encr_chat_set_layer (struct paramed_type *T)
   return 0;
 }
 int skip_constructor_binlog_encr_chat_set_state (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -30456,7 +30456,7 @@ int skip_constructor_binlog_encr_chat_set_state (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_set_state (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -30480,7 +30480,7 @@ int store_constructor_binlog_encr_chat_set_state (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_set_state (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatSetState");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -30504,7 +30504,7 @@ int fetch_constructor_binlog_encr_chat_set_state (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_set_state (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -30536,7 +30536,7 @@ int autocomplete_constructor_binlog_encr_chat_set_state (struct paramed_type *T)
   return 0;
 }
 int skip_constructor_binlog_encr_chat_set_key (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -30562,7 +30562,7 @@ int skip_constructor_binlog_encr_chat_set_key (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_set_key (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -30602,7 +30602,7 @@ int store_constructor_binlog_encr_chat_set_key (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_set_key (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatSetKey");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -30646,7 +30646,7 @@ int fetch_constructor_binlog_encr_chat_set_key (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_set_key (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -30698,7 +30698,7 @@ int autocomplete_constructor_binlog_encr_chat_set_key (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_encr_chat_update_seq (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -30720,7 +30720,7 @@ int skip_constructor_binlog_encr_chat_update_seq (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_encr_chat_update_seq (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -30754,7 +30754,7 @@ int store_constructor_binlog_encr_chat_update_seq (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_encr_chat_update_seq (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.encrChatUpdateSeq");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -30787,7 +30787,7 @@ int fetch_constructor_binlog_encr_chat_update_seq (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_encr_chat_update_seq (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -30832,8 +30832,182 @@ int autocomplete_constructor_binlog_encr_chat_update_seq (struct paramed_type *T
   if (autocomplete_type_bare_int (field3) < 0) { return -1;}
   return 0;
 }
+int skip_constructor_binlog_encr_chat_set_seq (struct paramed_type *T) {
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
+  struct paramed_type *field1 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (skip_type_bare_int (field1) < 0) { return -1;}
+  struct paramed_type *field2 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (skip_type_bare_int (field2) < 0) { return -1;}
+  struct paramed_type *field3 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (skip_type_bare_int (field3) < 0) { return -1;}
+  struct paramed_type *field4 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (skip_type_bare_int (field4) < 0) { return -1;}
+  return 0;
+}
+int store_constructor_binlog_encr_chat_set_seq (struct paramed_type *T) {
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
+  if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
+    local_next_token ();
+    expect_token (":", 1);
+  }
+  struct paramed_type *field1 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (store_type_bare_int (field1) < 0) { return -1;}
+  if (cur_token_len >= 0 && cur_token_len == 9 && !cur_token_quoted && !memcmp (cur_token, "in_seq_no", cur_token_len)) {
+    local_next_token ();
+    expect_token (":", 1);
+  }
+  struct paramed_type *field2 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (store_type_bare_int (field2) < 0) { return -1;}
+  if (cur_token_len >= 0 && cur_token_len == 14 && !cur_token_quoted && !memcmp (cur_token, "last_in_seq_no", cur_token_len)) {
+    local_next_token ();
+    expect_token (":", 1);
+  }
+  struct paramed_type *field3 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (store_type_bare_int (field3) < 0) { return -1;}
+  if (cur_token_len >= 0 && cur_token_len == 10 && !cur_token_quoted && !memcmp (cur_token, "out_seq_no", cur_token_len)) {
+    local_next_token ();
+    expect_token (":", 1);
+  }
+  struct paramed_type *field4 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (store_type_bare_int (field4) < 0) { return -1;}
+  return 0;
+}
+int fetch_constructor_binlog_encr_chat_set_seq (struct paramed_type *T) {
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
+  eprintf (" binlog.encrChatSetSeq");
+  if (multiline_output >= 2) { eprintf ("\n"); }
+  if (multiline_output >= 2) { print_offset (); }
+  if (!disable_field_names) { eprintf (" id :"); }
+  struct paramed_type *field1 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (fetch_type_bare_int (field1) < 0) { return -1;}
+  if (multiline_output >= 2) { eprintf ("\n"); }
+  if (multiline_output >= 2) { print_offset (); }
+  if (!disable_field_names) { eprintf (" in_seq_no :"); }
+  struct paramed_type *field2 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (fetch_type_bare_int (field2) < 0) { return -1;}
+  if (multiline_output >= 2) { eprintf ("\n"); }
+  if (multiline_output >= 2) { print_offset (); }
+  if (!disable_field_names) { eprintf (" last_in_seq_no :"); }
+  struct paramed_type *field3 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (fetch_type_bare_int (field3) < 0) { return -1;}
+  if (multiline_output >= 2) { eprintf ("\n"); }
+  if (multiline_output >= 2) { print_offset (); }
+  if (!disable_field_names) { eprintf (" out_seq_no :"); }
+  struct paramed_type *field4 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (fetch_type_bare_int (field4) < 0) { return -1;}
+  if (multiline_output >= 2) { eprintf ("\n"); }
+  return 0;
+}
+int autocomplete_constructor_binlog_encr_chat_set_seq (struct paramed_type *T) {
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
+  if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
+    set_autocomplete_string ("id");
+    return -1;
+  }
+  if (cur_token_len >= 0 && cur_token_len == 2 && !memcmp (cur_token, "id", cur_token_len)) {
+    local_next_token ();
+    expect_token_autocomplete (":", 1);
+  }
+  struct paramed_type *field1 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (autocomplete_type_bare_int (field1) < 0) { return -1;}
+  if (cur_token_len == -3 && cur_token_real_len <= 9 && !cur_token_quoted && !memcmp (cur_token, "in_seq_no", cur_token_real_len)) {
+    set_autocomplete_string ("in_seq_no");
+    return -1;
+  }
+  if (cur_token_len >= 0 && cur_token_len == 9 && !memcmp (cur_token, "in_seq_no", cur_token_len)) {
+    local_next_token ();
+    expect_token_autocomplete (":", 1);
+  }
+  struct paramed_type *field2 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (autocomplete_type_bare_int (field2) < 0) { return -1;}
+  if (cur_token_len == -3 && cur_token_real_len <= 14 && !cur_token_quoted && !memcmp (cur_token, "last_in_seq_no", cur_token_real_len)) {
+    set_autocomplete_string ("last_in_seq_no");
+    return -1;
+  }
+  if (cur_token_len >= 0 && cur_token_len == 14 && !memcmp (cur_token, "last_in_seq_no", cur_token_len)) {
+    local_next_token ();
+    expect_token_autocomplete (":", 1);
+  }
+  struct paramed_type *field3 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (autocomplete_type_bare_int (field3) < 0) { return -1;}
+  if (cur_token_len == -3 && cur_token_real_len <= 10 && !cur_token_quoted && !memcmp (cur_token, "out_seq_no", cur_token_real_len)) {
+    set_autocomplete_string ("out_seq_no");
+    return -1;
+  }
+  if (cur_token_len >= 0 && cur_token_len == 10 && !memcmp (cur_token, "out_seq_no", cur_token_len)) {
+    local_next_token ();
+    expect_token_autocomplete (":", 1);
+  }
+  struct paramed_type *field4 = 
+  &(struct paramed_type){
+    .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
+    .params = 0,
+  };
+  if (autocomplete_type_bare_int (field4) < 0) { return -1;}
+  return 0;
+}
 int skip_constructor_binlog_chat_create (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -30885,7 +31059,7 @@ int skip_constructor_binlog_chat_create (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_create (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -30969,7 +31143,7 @@ int store_constructor_binlog_chat_create (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_create (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatCreate");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -31047,7 +31221,7 @@ int fetch_constructor_binlog_chat_create (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_create (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -31163,7 +31337,7 @@ int autocomplete_constructor_binlog_chat_create (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_chat_change_flags (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -31185,7 +31359,7 @@ int skip_constructor_binlog_chat_change_flags (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_change_flags (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -31219,7 +31393,7 @@ int store_constructor_binlog_chat_change_flags (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_change_flags (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatChangeFlags");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -31252,7 +31426,7 @@ int fetch_constructor_binlog_chat_change_flags (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_change_flags (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -31298,7 +31472,7 @@ int autocomplete_constructor_binlog_chat_change_flags (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_chat_set_title (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -31314,7 +31488,7 @@ int skip_constructor_binlog_chat_set_title (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_set_title (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -31338,7 +31512,7 @@ int store_constructor_binlog_chat_set_title (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_set_title (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatSetTitle");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -31362,7 +31536,7 @@ int fetch_constructor_binlog_chat_set_title (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_set_title (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -31394,7 +31568,7 @@ int autocomplete_constructor_binlog_chat_set_title (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_chat_set_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -31416,7 +31590,7 @@ int skip_constructor_binlog_chat_set_photo (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_set_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -31450,7 +31624,7 @@ int store_constructor_binlog_chat_set_photo (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_set_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatSetPhoto");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -31483,7 +31657,7 @@ int fetch_constructor_binlog_chat_set_photo (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_set_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -31529,7 +31703,7 @@ int autocomplete_constructor_binlog_chat_set_photo (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_chat_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -31545,7 +31719,7 @@ int skip_constructor_binlog_chat_set_date (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -31569,7 +31743,7 @@ int store_constructor_binlog_chat_set_date (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatSetDate");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -31593,7 +31767,7 @@ int fetch_constructor_binlog_chat_set_date (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_set_date (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -31625,7 +31799,7 @@ int autocomplete_constructor_binlog_chat_set_date (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_chat_set_version (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -31647,7 +31821,7 @@ int skip_constructor_binlog_chat_set_version (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_set_version (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -31681,7 +31855,7 @@ int store_constructor_binlog_chat_set_version (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_set_version (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatSetVersion");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -31714,7 +31888,7 @@ int fetch_constructor_binlog_chat_set_version (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_set_version (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -31760,7 +31934,7 @@ int autocomplete_constructor_binlog_chat_set_version (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_chat_set_admin (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -31776,7 +31950,7 @@ int skip_constructor_binlog_chat_set_admin (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_set_admin (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -31800,7 +31974,7 @@ int store_constructor_binlog_chat_set_admin (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_set_admin (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatSetAdmin");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -31824,7 +31998,7 @@ int fetch_constructor_binlog_chat_set_admin (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_set_admin (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -31856,7 +32030,7 @@ int autocomplete_constructor_binlog_chat_set_admin (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_chat_set_participants (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -31883,7 +32057,7 @@ int skip_constructor_binlog_chat_set_participants (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_set_participants (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -31922,7 +32096,7 @@ int store_constructor_binlog_chat_set_participants (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_set_participants (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatSetParticipants");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -31960,7 +32134,7 @@ int fetch_constructor_binlog_chat_set_participants (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_set_participants (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -32011,7 +32185,7 @@ int autocomplete_constructor_binlog_chat_set_participants (struct paramed_type *
   return 0;
 }
 int skip_constructor_binlog_chat_set_full_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -32027,7 +32201,7 @@ int skip_constructor_binlog_chat_set_full_photo (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_set_full_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -32051,7 +32225,7 @@ int store_constructor_binlog_chat_set_full_photo (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_set_full_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatSetFullPhoto");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -32075,7 +32249,7 @@ int fetch_constructor_binlog_chat_set_full_photo (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_set_full_photo (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -32107,7 +32281,7 @@ int autocomplete_constructor_binlog_chat_set_full_photo (struct paramed_type *T)
   return 0;
 }
 int skip_constructor_binlog_chat_add_participant (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -32129,7 +32303,7 @@ int skip_constructor_binlog_chat_add_participant (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_add_participant (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -32163,7 +32337,7 @@ int store_constructor_binlog_chat_add_participant (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_add_participant (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatAddParticipant");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -32196,7 +32370,7 @@ int fetch_constructor_binlog_chat_add_participant (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_add_participant (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -32242,7 +32416,7 @@ int autocomplete_constructor_binlog_chat_add_participant (struct paramed_type *T
   return 0;
 }
 int skip_constructor_binlog_chat_del_participant (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -32264,7 +32438,7 @@ int skip_constructor_binlog_chat_del_participant (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_chat_del_participant (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -32298,7 +32472,7 @@ int store_constructor_binlog_chat_del_participant (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_chat_del_participant (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.chatDelParticipant");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -32331,7 +32505,7 @@ int fetch_constructor_binlog_chat_del_participant (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_chat_del_participant (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -32377,7 +32551,7 @@ int autocomplete_constructor_binlog_chat_del_participant (struct paramed_type *T
   return 0;
 }
 int skip_constructor_binlog_create_message_text (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -32423,7 +32597,7 @@ int skip_constructor_binlog_create_message_text (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_create_message_text (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -32497,7 +32671,7 @@ int store_constructor_binlog_create_message_text (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_create_message_text (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.createMessageText");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -32566,7 +32740,7 @@ int fetch_constructor_binlog_create_message_text (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_create_message_text (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -32668,7 +32842,7 @@ int autocomplete_constructor_binlog_create_message_text (struct paramed_type *T)
   return 0;
 }
 int skip_constructor_binlog_send_message_text (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -32708,7 +32882,7 @@ int skip_constructor_binlog_send_message_text (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_send_message_text (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -32772,7 +32946,7 @@ int store_constructor_binlog_send_message_text (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_send_message_text (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.sendMessageText");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -32832,7 +33006,7 @@ int fetch_constructor_binlog_send_message_text (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_send_message_text (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -32920,7 +33094,7 @@ int autocomplete_constructor_binlog_send_message_text (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_send_message_action_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -32960,7 +33134,7 @@ int skip_constructor_binlog_send_message_action_encr (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_send_message_action_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -33024,7 +33198,7 @@ int store_constructor_binlog_send_message_action_encr (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_send_message_action_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.sendMessageActionEncr");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -33084,7 +33258,7 @@ int fetch_constructor_binlog_send_message_action_encr (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_send_message_action_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -33172,7 +33346,7 @@ int autocomplete_constructor_binlog_send_message_action_encr (struct paramed_typ
   return 0;
 }
 int skip_constructor_binlog_create_message_text_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -33230,7 +33404,7 @@ int skip_constructor_binlog_create_message_text_fwd (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_create_message_text_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -33324,7 +33498,7 @@ int store_constructor_binlog_create_message_text_fwd (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_create_message_text_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.createMessageTextFwd");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -33411,7 +33585,7 @@ int fetch_constructor_binlog_create_message_text_fwd (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_create_message_text_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -33541,7 +33715,7 @@ int autocomplete_constructor_binlog_create_message_text_fwd (struct paramed_type
   return 0;
 }
 int skip_constructor_binlog_create_message_media (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -33593,7 +33767,7 @@ int skip_constructor_binlog_create_message_media (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_create_message_media (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -33677,7 +33851,7 @@ int store_constructor_binlog_create_message_media (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_create_message_media (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.createMessageMedia");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -33755,7 +33929,7 @@ int fetch_constructor_binlog_create_message_media (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_create_message_media (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -33871,7 +34045,7 @@ int autocomplete_constructor_binlog_create_message_media (struct paramed_type *T
   return 0;
 }
 int skip_constructor_binlog_create_message_media_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -33923,7 +34097,7 @@ int skip_constructor_binlog_create_message_media_encr (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_create_message_media_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -34007,7 +34181,7 @@ int store_constructor_binlog_create_message_media_encr (struct paramed_type *T) 
   return 0;
 }
 int fetch_constructor_binlog_create_message_media_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.createMessageMediaEncr");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -34085,7 +34259,7 @@ int fetch_constructor_binlog_create_message_media_encr (struct paramed_type *T) 
   return 0;
 }
 int autocomplete_constructor_binlog_create_message_media_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -34201,7 +34375,7 @@ int autocomplete_constructor_binlog_create_message_media_encr (struct paramed_ty
   return 0;
 }
 int skip_constructor_binlog_create_message_media_encr_pending (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -34247,7 +34421,7 @@ int skip_constructor_binlog_create_message_media_encr_pending (struct paramed_ty
   return 0;
 }
 int store_constructor_binlog_create_message_media_encr_pending (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -34321,7 +34495,7 @@ int store_constructor_binlog_create_message_media_encr_pending (struct paramed_t
   return 0;
 }
 int fetch_constructor_binlog_create_message_media_encr_pending (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.createMessageMediaEncrPending");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -34390,7 +34564,7 @@ int fetch_constructor_binlog_create_message_media_encr_pending (struct paramed_t
   return 0;
 }
 int autocomplete_constructor_binlog_create_message_media_encr_pending (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -34492,7 +34666,7 @@ int autocomplete_constructor_binlog_create_message_media_encr_pending (struct pa
   return 0;
 }
 int skip_constructor_binlog_create_message_media_encr_sent (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -34508,7 +34682,7 @@ int skip_constructor_binlog_create_message_media_encr_sent (struct paramed_type 
   return 0;
 }
 int store_constructor_binlog_create_message_media_encr_sent (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -34532,7 +34706,7 @@ int store_constructor_binlog_create_message_media_encr_sent (struct paramed_type
   return 0;
 }
 int fetch_constructor_binlog_create_message_media_encr_sent (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.createMessageMediaEncrSent");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -34556,7 +34730,7 @@ int fetch_constructor_binlog_create_message_media_encr_sent (struct paramed_type
   return 0;
 }
 int autocomplete_constructor_binlog_create_message_media_encr_sent (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -34588,7 +34762,7 @@ int autocomplete_constructor_binlog_create_message_media_encr_sent (struct param
   return 0;
 }
 int skip_constructor_binlog_create_message_media_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -34652,7 +34826,7 @@ int skip_constructor_binlog_create_message_media_fwd (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_create_message_media_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -34756,7 +34930,7 @@ int store_constructor_binlog_create_message_media_fwd (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_create_message_media_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.createMessageMediaFwd");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -34852,7 +35026,7 @@ int fetch_constructor_binlog_create_message_media_fwd (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_create_message_media_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -34996,7 +35170,7 @@ int autocomplete_constructor_binlog_create_message_media_fwd (struct paramed_typ
   return 0;
 }
 int skip_constructor_binlog_create_message_service (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -35042,7 +35216,7 @@ int skip_constructor_binlog_create_message_service (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_create_message_service (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -35116,7 +35290,7 @@ int store_constructor_binlog_create_message_service (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_create_message_service (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.createMessageService");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -35185,7 +35359,7 @@ int fetch_constructor_binlog_create_message_service (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_create_message_service (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -35287,7 +35461,7 @@ int autocomplete_constructor_binlog_create_message_service (struct paramed_type 
   return 0;
 }
 int skip_constructor_binlog_create_message_service_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -35327,7 +35501,7 @@ int skip_constructor_binlog_create_message_service_encr (struct paramed_type *T)
   return 0;
 }
 int store_constructor_binlog_create_message_service_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -35391,7 +35565,7 @@ int store_constructor_binlog_create_message_service_encr (struct paramed_type *T
   return 0;
 }
 int fetch_constructor_binlog_create_message_service_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.createMessageServiceEncr");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -35451,7 +35625,7 @@ int fetch_constructor_binlog_create_message_service_encr (struct paramed_type *T
   return 0;
 }
 int autocomplete_constructor_binlog_create_message_service_encr (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -35539,7 +35713,7 @@ int autocomplete_constructor_binlog_create_message_service_encr (struct paramed_
   return 0;
 }
 int skip_constructor_binlog_create_message_service_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -35597,7 +35771,7 @@ int skip_constructor_binlog_create_message_service_fwd (struct paramed_type *T) 
   return 0;
 }
 int store_constructor_binlog_create_message_service_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -35691,7 +35865,7 @@ int store_constructor_binlog_create_message_service_fwd (struct paramed_type *T)
   return 0;
 }
 int fetch_constructor_binlog_create_message_service_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.createMessageServiceFwd");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -35778,7 +35952,7 @@ int fetch_constructor_binlog_create_message_service_fwd (struct paramed_type *T)
   return 0;
 }
 int autocomplete_constructor_binlog_create_message_service_fwd (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -35908,7 +36082,7 @@ int autocomplete_constructor_binlog_create_message_service_fwd (struct paramed_t
   return 0;
 }
 int skip_constructor_binlog_message_set_unread (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0x57af6425, .id = "Bare_Int", .params_num = 0, .params_types = 0},
@@ -35918,7 +36092,7 @@ int skip_constructor_binlog_message_set_unread (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_message_set_unread (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -35932,7 +36106,7 @@ int store_constructor_binlog_message_set_unread (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_message_set_unread (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.messageSetUnread");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -35947,7 +36121,7 @@ int fetch_constructor_binlog_message_set_unread (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_message_set_unread (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -35965,7 +36139,7 @@ int autocomplete_constructor_binlog_message_set_unread (struct paramed_type *T) 
   return 0;
 }
 int skip_constructor_binlog_message_set_unread_long (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -35975,7 +36149,7 @@ int skip_constructor_binlog_message_set_unread_long (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_message_set_unread_long (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -35989,7 +36163,7 @@ int store_constructor_binlog_message_set_unread_long (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_message_set_unread_long (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.messageSetUnreadLong");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -36004,7 +36178,7 @@ int fetch_constructor_binlog_message_set_unread_long (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_message_set_unread_long (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -36022,7 +36196,7 @@ int autocomplete_constructor_binlog_message_set_unread_long (struct paramed_type
   return 0;
 }
 int skip_constructor_binlog_set_message_sent (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -36032,7 +36206,7 @@ int skip_constructor_binlog_set_message_sent (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_set_message_sent (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -36046,7 +36220,7 @@ int store_constructor_binlog_set_message_sent (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_set_message_sent (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.setMessageSent");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -36061,7 +36235,7 @@ int fetch_constructor_binlog_set_message_sent (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_set_message_sent (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -36079,7 +36253,7 @@ int autocomplete_constructor_binlog_set_message_sent (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_set_msg_id (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -36095,7 +36269,7 @@ int skip_constructor_binlog_set_msg_id (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_set_msg_id (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 6 && !cur_token_quoted && !memcmp (cur_token, "old_id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -36119,7 +36293,7 @@ int store_constructor_binlog_set_msg_id (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_set_msg_id (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.setMsgId");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -36143,7 +36317,7 @@ int fetch_constructor_binlog_set_msg_id (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_set_msg_id (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 6 && !cur_token_quoted && !memcmp (cur_token, "old_id", cur_token_real_len)) {
     set_autocomplete_string ("old_id");
     return -1;
@@ -36175,7 +36349,7 @@ int autocomplete_constructor_binlog_set_msg_id (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_delete_msg (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -36185,7 +36359,7 @@ int skip_constructor_binlog_delete_msg (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_delete_msg (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -36199,7 +36373,7 @@ int store_constructor_binlog_delete_msg (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_delete_msg (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.deleteMsg");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -36214,7 +36388,7 @@ int fetch_constructor_binlog_delete_msg (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_delete_msg (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -36232,7 +36406,7 @@ int autocomplete_constructor_binlog_delete_msg (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_msg_seq_update (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -36242,7 +36416,7 @@ int skip_constructor_binlog_msg_seq_update (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_msg_seq_update (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -36256,7 +36430,7 @@ int store_constructor_binlog_msg_seq_update (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_msg_seq_update (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.msgSeqUpdate");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -36271,7 +36445,7 @@ int fetch_constructor_binlog_msg_seq_update (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_msg_seq_update (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -36289,7 +36463,7 @@ int autocomplete_constructor_binlog_msg_seq_update (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_msg_update (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   struct paramed_type *field1 = 
   &(struct paramed_type){
     .type = &(struct tl_type_descr) {.name = 0xddf89345, .id = "Bare_Long", .params_num = 0, .params_types = 0},
@@ -36299,7 +36473,7 @@ int skip_constructor_binlog_msg_update (struct paramed_type *T) {
   return 0;
 }
 int store_constructor_binlog_msg_update (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len >= 0 && cur_token_len == 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_len)) {
     local_next_token ();
     expect_token (":", 1);
@@ -36313,7 +36487,7 @@ int store_constructor_binlog_msg_update (struct paramed_type *T) {
   return 0;
 }
 int fetch_constructor_binlog_msg_update (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.msgUpdate");
   if (multiline_output >= 2) { eprintf ("\n"); }
   if (multiline_output >= 2) { print_offset (); }
@@ -36328,7 +36502,7 @@ int fetch_constructor_binlog_msg_update (struct paramed_type *T) {
   return 0;
 }
 int autocomplete_constructor_binlog_msg_update (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   if (cur_token_len == -3 && cur_token_real_len <= 2 && !cur_token_quoted && !memcmp (cur_token, "id", cur_token_real_len)) {
     set_autocomplete_string ("id");
     return -1;
@@ -36346,21 +36520,21 @@ int autocomplete_constructor_binlog_msg_update (struct paramed_type *T) {
   return 0;
 }
 int skip_constructor_binlog_reset_authorization (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   return 0;
 }
 int store_constructor_binlog_reset_authorization (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   return 0;
 }
 int fetch_constructor_binlog_reset_authorization (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   eprintf (" binlog.resetAuthorization");
   if (multiline_output >= 2) { eprintf ("\n"); }
   return 0;
 }
 int autocomplete_constructor_binlog_reset_authorization (struct paramed_type *T) {
-  if (ODDP(T) || (T->type->name != 0xa86feb09 && T->type->name != 0x579014f6)) { return -1; }
+  if (ODDP(T) || (T->type->name != 0xc0a2ce4b && T->type->name != 0x3f5d31b4)) { return -1; }
   return 0;
 }
 int skip_constructor_contacts_blocked (struct paramed_type *T) {
@@ -56562,6 +56736,7 @@ int skip_type_binlog_update (struct paramed_type *T) {
   case 0x808087f7: return skip_constructor_binlog_encr_chat_set_state (T);
   case 0xc23fc5e4: return skip_constructor_binlog_encr_chat_set_key (T);
   case 0x6dbc0700: return skip_constructor_binlog_encr_chat_update_seq (T);
+  case 0x68cd2542: return skip_constructor_binlog_encr_chat_set_seq (T);
   case 0x405b6197: return skip_constructor_binlog_chat_create (T);
   case 0x909f4a52: return skip_constructor_binlog_chat_change_flags (T);
   case 0x8b56f537: return skip_constructor_binlog_chat_set_title (T);
@@ -56667,6 +56842,8 @@ int skip_type_bare_binlog_update (struct paramed_type *T) {
   if (skip_constructor_binlog_encr_chat_set_key (T) >= 0) { return 0; }
   in_ptr = save_in_ptr;
   if (skip_constructor_binlog_encr_chat_update_seq (T) >= 0) { return 0; }
+  in_ptr = save_in_ptr;
+  if (skip_constructor_binlog_encr_chat_set_seq (T) >= 0) { return 0; }
   in_ptr = save_in_ptr;
   if (skip_constructor_binlog_chat_create (T) >= 0) { return 0; }
   in_ptr = save_in_ptr;
@@ -56978,6 +57155,13 @@ int store_type_binlog_update (struct paramed_type *T) {
     out_int (0x6dbc0700);
     local_next_token ();
     if (store_constructor_binlog_encr_chat_update_seq (T) < 0) { return -1; }
+    expect_token (")", 1);
+    return 0;
+  }
+  if (cur_token_len == 21 && !memcmp (cur_token, "binlog.encrChatSetSeq", cur_token_len)) {
+    out_int (0x68cd2542);
+    local_next_token ();
+    if (store_constructor_binlog_encr_chat_set_seq (T) < 0) { return -1; }
     expect_token (")", 1);
     return 0;
   }
@@ -57414,6 +57598,12 @@ int store_type_bare_binlog_update (struct paramed_type *T) {
     expect_token (")", 1);
     return 0;
   }
+  if (cur_token_len == 21 && !memcmp (cur_token, "binlog.encrChatSetSeq", cur_token_len)) {
+    local_next_token ();
+    if (store_constructor_binlog_encr_chat_set_seq (T) < 0) { return -1; }
+    expect_token (")", 1);
+    return 0;
+  }
   if (cur_token_len == 17 && !memcmp (cur_token, "binlog.chatCreate", cur_token_len)) {
     local_next_token ();
     if (store_constructor_binlog_chat_create (T) < 0) { return -1; }
@@ -57644,6 +57834,7 @@ int fetch_type_binlog_update (struct paramed_type *T) {
   case 0x808087f7: res = fetch_constructor_binlog_encr_chat_set_state (T); break;
   case 0xc23fc5e4: res = fetch_constructor_binlog_encr_chat_set_key (T); break;
   case 0x6dbc0700: res = fetch_constructor_binlog_encr_chat_update_seq (T); break;
+  case 0x68cd2542: res = fetch_constructor_binlog_encr_chat_set_seq (T); break;
   case 0x405b6197: res = fetch_constructor_binlog_chat_create (T); break;
   case 0x909f4a52: res = fetch_constructor_binlog_chat_change_flags (T); break;
   case 0x8b56f537: res = fetch_constructor_binlog_chat_set_title (T); break;
@@ -57755,6 +57946,8 @@ int fetch_type_bare_binlog_update (struct paramed_type *T) {
   if (skip_constructor_binlog_encr_chat_set_key (T) >= 0) { in_ptr = save_in_ptr; eprintf (" ("); assert (!fetch_constructor_binlog_encr_chat_set_key (T)); if (multiline_output >= 2) { multiline_offset -= multiline_offset_size; print_offset (); } eprintf (" )");return 0; }
   in_ptr = save_in_ptr;
   if (skip_constructor_binlog_encr_chat_update_seq (T) >= 0) { in_ptr = save_in_ptr; eprintf (" ("); assert (!fetch_constructor_binlog_encr_chat_update_seq (T)); if (multiline_output >= 2) { multiline_offset -= multiline_offset_size; print_offset (); } eprintf (" )");return 0; }
+  in_ptr = save_in_ptr;
+  if (skip_constructor_binlog_encr_chat_set_seq (T) >= 0) { in_ptr = save_in_ptr; eprintf (" ("); assert (!fetch_constructor_binlog_encr_chat_set_seq (T)); if (multiline_output >= 2) { multiline_offset -= multiline_offset_size; print_offset (); } eprintf (" )");return 0; }
   in_ptr = save_in_ptr;
   if (skip_constructor_binlog_chat_create (T) >= 0) { in_ptr = save_in_ptr; eprintf (" ("); assert (!fetch_constructor_binlog_chat_create (T)); if (multiline_output >= 2) { multiline_offset -= multiline_offset_size; print_offset (); } eprintf (" )");return 0; }
   in_ptr = save_in_ptr;
@@ -58031,6 +58224,12 @@ int autocomplete_type_binlog_update (struct paramed_type *T) {
   if (cur_token_len == 24 && !memcmp (cur_token, "binlog.encrChatUpdateSeq", cur_token_len)) {
     local_next_token ();
     if (autocomplete_constructor_binlog_encr_chat_update_seq (T) < 0) { return -1; }
+    expect_token_autocomplete (")", 1);
+    return 0;
+  }
+  if (cur_token_len == 21 && !memcmp (cur_token, "binlog.encrChatSetSeq", cur_token_len)) {
+    local_next_token ();
+    if (autocomplete_constructor_binlog_encr_chat_set_seq (T) < 0) { return -1; }
     expect_token_autocomplete (")", 1);
     return 0;
   }
@@ -58436,6 +58635,12 @@ int autocomplete_type_bare_binlog_update (struct paramed_type *T) {
     expect_token_autocomplete (")", 1);
     return 0;
   }
+  if (cur_token_len == 21 && !memcmp (cur_token, "binlog.encrChatSetSeq", cur_token_len)) {
+    local_next_token ();
+    if (autocomplete_constructor_binlog_encr_chat_set_seq (T) < 0) { return -1; }
+    expect_token_autocomplete (")", 1);
+    return 0;
+  }
   if (cur_token_len == 17 && !memcmp (cur_token, "binlog.chatCreate", cur_token_len)) {
     local_next_token ();
     if (autocomplete_constructor_binlog_chat_create (T) < 0) { return -1; }
@@ -58661,37 +58866,38 @@ int do_autocomplete_type_binlog_update (const char *text, int text_len, int inde
   if (index == 32) { if (!strncmp (text, "binlog.encrChatSetState", text_len)) { *R = tstrdup ("binlog.encrChatSetState"); return index; } else { index ++; }}
   if (index == 33) { if (!strncmp (text, "binlog.encrChatSetKey", text_len)) { *R = tstrdup ("binlog.encrChatSetKey"); return index; } else { index ++; }}
   if (index == 34) { if (!strncmp (text, "binlog.encrChatUpdateSeq", text_len)) { *R = tstrdup ("binlog.encrChatUpdateSeq"); return index; } else { index ++; }}
-  if (index == 35) { if (!strncmp (text, "binlog.chatCreate", text_len)) { *R = tstrdup ("binlog.chatCreate"); return index; } else { index ++; }}
-  if (index == 36) { if (!strncmp (text, "binlog.chatChangeFlags", text_len)) { *R = tstrdup ("binlog.chatChangeFlags"); return index; } else { index ++; }}
-  if (index == 37) { if (!strncmp (text, "binlog.chatSetTitle", text_len)) { *R = tstrdup ("binlog.chatSetTitle"); return index; } else { index ++; }}
-  if (index == 38) { if (!strncmp (text, "binlog.chatSetPhoto", text_len)) { *R = tstrdup ("binlog.chatSetPhoto"); return index; } else { index ++; }}
-  if (index == 39) { if (!strncmp (text, "binlog.chatSetDate", text_len)) { *R = tstrdup ("binlog.chatSetDate"); return index; } else { index ++; }}
-  if (index == 40) { if (!strncmp (text, "binlog.chatSetVersion", text_len)) { *R = tstrdup ("binlog.chatSetVersion"); return index; } else { index ++; }}
-  if (index == 41) { if (!strncmp (text, "binlog.chatSetAdmin", text_len)) { *R = tstrdup ("binlog.chatSetAdmin"); return index; } else { index ++; }}
-  if (index == 42) { if (!strncmp (text, "binlog.chatSetParticipants", text_len)) { *R = tstrdup ("binlog.chatSetParticipants"); return index; } else { index ++; }}
-  if (index == 43) { if (!strncmp (text, "binlog.chatSetFullPhoto", text_len)) { *R = tstrdup ("binlog.chatSetFullPhoto"); return index; } else { index ++; }}
-  if (index == 44) { if (!strncmp (text, "binlog.chatAddParticipant", text_len)) { *R = tstrdup ("binlog.chatAddParticipant"); return index; } else { index ++; }}
-  if (index == 45) { if (!strncmp (text, "binlog.chatDelParticipant", text_len)) { *R = tstrdup ("binlog.chatDelParticipant"); return index; } else { index ++; }}
-  if (index == 46) { if (!strncmp (text, "binlog.createMessageText", text_len)) { *R = tstrdup ("binlog.createMessageText"); return index; } else { index ++; }}
-  if (index == 47) { if (!strncmp (text, "binlog.sendMessageText", text_len)) { *R = tstrdup ("binlog.sendMessageText"); return index; } else { index ++; }}
-  if (index == 48) { if (!strncmp (text, "binlog.sendMessageActionEncr", text_len)) { *R = tstrdup ("binlog.sendMessageActionEncr"); return index; } else { index ++; }}
-  if (index == 49) { if (!strncmp (text, "binlog.createMessageTextFwd", text_len)) { *R = tstrdup ("binlog.createMessageTextFwd"); return index; } else { index ++; }}
-  if (index == 50) { if (!strncmp (text, "binlog.createMessageMedia", text_len)) { *R = tstrdup ("binlog.createMessageMedia"); return index; } else { index ++; }}
-  if (index == 51) { if (!strncmp (text, "binlog.createMessageMediaEncr", text_len)) { *R = tstrdup ("binlog.createMessageMediaEncr"); return index; } else { index ++; }}
-  if (index == 52) { if (!strncmp (text, "binlog.createMessageMediaEncrPending", text_len)) { *R = tstrdup ("binlog.createMessageMediaEncrPending"); return index; } else { index ++; }}
-  if (index == 53) { if (!strncmp (text, "binlog.createMessageMediaEncrSent", text_len)) { *R = tstrdup ("binlog.createMessageMediaEncrSent"); return index; } else { index ++; }}
-  if (index == 54) { if (!strncmp (text, "binlog.createMessageMediaFwd", text_len)) { *R = tstrdup ("binlog.createMessageMediaFwd"); return index; } else { index ++; }}
-  if (index == 55) { if (!strncmp (text, "binlog.createMessageService", text_len)) { *R = tstrdup ("binlog.createMessageService"); return index; } else { index ++; }}
-  if (index == 56) { if (!strncmp (text, "binlog.createMessageServiceEncr", text_len)) { *R = tstrdup ("binlog.createMessageServiceEncr"); return index; } else { index ++; }}
-  if (index == 57) { if (!strncmp (text, "binlog.createMessageServiceFwd", text_len)) { *R = tstrdup ("binlog.createMessageServiceFwd"); return index; } else { index ++; }}
-  if (index == 58) { if (!strncmp (text, "binlog.messageSetUnread", text_len)) { *R = tstrdup ("binlog.messageSetUnread"); return index; } else { index ++; }}
-  if (index == 59) { if (!strncmp (text, "binlog.messageSetUnreadLong", text_len)) { *R = tstrdup ("binlog.messageSetUnreadLong"); return index; } else { index ++; }}
-  if (index == 60) { if (!strncmp (text, "binlog.setMessageSent", text_len)) { *R = tstrdup ("binlog.setMessageSent"); return index; } else { index ++; }}
-  if (index == 61) { if (!strncmp (text, "binlog.setMsgId", text_len)) { *R = tstrdup ("binlog.setMsgId"); return index; } else { index ++; }}
-  if (index == 62) { if (!strncmp (text, "binlog.deleteMsg", text_len)) { *R = tstrdup ("binlog.deleteMsg"); return index; } else { index ++; }}
-  if (index == 63) { if (!strncmp (text, "binlog.msgSeqUpdate", text_len)) { *R = tstrdup ("binlog.msgSeqUpdate"); return index; } else { index ++; }}
-  if (index == 64) { if (!strncmp (text, "binlog.msgUpdate", text_len)) { *R = tstrdup ("binlog.msgUpdate"); return index; } else { index ++; }}
-  if (index == 65) { if (!strncmp (text, "binlog.resetAuthorization", text_len)) { *R = tstrdup ("binlog.resetAuthorization"); return index; } else { index ++; }}
+  if (index == 35) { if (!strncmp (text, "binlog.encrChatSetSeq", text_len)) { *R = tstrdup ("binlog.encrChatSetSeq"); return index; } else { index ++; }}
+  if (index == 36) { if (!strncmp (text, "binlog.chatCreate", text_len)) { *R = tstrdup ("binlog.chatCreate"); return index; } else { index ++; }}
+  if (index == 37) { if (!strncmp (text, "binlog.chatChangeFlags", text_len)) { *R = tstrdup ("binlog.chatChangeFlags"); return index; } else { index ++; }}
+  if (index == 38) { if (!strncmp (text, "binlog.chatSetTitle", text_len)) { *R = tstrdup ("binlog.chatSetTitle"); return index; } else { index ++; }}
+  if (index == 39) { if (!strncmp (text, "binlog.chatSetPhoto", text_len)) { *R = tstrdup ("binlog.chatSetPhoto"); return index; } else { index ++; }}
+  if (index == 40) { if (!strncmp (text, "binlog.chatSetDate", text_len)) { *R = tstrdup ("binlog.chatSetDate"); return index; } else { index ++; }}
+  if (index == 41) { if (!strncmp (text, "binlog.chatSetVersion", text_len)) { *R = tstrdup ("binlog.chatSetVersion"); return index; } else { index ++; }}
+  if (index == 42) { if (!strncmp (text, "binlog.chatSetAdmin", text_len)) { *R = tstrdup ("binlog.chatSetAdmin"); return index; } else { index ++; }}
+  if (index == 43) { if (!strncmp (text, "binlog.chatSetParticipants", text_len)) { *R = tstrdup ("binlog.chatSetParticipants"); return index; } else { index ++; }}
+  if (index == 44) { if (!strncmp (text, "binlog.chatSetFullPhoto", text_len)) { *R = tstrdup ("binlog.chatSetFullPhoto"); return index; } else { index ++; }}
+  if (index == 45) { if (!strncmp (text, "binlog.chatAddParticipant", text_len)) { *R = tstrdup ("binlog.chatAddParticipant"); return index; } else { index ++; }}
+  if (index == 46) { if (!strncmp (text, "binlog.chatDelParticipant", text_len)) { *R = tstrdup ("binlog.chatDelParticipant"); return index; } else { index ++; }}
+  if (index == 47) { if (!strncmp (text, "binlog.createMessageText", text_len)) { *R = tstrdup ("binlog.createMessageText"); return index; } else { index ++; }}
+  if (index == 48) { if (!strncmp (text, "binlog.sendMessageText", text_len)) { *R = tstrdup ("binlog.sendMessageText"); return index; } else { index ++; }}
+  if (index == 49) { if (!strncmp (text, "binlog.sendMessageActionEncr", text_len)) { *R = tstrdup ("binlog.sendMessageActionEncr"); return index; } else { index ++; }}
+  if (index == 50) { if (!strncmp (text, "binlog.createMessageTextFwd", text_len)) { *R = tstrdup ("binlog.createMessageTextFwd"); return index; } else { index ++; }}
+  if (index == 51) { if (!strncmp (text, "binlog.createMessageMedia", text_len)) { *R = tstrdup ("binlog.createMessageMedia"); return index; } else { index ++; }}
+  if (index == 52) { if (!strncmp (text, "binlog.createMessageMediaEncr", text_len)) { *R = tstrdup ("binlog.createMessageMediaEncr"); return index; } else { index ++; }}
+  if (index == 53) { if (!strncmp (text, "binlog.createMessageMediaEncrPending", text_len)) { *R = tstrdup ("binlog.createMessageMediaEncrPending"); return index; } else { index ++; }}
+  if (index == 54) { if (!strncmp (text, "binlog.createMessageMediaEncrSent", text_len)) { *R = tstrdup ("binlog.createMessageMediaEncrSent"); return index; } else { index ++; }}
+  if (index == 55) { if (!strncmp (text, "binlog.createMessageMediaFwd", text_len)) { *R = tstrdup ("binlog.createMessageMediaFwd"); return index; } else { index ++; }}
+  if (index == 56) { if (!strncmp (text, "binlog.createMessageService", text_len)) { *R = tstrdup ("binlog.createMessageService"); return index; } else { index ++; }}
+  if (index == 57) { if (!strncmp (text, "binlog.createMessageServiceEncr", text_len)) { *R = tstrdup ("binlog.createMessageServiceEncr"); return index; } else { index ++; }}
+  if (index == 58) { if (!strncmp (text, "binlog.createMessageServiceFwd", text_len)) { *R = tstrdup ("binlog.createMessageServiceFwd"); return index; } else { index ++; }}
+  if (index == 59) { if (!strncmp (text, "binlog.messageSetUnread", text_len)) { *R = tstrdup ("binlog.messageSetUnread"); return index; } else { index ++; }}
+  if (index == 60) { if (!strncmp (text, "binlog.messageSetUnreadLong", text_len)) { *R = tstrdup ("binlog.messageSetUnreadLong"); return index; } else { index ++; }}
+  if (index == 61) { if (!strncmp (text, "binlog.setMessageSent", text_len)) { *R = tstrdup ("binlog.setMessageSent"); return index; } else { index ++; }}
+  if (index == 62) { if (!strncmp (text, "binlog.setMsgId", text_len)) { *R = tstrdup ("binlog.setMsgId"); return index; } else { index ++; }}
+  if (index == 63) { if (!strncmp (text, "binlog.deleteMsg", text_len)) { *R = tstrdup ("binlog.deleteMsg"); return index; } else { index ++; }}
+  if (index == 64) { if (!strncmp (text, "binlog.msgSeqUpdate", text_len)) { *R = tstrdup ("binlog.msgSeqUpdate"); return index; } else { index ++; }}
+  if (index == 65) { if (!strncmp (text, "binlog.msgUpdate", text_len)) { *R = tstrdup ("binlog.msgUpdate"); return index; } else { index ++; }}
+  if (index == 66) { if (!strncmp (text, "binlog.resetAuthorization", text_len)) { *R = tstrdup ("binlog.resetAuthorization"); return index; } else { index ++; }}
   *R = 0;
   return 0;
 }
@@ -69539,8 +69745,8 @@ int skip_type_any (struct paramed_type *T) {
   case 0x16852cd5: return skip_type_bare_binlog_chat_participant (T);
   case 0xae7ae5ce: return skip_type_binlog_file_location (T);
   case 0x51851a31: return skip_type_bare_binlog_file_location (T);
-  case 0xa86feb09: return skip_type_binlog_update (T);
-  case 0x579014f6: return skip_type_bare_binlog_update (T);
+  case 0xc0a2ce4b: return skip_type_binlog_update (T);
+  case 0x3f5d31b4: return skip_type_bare_binlog_update (T);
   case 0x8c1b8fb4: return skip_type_contacts_blocked (T);
   case 0x73e4704b: return skip_type_bare_contacts_blocked (T);
   case 0xd8c02560: return skip_type_contacts_contacts (T);
@@ -69773,8 +69979,8 @@ int store_type_any (struct paramed_type *T) {
   case 0x16852cd5: return store_type_bare_binlog_chat_participant (T);
   case 0xae7ae5ce: return store_type_binlog_file_location (T);
   case 0x51851a31: return store_type_bare_binlog_file_location (T);
-  case 0xa86feb09: return store_type_binlog_update (T);
-  case 0x579014f6: return store_type_bare_binlog_update (T);
+  case 0xc0a2ce4b: return store_type_binlog_update (T);
+  case 0x3f5d31b4: return store_type_bare_binlog_update (T);
   case 0x8c1b8fb4: return store_type_contacts_blocked (T);
   case 0x73e4704b: return store_type_bare_contacts_blocked (T);
   case 0xd8c02560: return store_type_contacts_contacts (T);
@@ -70007,8 +70213,8 @@ int fetch_type_any (struct paramed_type *T) {
   case 0x16852cd5: return fetch_type_bare_binlog_chat_participant (T);
   case 0xae7ae5ce: return fetch_type_binlog_file_location (T);
   case 0x51851a31: return fetch_type_bare_binlog_file_location (T);
-  case 0xa86feb09: return fetch_type_binlog_update (T);
-  case 0x579014f6: return fetch_type_bare_binlog_update (T);
+  case 0xc0a2ce4b: return fetch_type_binlog_update (T);
+  case 0x3f5d31b4: return fetch_type_bare_binlog_update (T);
   case 0x8c1b8fb4: return fetch_type_contacts_blocked (T);
   case 0x73e4704b: return fetch_type_bare_contacts_blocked (T);
   case 0xd8c02560: return fetch_type_contacts_contacts (T);
@@ -70241,8 +70447,8 @@ int autocomplete_type_any (struct paramed_type *T) {
   case 0x16852cd5: return autocomplete_type_bare_binlog_chat_participant (T);
   case 0xae7ae5ce: return autocomplete_type_binlog_file_location (T);
   case 0x51851a31: return autocomplete_type_bare_binlog_file_location (T);
-  case 0xa86feb09: return autocomplete_type_binlog_update (T);
-  case 0x579014f6: return autocomplete_type_bare_binlog_update (T);
+  case 0xc0a2ce4b: return autocomplete_type_binlog_update (T);
+  case 0x3f5d31b4: return autocomplete_type_bare_binlog_update (T);
   case 0x8c1b8fb4: return autocomplete_type_contacts_blocked (T);
   case 0x73e4704b: return autocomplete_type_bare_contacts_blocked (T);
   case 0xd8c02560: return autocomplete_type_contacts_contacts (T);

@@ -449,6 +449,7 @@
 #define CODE_binlog_encr_chat_set_state 0x808087f7
 #define CODE_binlog_encr_chat_set_key 0xc23fc5e4
 #define CODE_binlog_encr_chat_update_seq 0x6dbc0700
+#define CODE_binlog_encr_chat_set_seq 0x68cd2542
 #define CODE_binlog_chat_create 0x405b6197
 #define CODE_binlog_chat_change_flags 0x909f4a52
 #define CODE_binlog_chat_set_title 0x8b56f537
