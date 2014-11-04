@@ -45,6 +45,8 @@ structures.h
 tgl-fetch.h
 tgl-inner.h
 tgl-layout.h
+tgl-timers.h
+tgl-timers.c
 tgl.c
 tgl.h
 tools.c
@@ -56,6 +58,10 @@ updates.h
 
 TG_SUBDIRS="
 auto
+"
+
+TG_TOUCH="
+config.h
 "
 
 CFLAGS="-I/opt/local/include"
@@ -81,4 +87,8 @@ make create_dirs_and_headers
 
 for FILE in ${TG_FILES}; do
     cp "${FILE}" "${DSTROOT}/${FILE}"
+done
+
+for TOUCH in ${TG_TOUCH}; do
+    touch "${DSTROOT}/${TOUCH}"
 done
