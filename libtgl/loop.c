@@ -1,32 +1,33 @@
 /*
- This file is part of telegram-cli.
- 
- Telegram-cli is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 2 of the License, or
- (at your option) any later version.
- 
- Telegram-cli is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this telegram-cli.  If not, see <http://www.gnu.org/licenses/>.
- 
- Copyright Vitaly Valtman 2013-2014
- Copyright Paul Eipper 2014
- */
+    This file is part of telegram-cli.
 
-#include <fcntl.h>
-#include <unistd.h>
+    Telegram-cli is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    Telegram-cli is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this telegram-cli.  If not, see <http://www.gnu.org/licenses/>.
+
+    Copyright Vitaly Valtman 2013-2014
+    Copyright Paul Eipper 2014
+*/
+
 #include <assert.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+#include <event2/event.h>
 
 #include "loop.h"
 #include "binlog.h"
 #include "structures.h"
-#include <event2/event.h>
 
 #define DC_SERIALIZED_MAGIC 0x868aa81d
 #define STATE_FILE_MAGIC 0x28949a93
@@ -95,7 +96,7 @@ void write_state_file (void) {
     x[4] = wseq;
     x[5] = wdate;
     assert (write (state_file_fd, x, 24) == 24);
-    close (state_file_fd); 
+    close (state_file_fd);
 }
 
 void write_dc (struct tgl_dc *DC, void *extra) {
@@ -305,51 +306,6 @@ void read_secret_chat_file (void) {
 
 // loop callbacks
 
-int d_got_ok;
-void get_difference_callback (void *extra, int success) {
-    assert (success);
-    d_got_ok = 1;
-}
-
-int dgot (void) {
-    return d_got_ok;
-}
-
-void dlist_cb (void *callback_extra, int success, int size, tgl_peer_id_t peers[], int last_msg_id[], int unread_count[])  {
-    d_got_ok = 1;
-}
-
-int signed_in_result;
-void sign_in_result (void *extra, int success, struct tgl_user *U) {
-    signed_in_result = success ? 1 : 2;
-}
-
-int signed_in (void) {
-    return signed_in_result;
-}
-
-int should_register;
-char *hash;
-void sign_in_callback (void *extra, int success, int registered, const char *mhash) {
-    if (!success) {
-        logprintf("Can not send code");
-        exit (1);
-    }
-    should_register = !registered;
-    hash = strdup (mhash);
-}
-
-int sent_code (void) {
-    return hash != 0;
-}
-
-void export_auth_callback (void *DC, int success) {
-    if (!success) {
-        logprintf ("Can not export auth\n");
-        exit (1);
-    }
-}
-
 struct tgl_dc *cur_a_dc;
 int is_authorized (void) {
     return tgl_authorized_dc (cur_a_dc);
@@ -365,8 +321,53 @@ int all_authorized (void) {
     return 1;
 }
 
+int should_register;
+char *hash;
+void sign_in_callback (void *extra, int success, int registered, const char *mhash) {
+    if (!success) {
+        logprintf("Can not send code");
+        exit (1);
+    }
+    should_register = !registered;
+    hash = strdup (mhash);
+}
+
+int signed_in_result;
+void sign_in_result (void *extra, int success, struct tgl_user *U) {
+    signed_in_result = success ? 1 : 2;
+}
+
+int signed_in (void) {
+    return signed_in_result;
+}
+
+int sent_code (void) {
+    return hash != 0;
+}
+
 int dc_signed_in (void) {
     return tgl_signed_dc (cur_a_dc);
+}
+
+void export_auth_callback (void *DC, int success) {
+    if (!success) {
+        logprintf ("Can not export auth\n");
+        exit (1);
+    }
+}
+
+int d_got_ok;
+void get_difference_callback (void *extra, int success) {
+    assert (success);
+    d_got_ok = 1;
+}
+
+int dgot (void) {
+    return d_got_ok;
+}
+
+void dlist_cb (void *callback_extra, int success, int size, tgl_peer_id_t peers[], int last_msg_id[], int unread_count[])  {
+    d_got_ok = 1;
 }
 
 
