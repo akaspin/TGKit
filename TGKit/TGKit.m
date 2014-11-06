@@ -26,7 +26,9 @@
 @end
 
 
-@implementation TGKit
+@implementation TGKit {
+    struct tgl_state _TLS;
+}
 
 struct tgl_state *TLS;  // C global state
 id<TGKitDelegate> _delegate;
@@ -36,6 +38,7 @@ dispatch_queue_t _loop_queue;
     static TGKit *sharedInstance = nil;
     assert(sharedInstance == nil);  // multiple init called, only single instance allowed
     sharedInstance = [super init];
+    TLS = &_TLS;
     NSLog(@"Init with key path: [%@]", serverRsaKey);
     _delegate = delegate;
     TLS->verbosity = 3;
@@ -46,7 +49,7 @@ dispatch_queue_t _loop_queue;
 
 - (void)run {
     dispatch_async(_loop_queue, ^{
-        loop(&upd_cb);
+        loop(TLS, &upd_cb);
     });
 }
 
@@ -170,7 +173,7 @@ void did_get_user_info(struct tgl_state *TLSR, void *callback_extra, int success
 
 void did_send_message(struct tgl_state *TLSR, void *callback_extra, int success, struct tgl_message *M) {
     if (!success) {
-        write_secret_chat_file();
+        write_secret_chat_file(TLSR);
     } else {
         NSLog(@"Message sent");
     }
@@ -257,7 +260,7 @@ void chat_update_gw(struct tgl_state *TLSR, struct tgl_chat *U, unsigned flags) 
 void secret_chat_update_gw(struct tgl_state *TLSR, struct tgl_secret_chat *U, unsigned flags) {
     NSLog(@"secret_chat_update_gw flags:[%d]", flags);
     if ((flags & TGL_UPDATE_WORKING) || (flags & TGL_UPDATE_DELETED)) {
-        write_secret_chat_file ();
+        write_secret_chat_file (TLSR);
     }
     if ((flags & TGL_UPDATE_REQUESTED))  {
         tgl_do_accept_encr_chat_request (TLSR, U, 0, 0);
@@ -298,22 +301,22 @@ struct tgl_update_callback upd_cb = {
 #pragma mark - C Config
 
 int username_ok = 0;
-int has_username(void) {
+int has_username(struct tgl_state *TLS) {
     return username_ok;
 }
 
 int sms_code_ok = 0;
-int has_sms_code(void) {
+int has_sms_code(struct tgl_state *TLS) {
     return sms_code_ok;
 }
 
 int first_name_ok = 0;
-int has_first_name(void) {
+int has_first_name(struct tgl_state *TLS) {
     return first_name_ok;
 }
 
 int last_name_ok = 0;
-int has_last_name(void) {
+int has_last_name(struct tgl_state *TLS) {
     return last_name_ok;
 }
 
@@ -332,7 +335,7 @@ const char *get_default_username(void) {
             _delegate.username = text;
         }];
     });
-    wait_loop(has_username);
+    wait_loop(TLS, has_username);
     return _delegate.username.UTF8String;
 }
 
@@ -345,7 +348,7 @@ const char *get_sms_code (void) {
             code = text;
         }];
     });
-    wait_loop(has_sms_code);
+    wait_loop(TLS, has_sms_code);
     return code.UTF8String;
 }
 
@@ -358,7 +361,7 @@ const char *get_first_name (void) {
             first_name = text;
         }];
     });
-    wait_loop(has_first_name);
+    wait_loop(TLS, has_first_name);
     return first_name.UTF8String;
 }
 
@@ -371,7 +374,7 @@ const char *get_last_name (void) {
             last_name = text;
         }];
     });
-    wait_loop(has_last_name);
+    wait_loop(TLS, has_last_name);
     return last_name.UTF8String;
 }
 
