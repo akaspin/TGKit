@@ -63,8 +63,6 @@ typedef void (^TGKitStringCompletionBlock)(NSString *text);
 
 @protocol TGKitDelegate <NSObject>
 
-@property (atomic, strong) NSString *username;
-
 - (void)didReceiveNewMessage:(TGMessage *)message;
 - (void)getLoginUsernameWithCompletionBlock:(TGKitStringCompletionBlock)completion;
 - (void)getLoginCodeWithCompletionBlock:(TGKitStringCompletionBlock)completion;
@@ -74,10 +72,26 @@ typedef void (^TGKitStringCompletionBlock)(NSString *text);
 @end
 
 
+@protocol TGKitDataSource <NSObject>
+
+@property (atomic, strong) NSString *phoneNumber;
+@property (atomic, strong) NSString *firstName;
+@property (atomic, strong) NSString *lastName;
+@property (atomic, strong) NSString *exportCard;
+
+- (void)getCardForUserId:(int)userId withCompletionBlock:(TGKitStringCompletionBlock)completion;
+
+@end
+
+
 @interface TGKit : NSObject
 
-- (instancetype)initWithDelegate:(id<TGKitDelegate>)delegate andKey:(NSString *)serverRsaKey;
-- (void)run;
-- (void)sendMessage:(NSString *)text toPeer:(int)peerId;
+@property (nonatomic, assign) id<TGKitDelegate> delegate;
+@property (nonatomic, assign) id<TGKitDataSource> dataSource;
+
+- (instancetype)initWithApiKeyPath:(NSString *)serverRsaKey;
+- (void)start;
+- (void)sendMessage:(NSString *)text toUserId:(int)userId;
+- (void)exportCardWithCompletionBlock:(TGKitStringCompletionBlock)completion;
 
 @end

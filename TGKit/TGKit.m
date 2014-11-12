@@ -30,32 +30,66 @@
     struct tgl_state _TLS;
 }
 
-struct tgl_state *TLS;  // C global state
+// C global state
+struct tgl_state *TLS;
 id<TGKitDelegate> _delegate;
+id<TGKitDataSource> _datasource;
 dispatch_queue_t _loop_queue;
 
-- (instancetype)initWithDelegate:(id<TGKitDelegate>)delegate andKey:(NSString *)serverRsaKey {
+@dynamic delegate;
+@dynamic dataSource;
+
+- (instancetype)initWithApiKeyPath:(NSString *)serverRsaKey {
     static TGKit *sharedInstance = nil;
     assert(sharedInstance == nil);  // multiple init called, only single instance allowed
     sharedInstance = [super init];
-    TLS = &_TLS;
     NSLog(@"Init with key path: [%@]", serverRsaKey);
-    _delegate = delegate;
+    TLS = &_TLS;
     TLS->verbosity = 3;
-    tgl_set_rsa_key(TLS, [serverRsaKey cStringUsingEncoding:NSUTF8StringEncoding]);
+    tgl_set_rsa_key(TLS, serverRsaKey.UTF8String);
     _loop_queue = dispatch_queue_create("tgkit-loop", DISPATCH_QUEUE_CONCURRENT);
     return sharedInstance;
 }
 
-- (void)run {
+- (void)start {
+    if (!_delegate || !_datasource) {
+        [NSException raise:NSInternalInconsistencyException format:@"Must set delegate and datasource"];
+    }
     dispatch_async(_loop_queue, ^{
         loop(TLS, &upd_cb);
     });
 }
 
-- (void)sendMessage:(NSString *)text toPeer:(int)peerId {
-    NSLog(@"Send msg:[%@] to peer:[%d]", text, peerId);
-    send_message_to_user_id(TLS, text.UTF8String, peerId);
+- (void)sendMessage:(NSString *)text toUserId:(int)userId {
+    NSLog(@"Send msg:[%@] to user:[%d]", text, userId);
+    send_message_to_user_id(TLS, text.UTF8String, userId);
+}
+
+- (void)exportCardWithCompletionBlock:(TGKitStringCompletionBlock)completion {
+    if (self.dataSource.exportCard.length) {
+        completion(self.dataSource.exportCard);
+    } else {
+        tgl_do_export_card(TLS, did_export_card, (__bridge_retained void *)[completion copy]);
+    }
+}
+
+
+#pragma mark - Properties
+
+- (id<TGKitDelegate>)delegate {
+    return _delegate;
+}
+
+- (id<TGKitDataSource>)dataSource {
+    return _datasource;
+}
+
+- (void)setDelegate:(id<TGKitDelegate>)delegate {
+    _delegate = delegate;
+}
+
+- (void)setDataSource:(id<TGKitDataSource>)dataSource {
+    _datasource = dataSource;
 }
 
 
@@ -157,35 +191,24 @@ TGMedia *make_media(struct tgl_message_media *M) {
 
 #pragma mark - C workflow
 
-void did_create_secret_chat (struct tgl_state *TLSR, void *extra, int success, struct tgl_secret_chat *E) {
-    NSLog(@"did_create_secret_chat success:[%d]", success);
-    tgl_do_send_message(TLSR, E->id, extra, (int)(strlen(extra)), did_send_message, 0);
-}
-
-void did_get_user_info(struct tgl_state *TLSR, void *callback_extra, int success, struct tgl_user *U) {
-    if (!success) {
-        NSLog(@"Error fetching user info");
-    } else {
-        NSLog(@"Create new secret chat [from user info]");
-        tgl_do_create_secret_chat(TLSR, U->id, did_create_secret_chat, callback_extra);
-    }
-}
-
-void did_send_message(struct tgl_state *TLSR, void *callback_extra, int success, struct tgl_message *M) {
-    if (!success) {
-        write_secret_chat_file(TLSR);
-    } else {
-        NSLog(@"Message sent");
-    }
-}
-
 void send_message_to_user_id(struct tgl_state *TLSR, const char *text, int user_id) {
     tgl_peer_id_t user = TGL_MK_USER(user_id);
     int encr_chat_id = tgl_get_secret_chat_for_user(TLSR, user);
     if (encr_chat_id == -1) {
         if (!tgl_peer_get(TLSR, user)) {
             NSLog(@"Get user info");
-            tgl_do_get_user_info(TLSR, user, 0, did_get_user_info, &text);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_datasource getCardForUserId:user_id withCompletionBlock:^(NSString *userCard) {
+                    const char *_text = text;
+                    int card[10];
+                    int card_len = parse_card(userCard.UTF8String, card);
+                    if (card_len > 0) {
+                        tgl_do_import_card(TLSR, card_len, card, did_import_card, &_text);
+                    } else {
+                        tgl_do_get_user_info(TLSR, user, 0, did_get_user_info, &_text);
+                    }
+                }];
+            });
         } else {
             NSLog(@"Create new secret chat");
             tgl_do_create_secret_chat(TLSR, user, did_create_secret_chat, &text);
@@ -197,6 +220,54 @@ void send_message_to_user_id(struct tgl_state *TLSR, const char *text, int user_
     }
 }
 
+void did_send_message(struct tgl_state *TLSR, void *extra, int success, struct tgl_message *M) {
+    if (!success) {
+        write_secret_chat_file(TLSR);
+    } else {
+        tgl_peer_id_t *user_id = (tgl_peer_id_t *)(extra);
+        NSLog(@"Message sent to user id [%d]", tgl_get_peer_id(*user_id));
+    }
+}
+
+void did_create_secret_chat (struct tgl_state *TLSR, void *extra, int success, struct tgl_secret_chat *E) {
+    NSLog(@"did_create_secret_chat success:[%d]", success);
+    tgl_do_send_message(TLSR, E->id, extra, (int)(strlen(extra)), did_send_message, 0);
+}
+
+void did_get_user_info(struct tgl_state *TLSR, void *extra, int success, struct tgl_user *U) {
+    if (!success) {
+        NSLog(@"Error fetching user info");
+    } else {
+        NSLog(@"Create new secret chat [from user info]");
+        tgl_do_create_secret_chat(TLSR, U->id, did_create_secret_chat, extra);
+    }
+}
+
+void did_import_card(struct tgl_state *TLSR, void *extra, int success, struct tgl_user *U) {
+    if (!success) {
+        NSLog (@"Error importing user card"); return;
+    } else {
+        NSLog(@"Imported user card [%@ %@] id [%d]", NSStringFromUTF8String(U->first_name), NSStringFromUTF8String(U->last_name), tgl_get_peer_id(U->id));
+        tgl_do_get_user_info(TLSR, U->id, 0, did_get_user_info, extra);
+    }
+}
+
+void did_export_card(struct tgl_state *TLSR, void *extra, int success, int size, int *card) {
+    TGKitStringCompletionBlock completion = (__bridge_transfer typeof(TGKitStringCompletionBlock))(extra);
+    if (success) {
+        char card_str[9 * size];
+        for (int i = 0; i < size; i++) {
+            sprintf(&card_str[i * 9], "%08x%c", card[i], i == size - 1 ? '\0' : ':');
+        }
+        NSString *user_card = NSStringFromUTF8String(card_str);
+        NSLog(@"User card: %@", user_card);
+        _datasource.exportCard = user_card;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(user_card);
+        });
+    }
+}
+
 
 #pragma mark - C callbacks
 
@@ -204,6 +275,9 @@ void print_message_gw(struct tgl_state *TLSR, struct tgl_message *M) {
     NSLog(@"print_message_gw from [%d] to: [%d] service: [%d]", M->from_id.id, M->to_id.id, M->service);
     if (M->service) {
         log_service(TLSR, M);
+    }
+    if (tgl_get_peer_type (M->to_id) == TGL_PEER_ENCR_CHAT) {
+        write_secret_chat_file (TLSR);
     }
     TGMessage *message = [[TGMessage alloc] init];
     static char s[30];
@@ -321,22 +395,22 @@ int has_last_name(struct tgl_state *TLS) {
 }
 
 void set_default_username(const char* username) {
-    _delegate.username = [NSString stringWithUTF8String:username];
+    _datasource.phoneNumber = NSStringFromUTF8String(username);
 }
 
 const char *get_default_username(void) {
     username_ok = 0;
-    if (_delegate.username) {
-        return _delegate.username.UTF8String;
+    if (_datasource.phoneNumber) {
+        return _datasource.phoneNumber.UTF8String;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate getLoginUsernameWithCompletionBlock:^(NSString *text) {
             username_ok = 1;
-            _delegate.username = text;
+            _datasource.phoneNumber = text;
         }];
     });
     wait_loop(TLS, has_username);
-    return _delegate.username.UTF8String;
+    return _datasource.phoneNumber.UTF8String;
 }
 
 const char *get_sms_code (void) {
@@ -424,6 +498,35 @@ static inline NSString *NSStringFromUTF8String (const char *cString) {
 
 static inline const char *documentPathWithFilename (NSString *filename) {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:filename].UTF8String;
+}
+
+int parse_card(const char *card_str, int card_out[10]) {
+    int l = (int)(strlen (card_str));
+    if (l <= 0) {
+        return 0;
+    }
+    int pp = 0;
+    int cur = 0;
+    int ok = 1;
+    for (int i = 0; i < l; i ++) {
+        if (card_str[i] >= '0' && card_str[i] <= '9') {
+            cur = cur * 16 + card_str[i] - '0';
+        } else if (card_str[i] >= 'a' && card_str[i] <= 'f') {
+            cur = cur * 16 + card_str[i] - 'a' + 10;
+        } else if (card_str[i] == ':') {
+            if (pp >= 9) {
+                ok = 0;
+                break;
+            }
+            card_out[pp ++] = cur;
+            cur = 0;
+        }
+    }
+    if (ok) {
+        card_out[pp ++] = cur;
+        return pp;
+    }
+    return 0;
 }
 
 

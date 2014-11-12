@@ -5,9 +5,9 @@
 #import <UIKit/UIKit.h>
 #import "TGKit.h"
 
-@interface ViewController : UIViewController <TGKitDelegate, UIAlertViewDelegate>
+@interface ViewController : UIViewController <TGKitDelegate, TGKitDataSource, UIAlertViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UITextField *peerId;
+@property (nonatomic, strong) IBOutlet UITextField *userId;
 @property (nonatomic, strong) IBOutlet UITextField *messageInput;
 @property (nonatomic, strong) IBOutlet UITextView *messageView;
 @property (nonatomic, strong) IBOutlet UIButton *sendButton;

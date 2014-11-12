@@ -16,15 +16,28 @@
 
 @implementation ViewController
 
-@synthesize username;
+@synthesize phoneNumber;
+@synthesize firstName;
+@synthesize lastName;
+@synthesize exportCard;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *keyPath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"pub"];
-    self.tg = [[TGKit alloc] initWithDelegate:self andKey:keyPath];
-    [self.tg run];
+    self.tg = [[TGKit alloc] initWithApiKeyPath:keyPath];
+    self.tg.delegate = self;
+    self.tg.dataSource = self;
+    [self.tg start];
     NSLog(@"Running...");
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tg exportCardWithCompletionBlock:^(NSString *card) {
+        NSString *line = [NSString stringWithFormat:@"User card: %@\n---\n", card];
+        self.messageView.text = [self.messageView.text stringByAppendingString:line];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,10 +46,10 @@
 }
 
 - (IBAction)sendButtonPressed:(id)sender {
-    if (!self.peerId.text.length || !self.messageInput.text.length) {
+    if (!self.userId.text.length || !self.messageInput.text.length) {
         return;
     }
-    [self.tg sendMessage:self.messageInput.text toPeer:self.peerId.text.intValue];
+    [self.tg sendMessage:self.messageInput.text toUserId:self.userId.text.intValue];
 }
 
 - (IBAction)doneEditing:(id)sender {
@@ -95,6 +108,17 @@
     self.alertCompletion = completion;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sign Up" message:@"Last name:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
     alertView.tag = 4;
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+}
+
+
+#pragma mark - TGKitDataSource
+
+- (void)getCardForUserId:(int)userId withCompletionBlock:(TGKitStringCompletionBlock)completion {
+    self.alertCompletion = completion;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"User Card" message:[NSString stringWithFormat:@"Enter card for user [%d]:", userId] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    alertView.tag = 5;
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView show];
 }
