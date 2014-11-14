@@ -1,3 +1,6 @@
 [submodule "external/tg"]
 	path = external/tg
 	url = git@github.com:nKey/tg.git
+[submodule "external/tgl"]
+	path = external/tgl
+	url = git@github.com:nKey/tgl.git
