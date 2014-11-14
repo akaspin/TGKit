@@ -193,7 +193,7 @@ TGMedia *make_media(struct tgl_message_media *M) {
 
 void send_message_to_user_id(struct tgl_state *TLSR, const char *text, int user_id) {
     tgl_peer_id_t user = TGL_MK_USER(user_id);
-    int encr_chat_id = tgl_get_secret_chat_for_user(TLSR, user);
+    int encr_chat_id = tgl_secret_chat_for_user(TLSR, user);
     if (encr_chat_id == -1) {
         if (!tgl_peer_get(TLSR, user)) {
             NSLog(@"Get user info");
@@ -237,6 +237,7 @@ void did_create_secret_chat (struct tgl_state *TLSR, void *extra, int success, s
 void did_get_user_info(struct tgl_state *TLSR, void *extra, int success, struct tgl_user *U) {
     if (!success) {
         NSLog(@"Error fetching user info");
+        return;
     } else {
         NSLog(@"Create new secret chat [from user info]");
         tgl_do_create_secret_chat(TLSR, U->id, did_create_secret_chat, extra);
@@ -245,7 +246,8 @@ void did_get_user_info(struct tgl_state *TLSR, void *extra, int success, struct 
 
 void did_import_card(struct tgl_state *TLSR, void *extra, int success, struct tgl_user *U) {
     if (!success) {
-        NSLog (@"Error importing user card"); return;
+        NSLog (@"Error importing user card");
+        return;
     } else {
         NSLog(@"Imported user card [%@ %@] id [%d]", NSStringFromUTF8String(U->first_name), NSStringFromUTF8String(U->last_name), tgl_get_peer_id(U->id));
         tgl_do_get_user_info(TLSR, U->id, 0, did_get_user_info, extra);

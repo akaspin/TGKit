@@ -2063,7 +2063,7 @@ int tgl_complete_peer_list (struct tgl_state *TLS, int index, const char *text, 
   }
 }
 
-int tgl_get_secret_chat_for_user (struct tgl_state *TLS, tgl_peer_id_t user_id) {
+int tgl_secret_chat_for_user (struct tgl_state *TLS, tgl_peer_id_t user_id) {
     int index = 0;
     while (index < TLS->peer_num && (tgl_get_peer_type (TLS->Peers[index]->id) != TGL_PEER_ENCR_CHAT || TLS->Peers[index]->encr_chat.user_id != tgl_get_peer_id (user_id) || TLS->Peers[index]->encr_chat.state != sc_ok)) {
         index ++;
