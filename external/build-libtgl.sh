@@ -15,7 +15,7 @@
 # limitations under the License.
 
 
-SOURCE_DIR="tg"
+SOURCE_DIR="tgl"
 TARGET_DIR="../libtgl"
 
 TG_FILES="
@@ -26,22 +26,19 @@ auto/constants.h
 auto-static.c
 auto.h
 binlog.c
-binlog.h
-include.h
-loop.c
-loop.h
 mtproto-client.c
 mtproto-client.h
 mtproto-common.c
 mtproto-common.h
-net.c
-net.h
 no-preview.h
 queries.c
 queries.h
-server.pub
 structures.c
-structures.h
+tgl-binlog.h
+tgl-net.c
+tgl-net.h
+tgl-net-inner.h
+tgl-structures.h
 tgl-fetch.h
 tgl-inner.h
 tgl-layout.h
@@ -82,7 +79,7 @@ SRCROOT=$(cd ${CURRENTPATH}/${SOURCE_DIR}; pwd)
 DSTROOT=$(cd ${CURRENTPATH}/${TARGET_DIR}; pwd)
 
 cd ${SRCROOT}
-CFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} ./configure --disable-liblua --disable-libconfig
+CFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} ./configure --enable-libevent
 make create_dirs_and_headers
 
 for FILE in ${TG_FILES}; do
