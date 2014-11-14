@@ -26,10 +26,10 @@
 #include <event2/event.h>
 
 #include "loop.h"
-#include "binlog.h"
-#include "net.h"
+#include "tgl-binlog.h"
+#include "tgl-net.h"
 #include "tgl-timers.h"
-#include "structures.h"
+#include "tgl-structures.h"
 
 #define DC_SERIALIZED_MAGIC 0x868aa81d
 #define STATE_FILE_MAGIC 0x28949a93

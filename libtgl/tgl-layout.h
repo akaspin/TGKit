@@ -119,8 +119,14 @@ enum tgl_message_action_type {
   tgl_message_action_delete_messages,
   tgl_message_action_screenshot_messages,
   tgl_message_action_flush_history,
+  tgl_message_action_resend,
   tgl_message_action_notify_layer,
-  tgl_message_action_typing
+  tgl_message_action_typing,
+  tgl_message_action_noop,
+  tgl_message_action_commit_key,
+  tgl_message_action_abort_key,
+  tgl_message_action_request_key,
+  tgl_message_action_accept_key
 };
 
 enum tgl_typing_status {
@@ -233,6 +239,7 @@ struct tgl_encr_file {
 struct tgl_user_status {
   int online;
   int when;
+  struct tgl_timer *ev;
 };
 
 struct tgl_user {
@@ -289,6 +296,13 @@ enum tgl_secret_chat_state {
   sc_deleted
 };
 
+enum tgl_secret_chat_exchange_state {
+  tgl_sce_none,
+  tgl_sce_requested,
+  tgl_sce_accepted,
+  tgl_sce_committed
+};
+
 struct tgl_secret_chat {
   tgl_peer_id_t id;
   int flags;
@@ -313,6 +327,12 @@ struct tgl_secret_chat {
   enum tgl_secret_chat_state state;
   int key[64];
   long long key_fingerprint;
+  unsigned char first_key_sha[20];
+
+  long long exchange_id;
+  enum tgl_secret_chat_exchange_state exchange_state;
+  int exchange_key[64];
+  long long exchange_key_fingerprint;
 };
 
 typedef union tgl_peer {
@@ -386,6 +406,15 @@ struct tgl_message_action {
     int delete_cnt;
     int screenshot_cnt;
     enum tgl_typing_status typing;
+    struct {
+      int start_seq_no;
+      int end_seq_no;
+    };
+    struct {
+      unsigned char *g_a;
+      long long exchange_id;
+      long long key_fingerprint;
+    };
   };
 };
 

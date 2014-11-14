@@ -130,10 +130,34 @@ int skip_constructor_decrypted_message_action_notify_layer (struct paramed_type 
 int store_constructor_decrypted_message_action_notify_layer (struct paramed_type *T);
 int fetch_constructor_decrypted_message_action_notify_layer (struct paramed_type *T);
 int autocomplete_constructor_decrypted_message_action_notify_layer (struct paramed_type *T);
+int skip_constructor_decrypted_message_action_resend (struct paramed_type *T);
+int store_constructor_decrypted_message_action_resend (struct paramed_type *T);
+int fetch_constructor_decrypted_message_action_resend (struct paramed_type *T);
+int autocomplete_constructor_decrypted_message_action_resend (struct paramed_type *T);
 int skip_constructor_decrypted_message_action_typing (struct paramed_type *T);
 int store_constructor_decrypted_message_action_typing (struct paramed_type *T);
 int fetch_constructor_decrypted_message_action_typing (struct paramed_type *T);
 int autocomplete_constructor_decrypted_message_action_typing (struct paramed_type *T);
+int skip_constructor_decrypted_message_action_request_key (struct paramed_type *T);
+int store_constructor_decrypted_message_action_request_key (struct paramed_type *T);
+int fetch_constructor_decrypted_message_action_request_key (struct paramed_type *T);
+int autocomplete_constructor_decrypted_message_action_request_key (struct paramed_type *T);
+int skip_constructor_decrypted_message_action_accept_key (struct paramed_type *T);
+int store_constructor_decrypted_message_action_accept_key (struct paramed_type *T);
+int fetch_constructor_decrypted_message_action_accept_key (struct paramed_type *T);
+int autocomplete_constructor_decrypted_message_action_accept_key (struct paramed_type *T);
+int skip_constructor_decrypted_message_action_commit_key (struct paramed_type *T);
+int store_constructor_decrypted_message_action_commit_key (struct paramed_type *T);
+int fetch_constructor_decrypted_message_action_commit_key (struct paramed_type *T);
+int autocomplete_constructor_decrypted_message_action_commit_key (struct paramed_type *T);
+int skip_constructor_decrypted_message_action_abort_key (struct paramed_type *T);
+int store_constructor_decrypted_message_action_abort_key (struct paramed_type *T);
+int fetch_constructor_decrypted_message_action_abort_key (struct paramed_type *T);
+int autocomplete_constructor_decrypted_message_action_abort_key (struct paramed_type *T);
+int skip_constructor_decrypted_message_action_noop (struct paramed_type *T);
+int store_constructor_decrypted_message_action_noop (struct paramed_type *T);
+int fetch_constructor_decrypted_message_action_noop (struct paramed_type *T);
+int autocomplete_constructor_decrypted_message_action_noop (struct paramed_type *T);
 int skip_constructor_decrypted_message_layer (struct paramed_type *T);
 int store_constructor_decrypted_message_layer (struct paramed_type *T);
 int fetch_constructor_decrypted_message_layer (struct paramed_type *T);
@@ -1090,6 +1114,30 @@ int skip_constructor_binlog_encr_chat_set_key (struct paramed_type *T);
 int store_constructor_binlog_encr_chat_set_key (struct paramed_type *T);
 int fetch_constructor_binlog_encr_chat_set_key (struct paramed_type *T);
 int autocomplete_constructor_binlog_encr_chat_set_key (struct paramed_type *T);
+int skip_constructor_binlog_encr_chat_set_sha (struct paramed_type *T);
+int store_constructor_binlog_encr_chat_set_sha (struct paramed_type *T);
+int fetch_constructor_binlog_encr_chat_set_sha (struct paramed_type *T);
+int autocomplete_constructor_binlog_encr_chat_set_sha (struct paramed_type *T);
+int skip_constructor_binlog_encr_chat_exchange_request (struct paramed_type *T);
+int store_constructor_binlog_encr_chat_exchange_request (struct paramed_type *T);
+int fetch_constructor_binlog_encr_chat_exchange_request (struct paramed_type *T);
+int autocomplete_constructor_binlog_encr_chat_exchange_request (struct paramed_type *T);
+int skip_constructor_binlog_encr_chat_exchange_accept (struct paramed_type *T);
+int store_constructor_binlog_encr_chat_exchange_accept (struct paramed_type *T);
+int fetch_constructor_binlog_encr_chat_exchange_accept (struct paramed_type *T);
+int autocomplete_constructor_binlog_encr_chat_exchange_accept (struct paramed_type *T);
+int skip_constructor_binlog_encr_chat_exchange_commit (struct paramed_type *T);
+int store_constructor_binlog_encr_chat_exchange_commit (struct paramed_type *T);
+int fetch_constructor_binlog_encr_chat_exchange_commit (struct paramed_type *T);
+int autocomplete_constructor_binlog_encr_chat_exchange_commit (struct paramed_type *T);
+int skip_constructor_binlog_encr_chat_exchange_confirm (struct paramed_type *T);
+int store_constructor_binlog_encr_chat_exchange_confirm (struct paramed_type *T);
+int fetch_constructor_binlog_encr_chat_exchange_confirm (struct paramed_type *T);
+int autocomplete_constructor_binlog_encr_chat_exchange_confirm (struct paramed_type *T);
+int skip_constructor_binlog_encr_chat_exchange_abort (struct paramed_type *T);
+int store_constructor_binlog_encr_chat_exchange_abort (struct paramed_type *T);
+int fetch_constructor_binlog_encr_chat_exchange_abort (struct paramed_type *T);
+int autocomplete_constructor_binlog_encr_chat_exchange_abort (struct paramed_type *T);
 int skip_constructor_binlog_encr_chat_update_seq (struct paramed_type *T);
 int store_constructor_binlog_encr_chat_update_seq (struct paramed_type *T);
 int fetch_constructor_binlog_encr_chat_update_seq (struct paramed_type *T);
@@ -2941,14 +2989,14 @@ static struct tl_type_descr tl_type_bare_decrypted_message = {
 };
 static struct tl_type_descr tl_type_decrypted_message_action __attribute__ ((unused));
 static struct tl_type_descr tl_type_decrypted_message_action = {
-  .name = 0x1a33d7bd,
+  .name = 0x4e0eefde,
   .id = "DecryptedMessageAction"
 ,  .params_num = 0,
   .params_types = 0
 };
 static struct tl_type_descr tl_type_bare_decrypted_message_action __attribute__ ((unused));
 static struct tl_type_descr tl_type_bare_decrypted_message_action = {
-  .name = 0xe5cc2842,
+  .name = 0xb1f11021,
   .id = "Bare_DecryptedMessageAction",
   .params_num = 0,
   .params_types = 0
@@ -3851,14 +3899,14 @@ static struct tl_type_descr tl_type_bare_binlog_file_location = {
 };
 static struct tl_type_descr tl_type_binlog_update __attribute__ ((unused));
 static struct tl_type_descr tl_type_binlog_update = {
-  .name = 0xc0a2ce4b,
+  .name = 0xafc7cc8c,
   .id = "binlog.Update"
 ,  .params_num = 0,
   .params_types = 0
 };
 static struct tl_type_descr tl_type_bare_binlog_update __attribute__ ((unused));
 static struct tl_type_descr tl_type_bare_binlog_update = {
-  .name = 0x3f5d31b4,
+  .name = 0x50383373,
   .id = "Bare_binlog.Update",
   .params_num = 0,
   .params_types = 0

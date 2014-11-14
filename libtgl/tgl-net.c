@@ -47,8 +47,8 @@
 #include <sys/time.h>
 #include <time.h>
 
-#include "net.h"
-#include "include.h"
+#include "tgl-net-inner.h"
+#include "tgl-net.h"
 #include "tgl.h"
 #include "tgl-inner.h"
 //#include "mtproto-client.h"
@@ -218,7 +218,7 @@ int tgln_read_in_lookup (struct connection *c, void *_data, int len) {
   return x;
 }
 
-void tgln_flush_out (struct connection *c UU) {
+void tgln_flush_out (struct connection *c) {
 }
 
 #define MAX_CONNECTIONS 100

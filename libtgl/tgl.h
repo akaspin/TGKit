@@ -20,7 +20,7 @@
 #ifndef __TGL_H__
 #define __TGL_H__
 
-#include <tgl-layout.h>
+#include "tgl-layout.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -30,17 +30,18 @@
 #define TG_SERVER_3 "174.140.142.6"
 #define TG_SERVER_4 "149.154.167.91"
 #define TG_SERVER_5 "149.154.171.5"
-
+#define TG_SERVER_DEFAULT 4
 
 #define TG_SERVER_TEST_1 "173.240.5.253"
 #define TG_SERVER_TEST_2 "149.154.167.40"
 #define TG_SERVER_TEST_3 "174.140.142.5"
+#define TG_SERVER_TEST_DEFAULT 2
 
 // JUST RANDOM STRING
 #define TGL_BUILD "2590"
-#define TGL_VERSION "1.1.0"
+#define TGL_VERSION "1.1.1"
 
-#define TGL_ENCRYPTED_LAYER 18
+#define TGL_ENCRYPTED_LAYER 17
 
 struct connection;
 struct mtproto_methods;
@@ -92,6 +93,7 @@ struct tgl_update_callback {
   void (*msg_receive)(struct tgl_state *TLS, struct tgl_message *M);
   void (*our_id)(struct tgl_state *TLS, int id);
   void (*notification)(struct tgl_state *TLS, char *type, char *message);
+  void (*user_status_update)(struct tgl_state *TLS, struct tgl_user *U);
   char *(*create_print_name) (struct tgl_state *TLS, tgl_peer_id_t id, const char *a1, const char *a2, const char *a3, const char *a4);
 };
 
@@ -201,6 +203,12 @@ struct tgl_state {
   void *pubKey;
 
   struct tree_query *queries_tree;
+
+  char *base_path; 
+  
+  struct tree_user *online_updates;
+
+  struct tgl_timer *online_updates_timer;
 };
 #pragma pack(pop)
 //extern struct tgl_state tgl_state;
@@ -345,6 +353,7 @@ void tgl_do_del_contact (struct tgl_state *TLS, tgl_peer_id_t id, void (*callbac
 void tgl_do_set_encr_chat_ttl (struct tgl_state *TLS, struct tgl_secret_chat *E, int ttl, void (*callback)(struct tgl_state *TLS, void *callback_extra, int success, struct tgl_message *M), void *callback_extra);
 void tgl_do_send_location (struct tgl_state *TLS, tgl_peer_id_t id, double latitude, double longitude, void (*callback)(struct tgl_state *TLS, void *callback_extra, int success, struct tgl_message *M), void *callback_extra);
 void tgl_do_contact_search (struct tgl_state *TLS, char *name, int limit, void (*callback)(struct tgl_state *TLS, void *callback_extra, int success, int cnt, struct tgl_user *U[]), void *callback_extra);
+void tgl_do_request_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E);
 
 
 void tgl_do_visualize_key (struct tgl_state *TLS, tgl_peer_id_t id, unsigned char buf[16]);

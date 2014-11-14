@@ -33,13 +33,12 @@
 #include <sys/utsname.h>
 
 
-#include "include.h"
 #include "mtproto-client.h"
 #include "queries.h"
 #include "tree.h"
 #include "mtproto-common.h"
 //#include "telegram.h"
-#include "structures.h"
+#include "tgl-structures.h"
 //#include "interface.h"
 //#include "net.h"
 #include <openssl/bn.h>
@@ -49,7 +48,7 @@
 #include <openssl/md5.h>
 
 #include "no-preview.h"
-#include "binlog.h"
+#include "tgl-binlog.h"
 #include "updates.h"
 #include "auto.h"
 #include "tgl.h"
@@ -61,7 +60,7 @@
 #endif
 
 //int want_dc_num;
-char *get_downloads_directory (void);
+//char *get_downloads_directory (void);
 //extern int offline_mode;
 
 //long long cur_uploading_bytes;
@@ -170,7 +169,7 @@ struct query *tglq_send_query (struct tgl_state *TLS, struct tgl_dc *DC, int int
   return tglq_send_query_ex (TLS, DC, ints, data, methods, extra, callback, callback_extra, 0);
 }
 
-static int fail_on_error (struct tgl_state *TLS, struct query *q UU, int error_code UU, int l UU, char *error UU) {
+static int fail_on_error (struct tgl_state *TLS, struct query *q, int error_code, int l, char *error) {
   fprintf (stderr, "error #%d: %.*s\n", error_code, l, error);
   assert (0);
   return 0;
@@ -232,7 +231,7 @@ void tglq_query_error (struct tgl_state *TLS, long long id) {
 #define MAX_PACKED_SIZE (1 << 24)
 static int packed_buffer[MAX_PACKED_SIZE / 4];
 
-void tglq_query_result (struct tgl_state *TLS, long long id UU) {
+void tglq_query_result (struct tgl_state *TLS, long long id) {
   vlogprintf (E_DEBUG, "result for query #%lld. Size %ld bytes\n", id, (long)4 * (in_end - in_ptr));
   /*if (verbosity  >= 4) {
     logprintf ( "result: ");
@@ -348,7 +347,7 @@ static void fetch_dc_option (struct tgl_state *TLS) {
   bl_do_dc_option (TLS, id, l1, name, l2, ip, port);
 }
 
-static int help_get_config_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int help_get_config_on_answer (struct tgl_state *TLS, struct query *q) {
   unsigned op = fetch_int ();
   assert (op == CODE_config || op == CODE_config_old);
   fetch_int ();
@@ -399,7 +398,7 @@ void tgl_do_help_get_config_dc (struct tgl_state *TLS, struct tgl_dc *D, void (*
 /* }}} */
 
 /* {{{ Send code */
-static int send_code_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int send_code_on_answer (struct tgl_state *TLS, struct query *q) {
   static char *phone_code_hash;  
   assert (fetch_int () == (int)CODE_auth_sent_code);
   int registered = fetch_bool ();
@@ -419,7 +418,7 @@ static int send_code_on_answer (struct tgl_state *TLS, struct query *q UU) {
   return 0;
 }
 
-static int send_code_on_error (struct tgl_state *TLS, struct query *q UU, int error_code, int l, char *error) {
+static int send_code_on_error (struct tgl_state *TLS, struct query *q, int error_code, int l, char *error) {
   int s = strlen ("PHONE_MIGRATE_");
   int s2 = strlen ("NETWORK_MIGRATE_");
   int want_dc_num = 0;
@@ -470,7 +469,7 @@ void tgl_do_send_code (struct tgl_state *TLS, const char *user, void (*callback)
 }
 
 
-static int phone_call_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int phone_call_on_answer (struct tgl_state *TLS, struct query *q) {
   fetch_bool ();
   if (q->callback) {
     ((void (*)(struct tgl_state *TLS, void *, int))(q->callback))(TLS, q->callback_extra, 1);
@@ -498,7 +497,7 @@ void tgl_do_phone_call (struct tgl_state *TLS, const char *user, const char *has
 /* }}} */
 
 /* {{{ Sign in / Sign up */
-static int sign_in_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int sign_in_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_auth_authorization);
   int expires = fetch_int ();
   vlogprintf (E_DEBUG, "Expires in %d\n", expires);
@@ -516,7 +515,7 @@ static int sign_in_on_answer (struct tgl_state *TLS, struct query *q UU) {
   return 0;
 }
 
-static int sign_in_on_error (struct tgl_state *TLS, struct query *q UU, int error_code, int l, char *error) {
+static int sign_in_on_error (struct tgl_state *TLS, struct query *q, int error_code, int l, char *error) {
     vlogprintf (E_ERROR, "error_code = %d, error = %.*s\n", error_code, l, error);
     if (q->callback) {
         ((void (*)(void *, int, struct tgl_user *))q->callback) (q->callback_extra, 0, NULL);
@@ -554,7 +553,7 @@ int tgl_do_send_code_result_auth (struct tgl_state *TLS, const char *user, const
 /* }}} */
 
 /* {{{ Get contacts */
-static int get_contacts_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int get_contacts_on_answer (struct tgl_state *TLS, struct query *q) {
   int i;
 
   assert (fetch_int () == (int)CODE_contacts_contacts);
@@ -733,7 +732,7 @@ void tgl_do_set_encr_chat_ttl (struct tgl_state *TLS, struct tgl_secret_chat *E,
 }
 
 /* {{{ Seng msg (plain text) */
-static int msg_send_encr_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int msg_send_encr_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == CODE_messages_sent_encrypted_message);
   struct tgl_message *M = q->extra;
   //M->date = fetch_int ();
@@ -766,7 +765,7 @@ static int msg_send_encr_on_error (struct tgl_state *TLS, struct query *q, int e
     return 0;
 }
 
-static int msg_send_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int msg_send_on_answer (struct tgl_state *TLS, struct query *q) {
   unsigned x = fetch_int ();
   assert (x == CODE_messages_sent_message || x == CODE_messages_sent_message_link);
   int id = fetch_int (); // id
@@ -920,6 +919,29 @@ void tgl_do_send_encr_msg_action (struct tgl_state *TLS, struct tgl_message *M, 
     out_int (CODE_decrypted_message_action_set_message_t_t_l);
     out_int (M->action.ttl);
     break;
+  case tgl_message_action_request_key:
+    out_int (CODE_decrypted_message_action_request_key);
+    out_long (M->action.exchange_id);
+    out_cstring ((void *)M->action.g_a, 256);
+    break;
+  case tgl_message_action_accept_key:
+    out_int (CODE_decrypted_message_action_accept_key);
+    out_long (M->action.exchange_id);
+    out_cstring ((void *)M->action.g_a, 256);    
+    out_long (M->action.key_fingerprint);
+    break;
+  case tgl_message_action_commit_key:
+    out_int (CODE_decrypted_message_action_commit_key);
+    out_long (M->action.exchange_id);
+    out_long (M->action.key_fingerprint);
+    break;
+  case tgl_message_action_abort_key:
+    out_int (CODE_decrypted_message_action_abort_key);
+    out_long (M->action.exchange_id);
+    break;
+  case tgl_message_action_noop:
+    out_int (CODE_decrypted_message_action_noop);
+    break;
   default:
     assert (0);
   }
@@ -1046,7 +1068,7 @@ void tgl_do_send_text (struct tgl_state *TLS, tgl_peer_id_t id, char *file_name,
 
 /* {{{ Mark read */
 void tgl_do_messages_mark_read (struct tgl_state *TLS, tgl_peer_id_t id, int max_id, int offset, void (*callback)(struct tgl_state *TLS, void *callback_extra, int), void *callback_extra);
-static int mark_read_on_receive (struct tgl_state *TLS, struct query *q UU) {
+static int mark_read_on_receive (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_messages_affected_history);
   //tglu_fetch_pts ();
   int pts = fetch_int ();
@@ -1076,7 +1098,7 @@ static int mark_read_on_receive (struct tgl_state *TLS, struct query *q UU) {
   return 0;
 }
 
-static int mark_read_encr_on_receive (struct tgl_state *TLS, struct query *q UU) {
+static int mark_read_encr_on_receive (struct tgl_state *TLS, struct query *q) {
   fetch_bool ();
   if (q->callback) {
     ((void (*)(struct tgl_state *, void *, int))q->callback)(TLS, q->callback_extra, 1);
@@ -1141,7 +1163,7 @@ void tgl_do_mark_read (struct tgl_state *TLS, tgl_peer_id_t id, void (*callback)
 
 /* {{{ Get history */
 void _tgl_do_get_history (struct tgl_state *TLS, tgl_peer_id_t id, int limit, int offset, int max_id, int list_offset, int list_size, struct tgl_message *ML[], void (*callback)(struct tgl_state *TLS,void *callback_extra, int success, int size, struct tgl_message *list[]), void *callback_extra);
-static int get_history_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int get_history_on_answer (struct tgl_state *TLS, struct query *q) {
   int count = -1;
   int i;
   int x = fetch_int ();
@@ -1327,7 +1349,7 @@ void tgl_do_get_history_ext (struct tgl_state *TLS, tgl_peer_id_t id, int offset
 /* }}} */
 
 /* {{{ Get dialogs */
-static int get_dialogs_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int get_dialogs_on_answer (struct tgl_state *TLS, struct query *q) {
   unsigned x = fetch_int (); 
   assert (x == CODE_messages_dialogs || x == CODE_messages_dialogs_slice);
   if (x == CODE_messages_dialogs_slice) {
@@ -1464,7 +1486,7 @@ static int send_file_part_on_answer (struct tgl_state *TLS, struct query *q) {
   return 0;
 }
 
-static int send_file_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int send_file_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_messages_stated_message);
   struct tgl_message *M = tglf_fetch_alloc_message (TLS);
   assert (fetch_int () == CODE_vector);
@@ -1500,7 +1522,7 @@ static int send_file_on_answer (struct tgl_state *TLS, struct query *q UU) {
   return 0;
 }
 
-static int send_encr_file_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int send_encr_file_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_messages_sent_encrypted_file);
   struct tgl_message *M = q->extra;
   //M->date = fetch_int ();
@@ -1989,7 +2011,7 @@ void tgl_do_contact_search (struct tgl_state *TLS, char *name, int limit, void (
 /* }}} */
 
 /* {{{ Forward */
-static int fwd_msg_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int fwd_msg_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_messages_stated_message);
   struct tgl_message *M = tglf_fetch_alloc_message (TLS);
   assert (fetch_int () == CODE_vector);
@@ -2204,7 +2226,7 @@ void tgl_do_send_location(struct tgl_state *TLS, tgl_peer_id_t id, double latitu
 /* }}} */
 
 /* {{{ Rename chat */
-static int rename_chat_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int rename_chat_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_messages_stated_message);
   struct tgl_message *M = tglf_fetch_alloc_message (TLS);
   assert (fetch_int () == CODE_vector);
@@ -2243,7 +2265,7 @@ static struct query_methods rename_chat_methods = {
   .type = TYPE_TO_PARAM(messages_stated_message)
 };
 
-void tgl_do_rename_chat (struct tgl_state *TLS, tgl_peer_id_t id, char *name UU, void (*callback)(struct tgl_state *TLS, void *callback_extra, int success, struct tgl_message *M), void *callback_extra) {
+void tgl_do_rename_chat (struct tgl_state *TLS, tgl_peer_id_t id, char *name, void (*callback)(struct tgl_state *TLS, void *callback_extra, int success, struct tgl_message *M), void *callback_extra) {
   clear_packet ();
   out_int (CODE_messages_edit_chat_title);
   assert (tgl_get_peer_type (id) == TGL_PEER_CHAT);
@@ -2278,7 +2300,7 @@ void tgl_do_rename_chat (struct tgl_state *TLS, tgl_peer_id_t id, char *name UU,
   print_end ();
 }*/
 
-static int chat_info_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int chat_info_on_answer (struct tgl_state *TLS, struct query *q) {
   struct tgl_chat *C = tglf_fetch_alloc_chat_full (TLS);
   //print_chat_info (C);
   if (q->callback) {
@@ -2338,7 +2360,7 @@ void tgl_do_get_chat_info (struct tgl_state *TLS, tgl_peer_id_t id, int offline_
   print_end ();
 }*/
 
-static int user_info_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int user_info_on_answer (struct tgl_state *TLS, struct query *q) {
   struct tgl_user *U = tglf_fetch_alloc_user_full (TLS);
   if (q->callback) {
     ((void (*)(struct tgl_state *, void *, int, struct tgl_user *))q->callback) (TLS, q->callback_extra, 1, U);
@@ -2383,7 +2405,7 @@ void tgl_do_get_user_info (struct tgl_state *TLS, tgl_peer_id_t id, int offline_
 /* }}} */
 
 /* {{{ Get user info silently */
-/*int user_list_info_silent_on_answer (struct query *q UU) {
+/*int user_list_info_silent_on_answer (struct query *q) {
   assert (fetch_int () == CODE_vector);
   int n = fetch_int ();
   int i;
@@ -2519,9 +2541,9 @@ static void load_next_part (struct tgl_state *TLS, struct download *D, void *cal
     static char buf[PATH_MAX];
     int l;
     if (!D->id) {
-      l = tsnprintf (buf, sizeof (buf), "%s/download_%lld_%d", get_downloads_directory (), D->volume, D->local_id);
+      l = tsnprintf (buf, sizeof (buf), "%s/download_%lld_%d.jpg", TLS->downloads_directory, D->volume, D->local_id);
     } else {
-      l = tsnprintf (buf, sizeof (buf), "%s/download_%lld", get_downloads_directory (), D->id);
+      l = tsnprintf (buf, sizeof (buf), "%s/download_%lld", TLS->downloads_directory, D->id);
     }
     if (l >= (int) sizeof (buf)) {
       vlogprintf (E_ERROR, "Download filename is too long");
@@ -2686,7 +2708,7 @@ void tgl_do_load_encr_video (struct tgl_state *TLS, struct tgl_encr_video *V, vo
 
 /* {{{ Export auth */
 
-static int import_auth_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int import_auth_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_auth_authorization);
   fetch_int (); // expires
   tglf_fetch_alloc_user (TLS);
@@ -2705,7 +2727,7 @@ static struct query_methods import_auth_methods = {
   .type = TYPE_TO_PARAM(auth_authorization)
 };
 
-static int export_auth_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int export_auth_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_auth_exported_authorization);
   bl_do_set_our_id (TLS, fetch_int ());
   int l = prefetch_strlen ();
@@ -2737,7 +2759,7 @@ void tgl_do_export_auth (struct tgl_state *TLS, int num, void (*callback) (struc
 /* }}} */
 
 /* {{{ Add contact */
-static int add_contact_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int add_contact_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_contacts_imported_contacts);
   assert (fetch_int () == CODE_vector);
   int n = fetch_int ();
@@ -2796,7 +2818,7 @@ void tgl_do_add_contact (struct tgl_state *TLS, const char *phone, int phone_len
 /* }}} */
 
 /* {{{ Add contact */
-static int del_contact_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int del_contact_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (skip_type_contacts_link (TYPE_TO_PARAM(contacts_link)) >= 0);
 
   if (q->callback) {
@@ -2835,7 +2857,7 @@ void tgl_do_del_contact (struct tgl_state *TLS, tgl_peer_id_t id, void (*callbac
 
 /* {{{ Msg search */
 void _tgl_do_msg_search (struct tgl_state *TLS, tgl_peer_id_t id, int from, int to, int limit, int offset, int max_id, char *s, int list_offset, int list_size, struct tgl_message **list, void (*callback)(struct tgl_state *TLS,void *callback_extra, int success, int size, struct tgl_message *list[]), void *callback_extra);
-static int msg_search_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int msg_search_on_answer (struct tgl_state *TLS, struct query *q) {
   int count = -1;
   int i;
   int x = fetch_int ();
@@ -2954,7 +2976,7 @@ void tgl_do_msg_search (struct tgl_state *TLS, tgl_peer_id_t id, int from, int t
 /* }}} */
 
 /* {{{ Contacts search */
-static int contacts_search_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int contacts_search_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == CODE_contacts_found);
   assert (fetch_int () == CODE_vector);
   int n = fetch_int ();
@@ -3004,7 +3026,7 @@ void tgl_do_contacts_search (struct tgl_state *TLS, int limit, const char *s, vo
 /* }}} */
 
 /* {{{ Encr accept */
-static int send_encr_accept_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int send_encr_accept_on_answer (struct tgl_state *TLS, struct query *q) {
   struct tgl_secret_chat *E = tglf_fetch_alloc_encrypted_chat (TLS);
 
   /*if (E->state == sc_ok) {
@@ -3034,7 +3056,7 @@ static int send_encr_accept_on_answer (struct tgl_state *TLS, struct query *q UU
   return 0;
 }
 
-static int send_encr_request_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int send_encr_request_on_answer (struct tgl_state *TLS, struct query *q) {
   struct tgl_secret_chat *E = tglf_fetch_alloc_encrypted_chat (TLS);
   /*if (E->state == sc_deleted) {
     print_start ();
@@ -3123,6 +3145,7 @@ void tgl_do_send_accept_encr_chat (struct tgl_state *TLS, struct tgl_secret_chat
   sha1 (kk, 256, sha_buffer);
 
   bl_do_encr_chat_set_key (TLS, E, kk, *(long long *)(sha_buffer + 12));
+  bl_do_encr_chat_set_sha (TLS, E, sha_buffer);
 
   clear_packet ();
   out_int (CODE_messages_accept_encryption);
@@ -3177,6 +3200,7 @@ void tgl_do_create_keys_end (struct tgl_state *TLS, struct tgl_secret_chat *U) {
     U->state = sc_deleted;
   }
 
+  memcpy (U->first_key_sha, sha_buffer, 20);
   tfree_secure (t, 256);
   
   BN_clear_free (p);
@@ -3248,7 +3272,7 @@ void tgl_do_send_create_encr_chat (struct tgl_state *TLS, void *x, unsigned char
   tglq_send_query (TLS, TLS->DC_working, packet_ptr - packet_buffer, packet_buffer, &send_encr_request_methods, E, callback, callback_extra);
 }
 
-static int get_dh_config_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int get_dh_config_on_answer (struct tgl_state *TLS, struct query *q) {
   unsigned x = fetch_int ();
   assert (x == CODE_messages_dh_config || x == CODE_messages_dh_config_not_modified);
   if (x == CODE_messages_dh_config)  {
@@ -3321,7 +3345,7 @@ void tgl_do_create_encr_chat_request (struct tgl_state *TLS, int user_id, void (
 //int unread_messages;
 //int difference_got;
 //int seq, pts, qts, last_date;
-static int get_state_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int get_state_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (TLS->locks & TGL_LOCK_DIFF);
   TLS->locks ^= TGL_LOCK_DIFF;
   assert (fetch_int () == (int)CODE_updates_state);
@@ -3340,7 +3364,7 @@ static int get_state_on_answer (struct tgl_state *TLS, struct query *q UU) {
   return 0;
 }
 
-static int lookup_state_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int lookup_state_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_updates_state);
   int pts = fetch_int ();
   int qts = fetch_int ();
@@ -3356,7 +3380,7 @@ static int lookup_state_on_answer (struct tgl_state *TLS, struct query *q UU) {
 
 
 //int get_difference_active;
-static int get_difference_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int get_difference_on_answer (struct tgl_state *TLS, struct query *q) {
   //get_difference_active = 0;
   assert (TLS->locks & TGL_LOCK_DIFF);
   TLS->locks ^= TGL_LOCK_DIFF;
@@ -3538,14 +3562,15 @@ void tgl_do_visualize_key (struct tgl_state *TLS, tgl_peer_id_t id, unsigned cha
     vlogprintf (E_WARNING, "Chat is not initialized yet\n");
     return;
   }
-  unsigned char res[20];
-  SHA1 ((void *)P->encr_chat.key, 256, res);
-  memcpy (buf, res, 16);
+  //unsigned char res[20];
+  //SHA1 ((void *)P->encr_chat.key, 256, res);
+  //memcpy (buf, res, 16);
+  memcpy (buf, P->encr_chat.first_key_sha, 16);
 }
 /* }}} */
 
 /* {{{ Get suggested */
-/*int get_suggested_on_answer (struct query *q UU) {
+/*int get_suggested_on_answer (struct query *q) {
   assert (fetch_int () == CODE_contacts_suggested);
   assert (fetch_int () == CODE_vector);
   int n = fetch_int ();
@@ -3711,7 +3736,7 @@ void tgl_do_create_group_chat_ex (struct tgl_state *TLS, int users_num, tgl_peer
 
 /* {{{ Delete msg */
 
-static int delete_msg_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int delete_msg_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == CODE_vector);
   int n = fetch_int ();
   fetch_skip (n);
@@ -3739,7 +3764,7 @@ void tgl_do_delete_msg (struct tgl_state *TLS, long long id, void (*callback)(st
 
 /* {{{ Restore msg */
 
-static int restore_msg_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int restore_msg_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == CODE_vector);
   int n = fetch_int ();
   fetch_skip (n);
@@ -3768,7 +3793,7 @@ void tgl_do_restore_msg (struct tgl_state *TLS, long long id, void (*callback)(s
 
 /* {{{ Export card */
 
-static int export_card_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int export_card_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == CODE_vector);
   int n = fetch_int ();
   //logprintf ("Restored %d messages\n", n);
@@ -3796,7 +3821,7 @@ void tgl_do_export_card (struct tgl_state *TLS, void (*callback)(struct tgl_stat
 
 /* {{{ Import card */
 
-static int import_card_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int import_card_on_answer (struct tgl_state *TLS, struct query *q) {
   struct tgl_user *U = tglf_fetch_alloc_user (TLS);
   
   if (q->callback) {
@@ -3821,7 +3846,7 @@ void tgl_do_import_card (struct tgl_state *TLS, int size, int *card, void (*call
 /* }}} */
 
 #ifndef DISABLE_EXTF
-static int ext_query_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int ext_query_on_answer (struct tgl_state *TLS, struct query *q) {
   if (q->callback) {
     char *buf = tglf_extf_fetch (TLS, q->type);
     ((void (*)(struct tgl_state *, void *, int, char *))q->callback) (TLS, q->callback_extra, 1, buf);
@@ -3859,7 +3884,7 @@ static void set_flag_4 (struct tgl_state *TLS, void *_D, int success) {
   TLS->timer_methods->insert (D->ev, TLS->temp_key_expire_time * 0.9);
 }
 
-static int send_bind_temp_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int send_bind_temp_on_answer (struct tgl_state *TLS, struct query *q) {
   assert (fetch_int () == (int)CODE_bool_true);
   struct tgl_dc *D = q->extra;
   D->flags |= 2;
@@ -3885,7 +3910,7 @@ void tgl_do_send_bind_temp_key (struct tgl_state *TLS, struct tgl_dc *D, long lo
   assert (q->msg_id == msg_id);
 }
 
-static int update_status_on_answer (struct tgl_state *TLS, struct query *q UU) {
+static int update_status_on_answer (struct tgl_state *TLS, struct query *q) {
   fetch_bool ();
   
   if (q->callback) {
@@ -3899,9 +3924,183 @@ static struct query_methods update_status_methods = {
   .type = TYPE_TO_PARAM(bool)
 };
 
-void tgl_do_update_status (struct tgl_state *TLS, int online UU, void (*callback)(struct tgl_state *TLS, void *callback_extra, int success), void *callback_extra) {
+void tgl_do_update_status (struct tgl_state *TLS, int online, void (*callback)(struct tgl_state *TLS, void *callback_extra, int success), void *callback_extra) {
   clear_packet ();
   out_int (CODE_account_update_status);
   out_int (online ? CODE_bool_false : CODE_bool_true);
   tglq_send_query (TLS, TLS->DC_working, packet_ptr - packet_buffer, packet_buffer, &update_status_methods, 0, callback, callback_extra);
+}
+
+
+void tgl_do_request_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E) {
+  static unsigned char s[256];
+  tglt_secure_random (s, 256);
+
+  long long id;
+  tglt_secure_random (&id, 8);
+
+  bl_do_encr_chat_exchange_request (TLS, E, id, s);
+  
+  BIGNUM *a = BN_bin2bn (s, 256, 0);
+  ensure_ptr (a);
+  BIGNUM *p = BN_bin2bn (TLS->encr_prime, 256, 0); 
+  ensure_ptr (p);
+ 
+  BIGNUM *g = BN_new ();
+  ensure_ptr (g);
+
+  ensure (BN_set_word (g, TLS->encr_root));
+
+  BIGNUM *r = BN_new ();
+  ensure_ptr (r);
+
+  ensure (BN_mod_exp (r, g, a, p, TLS->BN_ctx));
+  
+  static unsigned char kk[256];
+  memset (kk, 0, sizeof (kk));
+  BN_bn2bin (r, kk + (256 - BN_num_bytes (r)));
+
+  BN_clear_free (a);
+  BN_clear_free (g);
+  BN_clear_free (p);
+  BN_clear_free (r);
+  
+  static int action[70];  
+  action[0] = CODE_decrypted_message_action_request_key;
+  *(long long *)(action + 1) = E->exchange_id;
+  action[3] = 0x100fe;
+  memcpy (action + 4, kk, 256);
+
+  long long t;
+  tglt_secure_random (&t, 8);
+
+  bl_do_send_message_action_encr (TLS, t, TLS->our_id, tgl_get_peer_type (E->id), tgl_get_peer_id (E->id), time (0), 68, action);
+  
+  struct tgl_message *M = tgl_message_get (TLS, t);
+  assert (M);
+  assert (M->action.type == tgl_message_action_request_key);
+  tgl_do_send_msg (TLS, M, 0, 0);
+}
+
+void tgl_do_accept_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E, long long exchange_id, unsigned char ga[]) {
+  static unsigned char s[256];
+  tglt_secure_random (s, 256);
+
+  BIGNUM *b = BN_bin2bn (s, 256, 0);
+  ensure_ptr (b);
+  BIGNUM *g_a = BN_bin2bn (ga, 256, 0);
+  ensure_ptr (g_a);
+
+  assert (tglmp_check_g (TLS, TLS->encr_prime, g_a) >= 0);
+  //if (!ctx) {
+  //  ctx = BN_CTX_new ();
+  //  ensure_ptr (ctx);
+  //}
+  BIGNUM *p = BN_bin2bn (TLS->encr_prime, 256, 0); 
+  ensure_ptr (p);
+  BIGNUM *r = BN_new ();
+  ensure_ptr (r);
+  ensure (BN_mod_exp (r, g_a, b, p, TLS->BN_ctx));
+
+  static unsigned char kk[256];
+  memset (kk, 0, sizeof (kk));
+  BN_bn2bin (r, kk + (256 - BN_num_bytes (r)));
+
+  bl_do_encr_chat_exchange_accept (TLS, E, exchange_id, kk);
+  
+  ensure (BN_set_word (g_a, TLS->encr_root));
+  ensure (BN_mod_exp (r, g_a, b, p, TLS->BN_ctx));
+  
+  static unsigned char buf[256];
+  memset (buf, 0, sizeof (buf));
+  BN_bn2bin (r, buf + (256 - BN_num_bytes (r)));
+  
+  static int action[70];  
+  action[0] = CODE_decrypted_message_action_accept_key;
+  *(long long *)(action + 1) = E->exchange_id;
+  action[3] = 0x100fe;
+  memcpy (action + 4, buf, 256);
+  *(long long *)(action + 68) = E->exchange_key_fingerprint;
+
+  long long t;
+  tglt_secure_random (&t, 8);
+
+  bl_do_send_message_action_encr (TLS, t, TLS->our_id, tgl_get_peer_type (E->id), tgl_get_peer_id (E->id), time (0), 70, action);
+
+  BN_clear_free (b);
+  BN_clear_free (g_a);
+  BN_clear_free (p);
+  BN_clear_free (r);
+  
+  struct tgl_message *M = tgl_message_get (TLS, t);
+  assert (M);
+  assert (M->action.type == tgl_message_action_accept_key);
+  tgl_do_send_msg (TLS, M, 0, 0);
+}
+  
+void tgl_do_confirm_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E, int sen_nop) {
+  bl_do_encr_chat_exchange_confirm (TLS, E);
+  if (sen_nop) {
+    int action = CODE_decrypted_message_action_noop;
+  
+    long long t;
+    tglt_secure_random (&t, 8);
+
+    bl_do_send_message_action_encr (TLS, t, TLS->our_id, tgl_get_peer_type (E->id), tgl_get_peer_id (E->id), time (0), 1, &action);
+
+    struct tgl_message *M = tgl_message_get (TLS, t);
+    assert (M);
+    assert (M->action.type == tgl_message_action_noop);
+    tgl_do_send_msg (TLS, M, 0, 0);
+  }
+}
+
+void tgl_do_commit_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E, unsigned char gb[]) {
+  assert (TLS->encr_prime);
+  
+  BIGNUM *g_b = BN_bin2bn (gb, 256, 0);  
+  ensure_ptr (g_b);
+  assert (tglmp_check_g (TLS, TLS->encr_prime, g_b) >= 0);
+
+  BIGNUM *p = BN_bin2bn (TLS->encr_prime, 256, 0); 
+  ensure_ptr (p);
+  BIGNUM *r = BN_new ();
+  ensure_ptr (r);
+  BIGNUM *a = BN_bin2bn ((void *)E->exchange_key, 256, 0);
+  ensure_ptr (a);
+  ensure (BN_mod_exp (r, g_b, a, p, TLS->BN_ctx));
+
+  static unsigned char s[256];
+  memset (s, 0, 256);
+  
+  BN_bn2bin (r, s + (256 - BN_num_bytes (r)));
+  
+  BN_clear_free (p);
+  BN_clear_free (g_b);
+  BN_clear_free (r);
+  BN_clear_free (a);
+ 
+  static unsigned char sh[20];
+  SHA1 (s, 256, sh);
+  
+  int action[4];
+  action[0] = CODE_decrypted_message_action_commit_key;
+  *(long long *)(action + 1) = E->exchange_id;
+  *(long long *)(action + 3) = *(long long *)(sh + 12);
+  
+  long long t;
+  tglt_secure_random (&t, 8);
+
+  bl_do_send_message_action_encr (TLS, t, TLS->our_id, tgl_get_peer_type (E->id), tgl_get_peer_id (E->id), time (0), 5, action);
+  
+  struct tgl_message *M = tgl_message_get (TLS, t);
+  assert (M);
+  assert (M->action.type == tgl_message_action_commit_key);
+  tgl_do_send_msg (TLS, M, 0, 0);
+  
+  bl_do_encr_chat_exchange_commit (TLS, E, s);
+}
+
+void tgl_do_abort_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E) {
+  bl_do_encr_chat_exchange_abort (TLS, E);
 }

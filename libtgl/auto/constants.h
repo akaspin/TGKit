@@ -411,7 +411,13 @@
 #define CODE_decrypted_message_action_screenshot_messages 0x8ac1f475
 #define CODE_decrypted_message_action_flush_history 0x6719e45c
 #define CODE_decrypted_message_action_notify_layer 0xf3048883
+#define CODE_decrypted_message_action_resend 0x511110b0
 #define CODE_decrypted_message_action_typing 0xccb27641
+#define CODE_decrypted_message_action_request_key 0xf3c9611b
+#define CODE_decrypted_message_action_accept_key 0x6fe1735b
+#define CODE_decrypted_message_action_commit_key 0xec2e0b9b
+#define CODE_decrypted_message_action_abort_key 0xdd05ec6b
+#define CODE_decrypted_message_action_noop 0xa82fdd63
 #define CODE_binlog_file_location 0xae7ae5ce
 #define CODE_binlog_chat_participant 0xe97ad32a
 #define CODE_binlog_start 0x3b06de69
@@ -448,6 +454,12 @@
 #define CODE_binlog_encr_chat_set_layer 0x633bf386
 #define CODE_binlog_encr_chat_set_state 0x808087f7
 #define CODE_binlog_encr_chat_set_key 0xc23fc5e4
+#define CODE_binlog_encr_chat_set_sha 0x65df932f
+#define CODE_binlog_encr_chat_exchange_request 0x6d5b0bcf
+#define CODE_binlog_encr_chat_exchange_accept 0x1cb792c0
+#define CODE_binlog_encr_chat_exchange_commit 0x25f33ed3
+#define CODE_binlog_encr_chat_exchange_confirm 0x3dd3a05f
+#define CODE_binlog_encr_chat_exchange_abort 0x6376966b
 #define CODE_binlog_encr_chat_update_seq 0x6dbc0700
 #define CODE_binlog_encr_chat_set_seq 0x68cd2542
 #define CODE_binlog_chat_create 0x405b6197

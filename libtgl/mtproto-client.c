@@ -47,11 +47,10 @@
 #include <poll.h>
 
 //#include "telegram.h"
-#include "include.h"
 #include "queries.h"
 //#include "loop.h"
-#include "structures.h"
-#include "binlog.h"
+#include "tgl-structures.h"
+#include "tgl-binlog.h"
 #include "auto.h"
 #include "tgl.h"
 #include "mtproto-client.h"
@@ -662,7 +661,7 @@ int tglmp_encrypt_inner_temp (struct tgl_state *TLS, struct connection *c, int *
 static long long generate_next_msg_id (struct tgl_state *TLS, struct tgl_dc *DC);
 static long long msg_id_override;
 static void mpc_on_get_config (struct tgl_state *TLS, void *extra, int success);
-static int process_auth_complete (struct tgl_state *TLS, struct connection *c UU, char *packet, int len, int temp_key) {
+static int process_auth_complete (struct tgl_state *TLS, struct connection *c, char *packet, int len, int temp_key) {
   struct tgl_dc *D = TLS->net_methods->get_dc (c);
   vlogprintf (E_DEBUG - 1, "process_dh_answer(), len=%d\n", len);
   
@@ -881,7 +880,7 @@ int tglmp_encrypt_inner_temp (struct tgl_state *TLS, struct connection *c, int *
 
 static int good_messages;
 
-static void rpc_execute_answer (struct tgl_state *TLS, struct connection *c, long long msg_id UU);
+static void rpc_execute_answer (struct tgl_state *TLS, struct connection *c, long long msg_id);
 
 //int unread_messages;
 //int pts;
@@ -889,7 +888,7 @@ static void rpc_execute_answer (struct tgl_state *TLS, struct connection *c, lon
 //int last_date;
 //int seq;
 
-static void work_container (struct tgl_state *TLS, struct connection *c, long long msg_id UU) {
+static void work_container (struct tgl_state *TLS, struct connection *c, long long msg_id) {
   vlogprintf (E_DEBUG, "work_container: msg_id = %lld\n", msg_id);
   assert (fetch_int () == CODE_msg_container);
   int n = fetch_int ();
@@ -910,7 +909,7 @@ static void work_container (struct tgl_state *TLS, struct connection *c, long lo
   }
 }
 
-static void work_new_session_created (struct tgl_state *TLS, struct connection *c, long long msg_id UU) {
+static void work_new_session_created (struct tgl_state *TLS, struct connection *c, long long msg_id) {
   vlogprintf (E_DEBUG, "work_new_session_created: msg_id = %lld\n", msg_id);
   assert (fetch_int () == (int)CODE_new_session_created);
   fetch_long (); // first message id
@@ -922,7 +921,7 @@ static void work_new_session_created (struct tgl_state *TLS, struct connection *
   }
 }
 
-static void work_msgs_ack (struct tgl_state *TLS, struct connection *c UU, long long msg_id UU) {
+static void work_msgs_ack (struct tgl_state *TLS, struct connection *c, long long msg_id) {
   vlogprintf (E_DEBUG, "work_msgs_ack: msg_id = %lld\n", msg_id);
   assert (fetch_int () == CODE_msgs_ack);
   assert (fetch_int () == CODE_vector);
@@ -935,7 +934,7 @@ static void work_msgs_ack (struct tgl_state *TLS, struct connection *c UU, long 
   }
 }
 
-static void work_rpc_result (struct tgl_state *TLS, struct connection *c UU, long long msg_id UU) {
+static void work_rpc_result (struct tgl_state *TLS, struct connection *c, long long msg_id) {
   vlogprintf (E_DEBUG, "work_rpc_result: msg_id = %lld\n", msg_id);
   assert (fetch_int () == (int)CODE_rpc_result);
   long long id = fetch_long ();
@@ -970,7 +969,7 @@ static void work_packed (struct tgl_state *TLS, struct connection *c, long long 
   in_gzip = 0;
 }
 
-static void work_bad_server_salt (struct tgl_state *TLS, struct connection *c UU, long long msg_id UU) {
+static void work_bad_server_salt (struct tgl_state *TLS, struct connection *c, long long msg_id) {
   assert (fetch_int () == (int)CODE_bad_server_salt);
   long long id = fetch_long ();
   tglq_query_restart (TLS, id);
@@ -980,13 +979,13 @@ static void work_bad_server_salt (struct tgl_state *TLS, struct connection *c UU
   TLS->net_methods->get_dc (c)->server_salt = new_server_salt;
 }
 
-static void work_pong (struct tgl_state *TLS, struct connection *c UU, long long msg_id UU) {
+static void work_pong (struct tgl_state *TLS, struct connection *c, long long msg_id) {
   assert (fetch_int () == CODE_pong);
   fetch_long (); // msg_id
   fetch_long (); // ping_id
 }
 
-static void work_detailed_info (struct tgl_state *TLS, struct connection *c UU, long long msg_id UU) {
+static void work_detailed_info (struct tgl_state *TLS, struct connection *c, long long msg_id) {
   assert (fetch_int () == CODE_msg_detailed_info);
   fetch_long (); // msg_id
   fetch_long (); // answer_msg_id
@@ -994,14 +993,14 @@ static void work_detailed_info (struct tgl_state *TLS, struct connection *c UU, 
   fetch_int (); // status
 }
 
-static void work_new_detailed_info (struct tgl_state *TLS, struct connection *c UU, long long msg_id UU) {
+static void work_new_detailed_info (struct tgl_state *TLS, struct connection *c, long long msg_id) {
   assert (fetch_int () == (int)CODE_msg_new_detailed_info);
   fetch_long (); // answer_msg_id
   fetch_int (); // bytes
   fetch_int (); // status
 }
 
-static void work_bad_msg_notification (struct tgl_state *TLS, struct connection *c UU, long long msg_id UU) {
+static void work_bad_msg_notification (struct tgl_state *TLS, struct connection *c, long long msg_id) {
   assert (fetch_int () == (int)CODE_bad_msg_notification);
   long long m1 = fetch_long ();
   int s = fetch_int ();
@@ -1009,7 +1008,7 @@ static void work_bad_msg_notification (struct tgl_state *TLS, struct connection 
   vlogprintf (E_NOTICE, "bad_msg_notification: msg_id = %lld, seq = %d, error = %d\n", m1, s, e);
 }
 
-static void rpc_execute_answer (struct tgl_state *TLS, struct connection *c, long long msg_id UU) {
+static void rpc_execute_answer (struct tgl_state *TLS, struct connection *c, long long msg_id) {
   int op = prefetch_int ();
   switch (op) {
   case CODE_msg_container:
@@ -1062,7 +1061,7 @@ static void rpc_execute_answer (struct tgl_state *TLS, struct connection *c, lon
   in_ptr = in_end; // Will not fail due to assertion in_ptr == in_end
 }
 
-static int process_rpc_message (struct tgl_state *TLS, struct connection *c UU, struct encrypted_message *enc, int len) {
+static int process_rpc_message (struct tgl_state *TLS, struct connection *c, struct encrypted_message *enc, int len) {
   const int MINSZ = offsetof (struct encrypted_message, message);
   const int UNENCSZ = offsetof (struct encrypted_message, server_salt);
   vlogprintf (E_DEBUG, "process_rpc_message(), len=%d\n", len);  
@@ -1347,7 +1346,7 @@ static void regen_temp_key_gw (struct tgl_state *TLS, void *arg) {
   tglmp_regenerate_temp_auth_key (TLS, arg);
 }
 
-struct tgl_dc *tglmp_alloc_dc (struct tgl_state *TLS, int id, char *ip, int port UU) {
+struct tgl_dc *tglmp_alloc_dc (struct tgl_state *TLS, int id, char *ip, int port) {
   //assert (!TLS->DC_list[id]);
   if (!TLS->DC_list[id]) {
     struct tgl_dc *DC = talloc0 (sizeof (*DC));

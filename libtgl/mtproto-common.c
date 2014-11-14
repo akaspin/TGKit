@@ -40,7 +40,6 @@
 #include <openssl/sha.h>
 
 #include "mtproto-common.h"
-#include "include.h"
 #include "tools.h"
 
 #ifdef __MACH__

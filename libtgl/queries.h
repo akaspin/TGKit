@@ -20,7 +20,7 @@
 //#include "net.h"
 #ifndef __QUERIES_H__
 #define __QUERIES_H__
-#include "structures.h"
+#include "tgl-structures.h"
 #include "auto.h"
 #include "tgl-layout.h"
 
@@ -68,6 +68,11 @@ double get_double_time (void);
 
 void tgl_do_send_bind_temp_key (struct tgl_state *TLS, struct tgl_dc *D, long long nonce, int expires_at, void *data, int len, long long msg_id);
 
+void tgl_do_request_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E);
+void tgl_do_confirm_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E, int sen_nop);
+void tgl_do_accept_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E, long long exchange_id, unsigned char g_a[]);
+void tgl_do_commit_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E, unsigned char g_a[]);
+void tgl_do_abort_exchange (struct tgl_state *TLS, struct tgl_secret_chat *E);
 // For binlog
 
 //int get_dh_config_on_answer (struct query *q);
