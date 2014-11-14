@@ -18,7 +18,11 @@
 SOURCE_DIR="tgl"
 TARGET_DIR="../libtgl"
 
-TG_LINK_FILES="
+TG_FILES="
+LICENSE
+auto/auto-header.h
+auto/auto.c
+auto/constants.h
 auto-static.c
 auto.h
 binlog.c
@@ -47,13 +51,6 @@ tools.h
 tree.h
 updates.c
 updates.h
-"
-
-TG_COPY_FILES="
-LICENSE
-auto/auto-header.h
-auto/auto.c
-auto/constants.h
 "
 
 TG_SUBDIRS="
@@ -85,14 +82,8 @@ cd ${SRCROOT}
 CFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} ./configure --enable-libevent
 make create_dirs_and_headers
 
-for FILE in ${TG_COPY_FILES}; do
+for FILE in ${TG_FILES}; do
     cp "${FILE}" "${DSTROOT}/${FILE}"
-done
-
-cd ${DSTROOT}
-SRCREL=$(python -c "import os.path; print os.path.relpath('${SRCROOT}', '${DSTROOT}')")
-for FILE in ${TG_LINK_FILES}; do
-    ln -f "${SRCREL}/${FILE}" "${DSTROOT}/${FILE}"
 done
 
 for TOUCH in ${TG_TOUCH}; do
