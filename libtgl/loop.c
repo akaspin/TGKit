@@ -39,17 +39,6 @@ void _dummy_logprintf(const char *format, ...) {};
 void (*logprintf)(const char *format, ...) = _dummy_logprintf;
 
 
-// config functions
-
-const char *get_downloads_directory (void) {
-    return config.get_download_directory ();
-}
-
-const char *get_binlog_file_name (void) {
-    return config.get_binlog_filename ();
-}
-
-
 // loader functions
 
 void read_state_file (struct tgl_state *TLS) {
