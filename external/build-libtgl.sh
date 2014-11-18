@@ -79,7 +79,9 @@ SRCROOT=$(cd ${CURRENTPATH}/${SOURCE_DIR}; pwd)
 DSTROOT=$(cd ${CURRENTPATH}/${TARGET_DIR}; pwd)
 
 cd ${SRCROOT}
-CFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} ./configure --enable-libevent
+if [ ! -f config.log ]; then
+    CFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} ./configure --enable-libevent
+fi
 make create_dirs_and_headers
 
 for FILE in ${TG_FILES}; do
