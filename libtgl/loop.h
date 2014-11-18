@@ -27,6 +27,7 @@ struct tgl_state;
 
 struct tgl_config {
     // flags
+    int binlog_mode;
     int sync_from_start;
     int wait_dialog_list;
     int reset_authorization;

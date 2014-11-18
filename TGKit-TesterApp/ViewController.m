@@ -5,6 +5,9 @@
 #import "ViewController.h"
 #import "TGKit.h"
 
+#define TG_APP_HASH @"844584f2b1fd2daecee726166dcc1ef8"
+#define TG_APP_ID 10534
+
 
 @interface ViewController ()
 
@@ -24,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *keyPath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"pub"];
-    self.tg = [[TGKit alloc] initWithApiKeyPath:keyPath];
+    self.tg = [[TGKit alloc] initWithApiKeyPath:keyPath appId:TG_APP_ID appHash:TG_APP_HASH];
     self.tg.delegate = self;
     self.tg.dataSource = self;
     [self.tg start];

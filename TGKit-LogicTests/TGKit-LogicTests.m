@@ -30,7 +30,7 @@
 - (void)testExample {
     // This is an example of a functional test case.
     NSString *keyPath = [[NSBundle bundleForClass:self.class] pathForResource:@"server" ofType:@"pub"];
-    TGKit *tg = [[TGKit alloc] initWithApiKeyPath:keyPath];
+    TGKit *tg = [[TGKit alloc] initWithApiKeyPath:keyPath appId:0 appHash:@""];
     [tg start];
     XCTAssert(YES, @"Pass");
 }

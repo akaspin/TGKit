@@ -40,7 +40,7 @@ dispatch_queue_t _loop_queue;
 @dynamic delegate;
 @dynamic dataSource;
 
-- (instancetype)initWithApiKeyPath:(NSString *)serverRsaKey {
+- (instancetype)initWithApiKeyPath:(NSString *)serverRsaKey appId:(int)appId appHash:(NSString *)appHash {
     static TGKit *sharedInstance = nil;
     assert(sharedInstance == nil);  // multiple init called, only single instance allowed
     sharedInstance = [super init];
@@ -48,6 +48,7 @@ dispatch_queue_t _loop_queue;
     TLS = &_TLS;
     TLS->verbosity = 3;
     tgl_set_rsa_key(TLS, serverRsaKey.UTF8String);
+    tgl_register_app_id(TLS, appId, appHash.UTF8String);
     _loop_queue = dispatch_queue_create("tgkit-loop", DISPATCH_QUEUE_CONCURRENT);
     return sharedInstance;
 }
@@ -484,6 +485,7 @@ struct tgl_config config = {
     .get_sms_code = get_sms_code,
     .get_download_directory = get_download_directory,
     .get_binlog_filename = get_binlog_filename,
+    .binlog_mode = 0,
     .sync_from_start = 0,
     .wait_dialog_list = 0,
     .reset_authorization = 0,

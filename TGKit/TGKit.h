@@ -89,7 +89,7 @@ typedef void (^TGKitStringCompletionBlock)(NSString *text);
 @property (nonatomic, assign) id<TGKitDelegate> delegate;
 @property (nonatomic, assign) id<TGKitDataSource> dataSource;
 
-- (instancetype)initWithApiKeyPath:(NSString *)serverRsaKey;
+- (instancetype)initWithApiKeyPath:(NSString *)serverRsaKey appId:(int)appId appHash:(NSString *)appHash;
 - (void)start;
 - (void)sendMessage:(NSString *)text toUserId:(int)userId;
 - (void)exportCardWithCompletionBlock:(TGKitStringCompletionBlock)completion;

@@ -124,14 +124,14 @@ int main_loop (struct tgl_state *TLS) {
 }
 
 int loop(struct tgl_state *TLS, struct tgl_update_callback *upd_cb) {
-    tgl_set_binlog_mode (TLS, 0);
-    tgl_set_download_directory (TLS, config.get_download_directory ());
     tgl_set_callback (TLS, upd_cb);
     //TLS->temp_key_expire_time = 60;
     struct event_base *ev = event_base_new ();
     tgl_set_ev_base (TLS, ev);
     tgl_set_net_methods (TLS, &tgl_conn_methods);
     tgl_set_timer_methods (TLS, &tgl_libevent_timers);
+    tgl_set_download_directory (TLS, config.get_download_directory ());
+    tgl_set_binlog_mode (TLS, config.binlog_mode);
     tgl_init (TLS);
     TLS->serialize_methods->load_auth (TLS);
     TLS->serialize_methods->load_state (TLS);
