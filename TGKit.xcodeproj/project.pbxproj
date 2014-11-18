@@ -119,7 +119,7 @@
 		DABC86F419FAB6F50091B26D /* TGKit-LogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TGKit-LogicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABC86F719FAB6F50091B26D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DABC86F819FAB6F50091B26D /* TGKit-LogicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TGKit-LogicTests.m"; sourceTree = "<group>"; };
-		DABC870019FAB8020091B26D /* server.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = server.pub; path = external/tgl/server.pub; sourceTree = SOURCE_ROOT; };
+		DABC870019FAB8020091B26D /* server.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = server.pub; path = "TGKit-TesterApp/server.pub"; sourceTree = SOURCE_ROOT; };
 		DABC870619FAC85E0091B26D /* TGKit-TesterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TGKit-TesterApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABC870919FAC85E0091B26D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DABC870A19FAC85E0091B26D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -178,7 +178,6 @@
 				DA37916419F6F281009749A4 /* TGKit */,
 				DABC86F519FAB6F50091B26D /* TGKit-LogicTests */,
 				DABC870719FAC85E0091B26D /* TGKit-TesterApp */,
-				DABC873519FACFA60091B26D /* Resources */,
 				DA37916319F6F281009749A4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -317,18 +316,11 @@
 		DABC870819FAC85E0091B26D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DABC870019FAB8020091B26D /* server.pub */,
 				DABC870919FAC85E0091B26D /* Info.plist */,
 				DABC870A19FAC85E0091B26D /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DABC873519FACFA60091B26D /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				DABC870019FAB8020091B26D /* server.pub */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
