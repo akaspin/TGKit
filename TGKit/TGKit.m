@@ -9,6 +9,7 @@
 
 #import "TGKit.h"
 #import "tgl.h"
+#import "tgl-serialize.h"
 #import "loop.h"
 
 
@@ -222,7 +223,7 @@ void send_message_to_user_id(struct tgl_state *TLSR, const char *text, int user_
 
 void did_send_message(struct tgl_state *TLSR, void *extra, int success, struct tgl_message *M) {
     if (!success) {
-        write_secret_chat_file(TLSR);
+        TLSR->serialize_methods->store_secret_chats (TLSR);
     } else {
         tgl_peer_id_t *user_id = (tgl_peer_id_t *)(extra);
         NSLog(@"Message sent to user id [%d]", tgl_get_peer_id(*user_id));
@@ -279,7 +280,7 @@ void print_message_gw(struct tgl_state *TLSR, struct tgl_message *M) {
         log_service(TLSR, M);
     }
     if (tgl_get_peer_type (M->to_id) == TGL_PEER_ENCR_CHAT) {
-        write_secret_chat_file (TLSR);
+        TLSR->serialize_methods->store_secret_chats (TLSR);
     }
     TGMessage *message = [[TGMessage alloc] init];
     static char s[30];
@@ -336,7 +337,7 @@ void chat_update_gw(struct tgl_state *TLSR, struct tgl_chat *U, unsigned flags) 
 void secret_chat_update_gw(struct tgl_state *TLSR, struct tgl_secret_chat *U, unsigned flags) {
     NSLog(@"secret_chat_update_gw flags:[%d]", flags);
     if ((flags & TGL_UPDATE_WORKING) || (flags & TGL_UPDATE_DELETED)) {
-        write_secret_chat_file (TLSR);
+        TLSR->serialize_methods->store_secret_chats (TLSR);
     }
     if ((flags & TGL_UPDATE_REQUESTED))  {
         tgl_do_accept_encr_chat_request (TLSR, U, 0, 0);
@@ -481,14 +482,17 @@ struct tgl_config config = {
     .set_default_username = set_default_username,
     .get_default_username = get_default_username,
     .get_sms_code = get_sms_code,
-    .get_auth_key_filename = get_auth_key_filename,
-    .get_state_filename = get_state_filename,
-    .get_secret_chat_filename = get_secret_chat_filename,
     .get_download_directory = get_download_directory,
     .get_binlog_filename = get_binlog_filename,
     .sync_from_start = 0,
     .wait_dialog_list = 0,
     .reset_authorization = 0,
+};
+
+struct tgl_serialize_callback tgl_file_callback = {
+    .get_auth_key_filename = get_auth_key_filename,
+    .get_state_filename = get_state_filename,
+    .get_secret_chat_filename = get_secret_chat_filename,
 };
 
 

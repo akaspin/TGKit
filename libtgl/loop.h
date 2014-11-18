@@ -35,9 +35,6 @@ struct tgl_config {
     const char *(*get_last_name) (void);
     const char *(*get_default_username) (void);
     const char *(*get_sms_code) (void);
-    const char *(*get_auth_key_filename) (void);
-    const char *(*get_state_filename) (void);
-    const char *(*get_secret_chat_filename) (void);
     const char *(*get_download_directory) (void);
     const char *(*get_binlog_filename) (void);
     void (*set_default_username) (const char *username);
@@ -47,6 +44,5 @@ extern struct tgl_config config; // must be defined by caller
 
 int loop(struct tgl_state *TLS, struct tgl_update_callback *upd_cb);
 void wait_loop(struct tgl_state *TLS, int (*is_end)(struct tgl_state *TLS));
-void write_secret_chat_file (struct tgl_state *TLS);
 
 #endif /* defined(__LOOP_H__) */
