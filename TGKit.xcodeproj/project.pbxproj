@@ -27,6 +27,7 @@
 		DA3791B019F708D7009749A4 /* libevent_pthreads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA3791AC19F708D7009749A4 /* libevent_pthreads.a */; };
 		DA5FD8A71A166B42004E7862 /* loop.c in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD8A51A166B42004E7862 /* loop.c */; };
 		DA5FD8AA1A166C3C004E7862 /* tgl-net.c in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD8A81A166C3C004E7862 /* tgl-net.c */; };
+		DAA4BB1C1A1E503B0001A09C /* mime-types.c in Sources */ = {isa = PBXBuildFile; fileRef = DAA4BB1B1A1E503B0001A09C /* mime-types.c */; };
 		DABC86F919FAB6F50091B26D /* TGKit-LogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC86F819FAB6F50091B26D /* TGKit-LogicTests.m */; };
 		DABC86FA19FAB6F50091B26D /* libTGKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA37916219F6F281009749A4 /* libTGKit.a */; };
 		DABC870119FAB8020091B26D /* server.pub in Resources */ = {isa = PBXBuildFile; fileRef = DABC870019FAB8020091B26D /* server.pub */; };
@@ -41,6 +42,7 @@
 		DABC873419FACF190091B26D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DABC873119FACE4E0091B26D /* libz.dylib */; };
 		DABC873619FAD5CA0091B26D /* server.pub in Resources */ = {isa = PBXBuildFile; fileRef = DABC870019FAB8020091B26D /* server.pub */; };
 		DAECDA7B1A1BABA5002CA5AE /* tgl-serialize.c in Sources */ = {isa = PBXBuildFile; fileRef = DAECDA791A1BABA5002CA5AE /* tgl-serialize.c */; };
+		DAECDA7E1A1BEA3F002CA5AE /* tg-mime-types.c in Sources */ = {isa = PBXBuildFile; fileRef = DAECDA7C1A1BEA3F002CA5AE /* tg-mime-types.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,7 @@
 		DA5FD8A61A166B42004E7862 /* loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = loop.h; path = libtgl/loop.h; sourceTree = "<group>"; };
 		DA5FD8A81A166C3C004E7862 /* tgl-net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "tgl-net.c"; path = "external/tgl/tgl-net.c"; sourceTree = "<group>"; };
 		DA5FD8A91A166C3C004E7862 /* tgl-net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "tgl-net.h"; path = "external/tgl/tgl-net.h"; sourceTree = "<group>"; };
+		DAA4BB1B1A1E503B0001A09C /* mime-types.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "mime-types.c"; path = "external/tgl/mime-types.c"; sourceTree = "<group>"; };
 		DABC86F419FAB6F50091B26D /* TGKit-LogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TGKit-LogicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABC86F719FAB6F50091B26D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DABC86F819FAB6F50091B26D /* TGKit-LogicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TGKit-LogicTests.m"; sourceTree = "<group>"; };
@@ -134,6 +137,8 @@
 		DABC873119FACE4E0091B26D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DAECDA791A1BABA5002CA5AE /* tgl-serialize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "tgl-serialize.c"; path = "external/tgl/tgl-serialize.c"; sourceTree = "<group>"; };
 		DAECDA7A1A1BABA5002CA5AE /* tgl-serialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "tgl-serialize.h"; path = "external/tgl/tgl-serialize.h"; sourceTree = "<group>"; };
+		DAECDA7C1A1BEA3F002CA5AE /* tg-mime-types.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "tg-mime-types.c"; path = "external/tgl/tg-mime-types.c"; sourceTree = "<group>"; };
+		DAECDA7D1A1BEA3F002CA5AE /* tg-mime-types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "tg-mime-types.h"; path = "external/tgl/tg-mime-types.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +218,7 @@
 				DA5FD8A41A166B0C004E7862 /* tgl-binlog.h */,
 				DA5FD8A51A166B42004E7862 /* loop.c */,
 				DA5FD8A61A166B42004E7862 /* loop.h */,
+				DAA4BB1B1A1E503B0001A09C /* mime-types.c */,
 				DA37918019F6F873009749A4 /* mtproto-client.c */,
 				DA37918119F6F873009749A4 /* mtproto-client.h */,
 				DA37918219F6F873009749A4 /* mtproto-common.c */,
@@ -220,6 +226,8 @@
 				DA37918919F6F884009749A4 /* queries.c */,
 				DA37918A19F6F884009749A4 /* queries.h */,
 				DA37918C19F6F88A009749A4 /* structures.c */,
+				DAECDA7C1A1BEA3F002CA5AE /* tg-mime-types.c */,
+				DAECDA7D1A1BEA3F002CA5AE /* tg-mime-types.h */,
 				DA5FD8A31A166B00004E7862 /* tgl-structures.h */,
 				DA3791A019F6FB5B009749A4 /* tgl-layout.h */,
 				DA5FD8A81A166C3C004E7862 /* tgl-net.c */,
@@ -458,7 +466,9 @@
 				DA37918619F6F873009749A4 /* mtproto-client.c in Sources */,
 				DA37918B19F6F884009749A4 /* queries.c in Sources */,
 				DA37918E19F6F88A009749A4 /* structures.c in Sources */,
+				DAECDA7E1A1BEA3F002CA5AE /* tg-mime-types.c in Sources */,
 				DA37919119F6F8AF009749A4 /* binlog.c in Sources */,
+				DAA4BB1C1A1E503B0001A09C /* mime-types.c in Sources */,
 				DA37919C19F6FAE9009749A4 /* auto.c in Sources */,
 				DA2D40F81A098D8100A782C0 /* tgl-timers.c in Sources */,
 				DA37919419F6F8C0009749A4 /* tgl.c in Sources */,

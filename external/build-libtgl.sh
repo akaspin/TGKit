@@ -34,6 +34,9 @@ no-preview.h
 queries.c
 queries.h
 structures.c
+mime-types.c
+tg-mime-types.c
+tg-mime-types.h
 tgl-binlog.h
 tgl-net.c
 tgl-net.h
