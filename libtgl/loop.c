@@ -29,6 +29,7 @@
 #include "tgl-binlog.h"
 #include "tgl-net.h"
 #include "tgl-timers.h"
+#include "tgl-serialize.h"
 #include "tgl-structures.h"
 #include "tgl-inner.h"
 #include "tgl.h"
@@ -130,6 +131,7 @@ int loop(struct tgl_state *TLS, struct tgl_update_callback *upd_cb) {
     tgl_set_ev_base (TLS, ev);
     tgl_set_net_methods (TLS, &tgl_conn_methods);
     tgl_set_timer_methods (TLS, &tgl_libevent_timers);
+    tgl_set_serialize_methods (TLS, &tgl_file_methods);
     tgl_set_download_directory (TLS, config.get_download_directory ());
     tgl_set_binlog_mode (TLS, config.binlog_mode);
     tgl_init (TLS);
