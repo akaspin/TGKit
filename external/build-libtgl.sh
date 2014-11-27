@@ -66,8 +66,6 @@ TG_TOUCH="
 config.h
 "
 
-CFLAGS="-I/opt/local/include"
-LDFLAGS="-L/opt/local/lib"
 
 ###########################################################################
 
@@ -83,9 +81,12 @@ done
 SRCROOT=$(cd ${CURRENTPATH}/${SOURCE_DIR}; pwd)
 DSTROOT=$(cd ${CURRENTPATH}/${TARGET_DIR}; pwd)
 
+CFLAGS="-I/opt/local/include -I${DSTROOT}/../libevent/include -I${DSTROOT}/../openssl/include"
+LDFLAGS="-L/opt/local/lib -L${DSTROOT}/../libevent/lib -L${DSTROOT}/../openssl/lib"
+
 cd ${SRCROOT}
 if [ ! -f config.log ]; then
-    CFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} ./configure --enable-libevent
+    CFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} ./configure --enable-libevent --with-openssl="${DSTROOT}/../openssl"
 fi
 make create_dirs_and_headers
 
