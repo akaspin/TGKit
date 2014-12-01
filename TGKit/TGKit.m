@@ -348,6 +348,9 @@ void secret_chat_update_gw(struct tgl_state *TLSR, struct tgl_secret_chat *U, un
 
 void our_id_gw(struct tgl_state *TLSR, int our_id) {
     NSLog(@"our_id_gw id:[%d]", our_id);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_delegate didLoginWithTelegramId:[NSString stringWithFormat:@"%i", our_id]];
+    });
 }
 
 void nslog_logprintf(const char *format, ...) {

@@ -69,6 +69,9 @@ typedef void (^TGKitStringCompletionBlock)(NSString *text);
 - (void)getSignupFirstNameWithCompletionBlock:(TGKitStringCompletionBlock)completion;
 - (void)getSignupLastNameWithCompletionBlock:(TGKitStringCompletionBlock)completion;
 
+@optional
+- (void)didLoginWithTelegramId:(NSString *)telegramId;
+
 @end
 
 
