@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		98CE82F21A27AB9500239FBC /* server.pub in Resources */ = {isa = PBXBuildFile; fileRef = 98CE82F11A27AB9500239FBC /* server.pub */; };
 		DA2D40F81A098D8100A782C0 /* tgl-timers.c in Sources */ = {isa = PBXBuildFile; fileRef = DA2D40F61A098D8100A782C0 /* tgl-timers.c */; };
 		DA37916619F6F281009749A4 /* TGKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA37916519F6F281009749A4 /* TGKit.h */; };
 		DA37916819F6F281009749A4 /* TGKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37916719F6F281009749A4 /* TGKit.m */; };
@@ -31,6 +30,7 @@
 		DAA4BB1C1A1E503B0001A09C /* mime-types.c in Sources */ = {isa = PBXBuildFile; fileRef = DAA4BB1B1A1E503B0001A09C /* mime-types.c */; };
 		DABC86F919FAB6F50091B26D /* TGKit-LogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC86F819FAB6F50091B26D /* TGKit-LogicTests.m */; };
 		DABC86FA19FAB6F50091B26D /* libTGKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA37916219F6F281009749A4 /* libTGKit.a */; };
+		DABC870119FAB8020091B26D /* server.pub in Resources */ = {isa = PBXBuildFile; fileRef = DABC870019FAB8020091B26D /* server.pub */; };
 		DABC870B19FAC85E0091B26D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC870A19FAC85E0091B26D /* main.m */; };
 		DABC870E19FAC85E0091B26D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC870D19FAC85E0091B26D /* AppDelegate.m */; };
 		DABC871119FAC85E0091B26D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC871019FAC85E0091B26D /* ViewController.m */; };
@@ -40,6 +40,7 @@
 		DABC872E19FAC8CF0091B26D /* libTGKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA37916219F6F281009749A4 /* libTGKit.a */; };
 		DABC873319FACECD0091B26D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DABC873119FACE4E0091B26D /* libz.dylib */; };
 		DABC873419FACF190091B26D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DABC873119FACE4E0091B26D /* libz.dylib */; };
+		DABC873619FAD5CA0091B26D /* server.pub in Resources */ = {isa = PBXBuildFile; fileRef = DABC870019FAB8020091B26D /* server.pub */; };
 		DAECDA7B1A1BABA5002CA5AE /* tgl-serialize.c in Sources */ = {isa = PBXBuildFile; fileRef = DAECDA791A1BABA5002CA5AE /* tgl-serialize.c */; };
 		DAECDA7E1A1BEA3F002CA5AE /* tg-mime-types.c in Sources */ = {isa = PBXBuildFile; fileRef = DAECDA7C1A1BEA3F002CA5AE /* tg-mime-types.c */; };
 /* End PBXBuildFile section */
@@ -82,7 +83,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		98CE82F11A27AB9500239FBC /* server.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = server.pub; path = ../../../partyON/server.pub; sourceTree = "<group>"; };
 		DA2D40F61A098D8100A782C0 /* tgl-timers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "tgl-timers.c"; path = "external/tgl/tgl-timers.c"; sourceTree = "<group>"; };
 		DA2D40F71A098D8100A782C0 /* tgl-timers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "tgl-timers.h"; path = "external/tgl/tgl-timers.h"; sourceTree = "<group>"; };
 		DA37916219F6F281009749A4 /* libTGKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTGKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +123,7 @@
 		DABC86F419FAB6F50091B26D /* TGKit-LogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TGKit-LogicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABC86F719FAB6F50091B26D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DABC86F819FAB6F50091B26D /* TGKit-LogicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TGKit-LogicTests.m"; sourceTree = "<group>"; };
+		DABC870019FAB8020091B26D /* server.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = server.pub; path = "TGKit-TesterApp/server.pub"; sourceTree = SOURCE_ROOT; };
 		DABC870619FAC85E0091B26D /* TGKit-TesterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TGKit-TesterApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABC870919FAC85E0091B26D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DABC870A19FAC85E0091B26D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -328,7 +329,7 @@
 		DABC870819FAC85E0091B26D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				98CE82F11A27AB9500239FBC /* server.pub */,
+				DABC870019FAB8020091B26D /* server.pub */,
 				DABC870919FAC85E0091B26D /* Info.plist */,
 				DABC870A19FAC85E0091B26D /* main.m */,
 			);
@@ -438,6 +439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DABC870119FAB8020091B26D /* server.pub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,9 +447,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DABC873619FAD5CA0091B26D /* server.pub in Resources */,
 				DABC871419FAC85E0091B26D /* Main.storyboard in Resources */,
 				DABC871919FAC85E0091B26D /* LaunchScreen.xib in Resources */,
-				98CE82F21A27AB9500239FBC /* server.pub in Resources */,
 				DABC871619FAC85E0091B26D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
