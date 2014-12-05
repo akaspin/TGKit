@@ -38,9 +38,6 @@ mime-types.c
 tg-mime-types.c
 tg-mime-types.h
 tgl-binlog.h
-tgl-net.c
-tgl-net.h
-tgl-net-inner.h
 tgl-structures.h
 tgl-fetch.h
 tgl-inner.h

@@ -25,7 +25,7 @@
 
 #include <event2/event.h>
 
-#include "loop.h"
+#include "tgl-loop.h"
 #include "tgl-binlog.h"
 #include "tgl-net.h"
 #include "tgl-timers.h"

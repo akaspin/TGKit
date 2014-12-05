@@ -10,7 +10,7 @@
 #import "TGKit.h"
 #import "tgl.h"
 #import "tgl-serialize.h"
-#import "loop.h"
+#import "tgl-loop.h"
 
 
 @implementation TGPeer
