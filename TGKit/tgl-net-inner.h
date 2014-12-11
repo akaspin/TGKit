@@ -1,4 +1,4 @@
-/* 
+/*
     This file is part of tgl-library
 
     This library is free software; you can redistribute it and/or
@@ -21,48 +21,51 @@
 #define __NET_H__
 
 struct connection_buffer {
-  unsigned char *start;
-  unsigned char *end;
-  unsigned char *rptr;
-  unsigned char *wptr;
-  struct connection_buffer *next;
+    unsigned char *start;
+    unsigned char *end;
+    unsigned char *rptr;
+    unsigned char *wptr;
+    struct connection_buffer *next;
 };
 
 enum conn_state {
-  conn_none,
-  conn_connecting,
-  conn_ready,
-  conn_failed,
-  conn_stopped
+    conn_none,
+    conn_connecting,
+    conn_ready,
+    conn_failed,
+    conn_stopped
 };
 
 struct connection {
-  int fd;
-  char *ip;
-  int port;
-  int flags;
-  enum conn_state state;
-  int ipv6[4];
-  struct connection_buffer *in_head;
-  struct connection_buffer *in_tail;
-  struct connection_buffer *out_head;
-  struct connection_buffer *out_tail;
-  int in_bytes;
-  int out_bytes;
-  int packet_num;
-  int out_packet_num;
-  time_t last_connect_time;
-  int in_fail_timer;
-  struct mtproto_methods *methods;
-  struct tgl_state *TLS;
-  struct tgl_session *session;
-  struct tgl_dc *dc;
-  void *extra;
-  struct event *ping_ev;
-  struct event *fail_ev;
-  struct event *read_ev;
-  struct event *write_ev;
-  double last_receive_time;
+//    int fd;
+    char *ip;
+    int port;
+    int flags;
+    enum conn_state state;
+    int ipv6[4];
+    struct connection_buffer *in_head;
+    struct connection_buffer *in_tail;
+    struct connection_buffer *out_head;
+    struct connection_buffer *out_tail;
+    int in_bytes;
+    int out_bytes;
+    int packet_num;
+    int out_packet_num;
+    time_t last_connect_time;
+    int in_fail_timer;
+    struct mtproto_methods *methods;
+    struct tgl_state *TLS;
+    struct tgl_session *session;
+    struct tgl_dc *dc;
+    void *extra;
+//    struct event *ping_ev;
+//    struct event *fail_ev;
+//    struct event *read_ev;
+//    struct event *write_ev;
+    double last_receive_time;
+    const void *socket;
+    int ping_timer;
+    int fail_timer;
 };
 
 //extern struct connection *Connections[];

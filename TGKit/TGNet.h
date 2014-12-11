@@ -1,15 +1,44 @@
-//
-// Copyright 2014 nKey Software LTDA 
-// All rights reserved.
-//
-// This file, its contents, concepts, methods, behavior, and operation
-// (collectively the "Software") are protected by trade secret, patent,
-// and copyright laws. The use of the Software is governed by a license
-// agreement. Disclosure of the Software to third parties, in any form,
-// in whole or in part, is expressly prohibited except as authorized by
-// the license agreement.
-//
+
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ 
+ Copyright (c) 2014 nKey.
+ */
+
+#import <Foundation/Foundation.h>
+
+@protocol TGNetSocketDelegate;
+
+
+@interface TGNetSocket : NSObject
+
+@property (atomic, weak, readwrite) id<TGNetSocketDelegate> delegate;
+@property (atomic, strong, readwrite) dispatch_queue_t delegateQueue;
+@property (atomic, readonly) dispatch_queue_t socketQueue;
+
+- (BOOL)connectToHost:(NSString *)host onPort:(uint16_t)port;
+- (void)closeWithError:(NSError *)error;
+- (void)dispatchSync:(dispatch_block_t)block;
+
+@end
+
+
+@protocol TGNetSocketDelegate <NSObject>
+
+- (void)socket:(TGNetSocket *)socket canReadStream:(CFReadStreamRef)readStream;
+- (void)socket:(TGNetSocket *)socket canWriteStream:(CFWriteStreamRef)writeStream;
+
+@end
+
 
 @interface TGNet : NSObject
+
+@property (atomic, readonly) dispatch_queue_t netQueue;
+
++ (instancetype)sharedInstance;
+- (TGNetSocket *)connectToHost:(NSString *)host onPort:(uint16_t)port;
+- (void)disconnect;
 
 @end

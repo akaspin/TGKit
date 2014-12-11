@@ -43,7 +43,8 @@ dispatch_queue_t _loop_queue;
 - (instancetype)initWithApiKeyPath:(NSString *)serverRsaKey appId:(int)appId appHash:(NSString *)appHash {
     static TGKit *sharedInstance = nil;
     assert(sharedInstance == nil);  // multiple init called, only single instance allowed
-    sharedInstance = [super init];
+    self = [super init];
+    sharedInstance = self;
     NSLog(@"Init with key path: [%@]", serverRsaKey);
     TLS = &_TLS;
     TLS->verbosity = 3;
@@ -71,7 +72,7 @@ dispatch_queue_t _loop_queue;
     if (self.dataSource.exportCard.length) {
         completion(self.dataSource.exportCard);
     } else {
-        tgl_do_export_card(TLS, did_export_card, (__bridge_retained void *)[completion copy]);
+//        tgl_do_export_card(TLS, did_export_card, (__bridge_retained void *)[completion copy]);
     }
 }
 

@@ -1,4 +1,4 @@
-/* 
+/*
     This file is part of tgl-library
 
     This library is free software; you can redistribute it and/or
@@ -16,9 +16,12 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
     Copyright Vitaly Valtman 2013-2014
+    Copyright Paul Eipper 2014
 */
+
 #ifndef __NET_H__
 #define __NET_H__
 
 extern struct tgl_net_methods tgl_conn_methods;
+
 #endif
