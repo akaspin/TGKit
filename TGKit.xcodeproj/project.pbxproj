@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DA00DF4F1A323D6400919DCF /* tgl-loop.c in Sources */ = {isa = PBXBuildFile; fileRef = DA00DF4A1A323D6400919DCF /* tgl-loop.c */; };
 		DA00DF501A323D6400919DCF /* tgl-net.c in Sources */ = {isa = PBXBuildFile; fileRef = DA00DF4D1A323D6400919DCF /* tgl-net.c */; };
+		DA00DF531A337C2400919DCF /* TGNet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA00DF521A337C2400919DCF /* TGNet.m */; };
 		DA2D40F81A098D8100A782C0 /* tgl-timers.c in Sources */ = {isa = PBXBuildFile; fileRef = DA2D40F61A098D8100A782C0 /* tgl-timers.c */; };
 		DA37916619F6F281009749A4 /* TGKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA37916519F6F281009749A4 /* TGKit.h */; };
 		DA37916819F6F281009749A4 /* TGKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37916719F6F281009749A4 /* TGKit.m */; };
@@ -88,6 +89,9 @@
 		DA00DF4C1A323D6400919DCF /* tgl-net-inner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tgl-net-inner.h"; sourceTree = "<group>"; };
 		DA00DF4D1A323D6400919DCF /* tgl-net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "tgl-net.c"; sourceTree = "<group>"; };
 		DA00DF4E1A323D6400919DCF /* tgl-net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tgl-net.h"; sourceTree = "<group>"; };
+		DA00DF511A337C2400919DCF /* TGNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGNet.h; sourceTree = "<group>"; };
+		DA00DF521A337C2400919DCF /* TGNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGNet.m; sourceTree = "<group>"; };
+		DA00DF541A36677500919DCF /* tgnet-c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tgnet-c.h"; sourceTree = "<group>"; };
 		DA2D40F61A098D8100A782C0 /* tgl-timers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "tgl-timers.c"; path = "external/tgl/tgl-timers.c"; sourceTree = "<group>"; };
 		DA2D40F71A098D8100A782C0 /* tgl-timers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "tgl-timers.h"; path = "external/tgl/tgl-timers.h"; sourceTree = "<group>"; };
 		DA37916219F6F281009749A4 /* libTGKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTGKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +212,9 @@
 				DA37916719F6F281009749A4 /* TGKit.m */,
 				DA00DF4A1A323D6400919DCF /* tgl-loop.c */,
 				DA00DF4B1A323D6400919DCF /* tgl-loop.h */,
+				DA00DF541A36677500919DCF /* tgnet-c.h */,
+				DA00DF511A337C2400919DCF /* TGNet.h */,
+				DA00DF521A337C2400919DCF /* TGNet.m */,
 				DA00DF4C1A323D6400919DCF /* tgl-net-inner.h */,
 				DA00DF4D1A323D6400919DCF /* tgl-net.c */,
 				DA00DF4E1A323D6400919DCF /* tgl-net.h */,
@@ -472,6 +479,7 @@
 				DA37919119F6F8AF009749A4 /* binlog.c in Sources */,
 				DAA4BB1C1A1E503B0001A09C /* mime-types.c in Sources */,
 				DA37919C19F6FAE9009749A4 /* auto.c in Sources */,
+				DA00DF531A337C2400919DCF /* TGNet.m in Sources */,
 				DA2D40F81A098D8100A782C0 /* tgl-timers.c in Sources */,
 				DA37919419F6F8C0009749A4 /* tgl.c in Sources */,
 				DA37919719F6F8D1009749A4 /* updates.c in Sources */,
