@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA00DF4F1A323D6400919DCF /* tgl-loop.c in Sources */ = {isa = PBXBuildFile; fileRef = DA00DF4A1A323D6400919DCF /* tgl-loop.c */; };
 		DA00DF501A323D6400919DCF /* tgl-net.c in Sources */ = {isa = PBXBuildFile; fileRef = DA00DF4D1A323D6400919DCF /* tgl-net.c */; };
 		DA00DF531A337C2400919DCF /* TGNet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA00DF521A337C2400919DCF /* TGNet.m */; };
 		DA00DF5A1A3F402300919DCF /* TGTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA00DF591A3F402300919DCF /* TGTimer.m */; };
+		DA00DF5E1A3F5EB600919DCF /* tgkit-c.c in Sources */ = {isa = PBXBuildFile; fileRef = DA00DF5C1A3F5EB600919DCF /* tgkit-c.c */; };
 		DA37916619F6F281009749A4 /* TGKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA37916519F6F281009749A4 /* TGKit.h */; };
 		DA37916819F6F281009749A4 /* TGKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37916719F6F281009749A4 /* TGKit.m */; };
 		DA37917F19F6F843009749A4 /* tools.c in Sources */ = {isa = PBXBuildFile; fileRef = DA37917D19F6F843009749A4 /* tools.c */; };
@@ -80,8 +80,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DA00DF4A1A323D6400919DCF /* tgl-loop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "tgl-loop.c"; sourceTree = "<group>"; };
-		DA00DF4B1A323D6400919DCF /* tgl-loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tgl-loop.h"; sourceTree = "<group>"; };
 		DA00DF4C1A323D6400919DCF /* tgl-net-inner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tgl-net-inner.h"; sourceTree = "<group>"; };
 		DA00DF4D1A323D6400919DCF /* tgl-net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "tgl-net.c"; sourceTree = "<group>"; };
 		DA00DF4E1A323D6400919DCF /* tgl-net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tgl-net.h"; sourceTree = "<group>"; };
@@ -91,6 +89,8 @@
 		DA00DF581A3F402300919DCF /* TGTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGTimer.h; sourceTree = "<group>"; };
 		DA00DF591A3F402300919DCF /* TGTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGTimer.m; sourceTree = "<group>"; };
 		DA00DF5B1A3F40C300919DCF /* tgtimer-c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tgtimer-c.h"; sourceTree = "<group>"; };
+		DA00DF5C1A3F5EB600919DCF /* tgkit-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "tgkit-c.c"; sourceTree = "<group>"; };
+		DA00DF5D1A3F5EB600919DCF /* tgkit-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tgkit-c.h"; sourceTree = "<group>"; };
 		DA37916219F6F281009749A4 /* libTGKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTGKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA37916519F6F281009749A4 /* TGKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGKit.h; sourceTree = "<group>"; };
 		DA37916719F6F281009749A4 /* TGKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGKit.m; sourceTree = "<group>"; };
@@ -203,8 +203,8 @@
 			children = (
 				DA37916519F6F281009749A4 /* TGKit.h */,
 				DA37916719F6F281009749A4 /* TGKit.m */,
-				DA00DF4A1A323D6400919DCF /* tgl-loop.c */,
-				DA00DF4B1A323D6400919DCF /* tgl-loop.h */,
+				DA00DF5C1A3F5EB600919DCF /* tgkit-c.c */,
+				DA00DF5D1A3F5EB600919DCF /* tgkit-c.h */,
 				DA00DF541A36677500919DCF /* tgnet-c.h */,
 				DA00DF511A337C2400919DCF /* TGNet.h */,
 				DA00DF521A337C2400919DCF /* TGNet.m */,
@@ -477,10 +477,10 @@
 				DA00DF531A337C2400919DCF /* TGNet.m in Sources */,
 				DA37919419F6F8C0009749A4 /* tgl.c in Sources */,
 				DA37919719F6F8D1009749A4 /* updates.c in Sources */,
-				DA00DF4F1A323D6400919DCF /* tgl-loop.c in Sources */,
 				DAECDA7B1A1BABA5002CA5AE /* tgl-serialize.c in Sources */,
 				DA37916819F6F281009749A4 /* TGKit.m in Sources */,
 				DA37917F19F6F843009749A4 /* tools.c in Sources */,
+				DA00DF5E1A3F5EB600919DCF /* tgkit-c.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
