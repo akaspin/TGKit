@@ -77,7 +77,7 @@
         return self;
     }
     self.connections = [NSMutableArray arrayWithCapacity:MAX_CONNECTIONS];
-    netQueue = dispatch_queue_create("tgkit-net", DISPATCH_QUEUE_CONCURRENT);
+    netQueue = dispatch_queue_create("tgkit-net", DISPATCH_QUEUE_SERIAL);
     IsOnNetQueueKey = &IsOnNetQueueKey;
     void *nonNullUnusedPointer = (__bridge void *)self;
     dispatch_queue_set_specific(netQueue, IsOnNetQueueKey, nonNullUnusedPointer, NULL);
@@ -609,8 +609,8 @@ int tgnet_timer_new (const void *_socket, socket_timer_t timer_cb, void *extra) 
             return;
         }
         dispatch_source_set_event_handler(timer, ^{
-            timer_cb(extra);
             dispatch_source_cancel(timer);
+            timer_cb(extra);
         });
         socket->timers[++(socket->timers_count)] = timer;
         timer_index = socket->timers_count;
@@ -630,7 +630,7 @@ void tgnet_timer_add (const void *_socket, int timer_index, long seconds) {
     [socket dispatchSync:^{
         dispatch_source_t timer = socket->timers[timer_index];
         if (timer && !dispatch_get_context(timer)) {
-            dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), seconds * NSEC_PER_SEC, 1 * NSEC_PER_SEC);
+            dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), (uint64_t)(seconds) * NSEC_PER_SEC, 1ull * NSEC_PER_SEC);
             dispatch_set_context(timer, (__bridge void *)(timer));
             dispatch_resume(timer);
         }
