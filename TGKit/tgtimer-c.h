@@ -10,7 +10,10 @@
 #define TGKit_tgtimer_c_h
 
 #include "tgl.h"
+#include <dispatch/dispatch.h>
 
 extern struct tgl_timer_methods tgtimer_timers;
+
+void tgtimer_target_queue (dispatch_queue_t target_queue);
 
 #endif

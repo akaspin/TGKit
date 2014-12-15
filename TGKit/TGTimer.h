@@ -11,4 +11,8 @@
 
 @interface TGTimer : NSObject
 
+@property (atomic, weak, readwrite) dispatch_queue_t targetQueue;
+
++ (instancetype)sharedInstance;
+
 @end

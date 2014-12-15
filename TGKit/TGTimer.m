@@ -33,16 +33,24 @@
 @end
 
 
-struct tgl_timer *tgtimer_alloc (struct tgl_state *TLS, void (*cb)(struct tgl_state *TLS, void *arg), void *arg) {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+#pragma mark - C interface
+
+void tgtimer_target_queue (dispatch_queue_t target_queue) {
+    TGTimer.sharedInstance.targetQueue = target_queue;
+}
+
+struct tgl_timer *tgtimer_alloc (struct tgl_state *TLS, void (*callback)(struct tgl_state *TLS, void *arg), void *arg) {
+    dispatch_queue_t queue = TGTimer.sharedInstance.targetQueue;
+    if (!queue) {
+        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    }
     dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     if (!timer) {
         return NULL;
     }
     dispatch_source_set_event_handler(timer, ^{
-        vlogprintf (E_DEBUG, "Timer callback %d\n", cb);
         dispatch_source_cancel(timer);
-        cb(TLS, arg);
+        callback(TLS, arg);
     });
     dispatch_source_set_cancel_handler(timer, ^{
         dispatch_set_context(timer, NULL);
@@ -51,6 +59,10 @@ struct tgl_timer *tgtimer_alloc (struct tgl_state *TLS, void (*cb)(struct tgl_st
 }
 
 void tgtimer_insert (struct tgl_timer *t, double seconds) {
+    if (!t) {
+        [NSException raise:NSInternalInconsistencyException format:@"Invalid timer"];
+        return;
+    }
     dispatch_source_t timer = (__bridge dispatch_source_t)(t);
     uint64_t nanosecs = seconds < 0 ? 0 : seconds * NSEC_PER_SEC;
     dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), nanosecs, 1ull * NSEC_PER_SEC);
@@ -59,6 +71,10 @@ void tgtimer_insert (struct tgl_timer *t, double seconds) {
 }
 
 void tgtimer_delete (struct tgl_timer *t) {
+    if (!t) {
+        [NSException raise:NSInternalInconsistencyException format:@"Invalid timer"];
+        return;
+    }
     dispatch_source_t timer = (__bridge dispatch_source_t)(t);
     dispatch_source_cancel(timer);
 }
