@@ -44,8 +44,6 @@ tgl-inner.h
 tgl-layout.h
 tgl-serialize.c
 tgl-serialize.h
-tgl-timers.h
-tgl-timers.c
 tgl.c
 tgl.h
 tools.c
