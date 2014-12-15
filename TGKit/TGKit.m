@@ -10,7 +10,7 @@
 #import "TGKit.h"
 #import "tgl.h"
 #import "tgl-serialize.h"
-#import "tgl-loop.h"
+#import "tgkit-c.h"
 
 
 @implementation TGPeer
@@ -35,7 +35,6 @@
 struct tgl_state *TLS;
 id<TGKitDelegate> _delegate;
 id<TGKitDataSource> _datasource;
-dispatch_queue_t _loop_queue;
 
 @dynamic delegate;
 @dynamic dataSource;
@@ -47,10 +46,10 @@ dispatch_queue_t _loop_queue;
     sharedInstance = self;
     NSLog(@"Init with key path: [%@]", serverRsaKey);
     TLS = &_TLS;
-    TLS->verbosity = 3;
+    TLS->verbosity = 6;
+    tgl_set_callback(TLS, &upd_cb);
     tgl_set_rsa_key(TLS, serverRsaKey.UTF8String);
     tgl_register_app_id(TLS, appId, appHash.UTF8String);
-    _loop_queue = dispatch_queue_create("tgkit-loop", DISPATCH_QUEUE_CONCURRENT);
     return sharedInstance;
 }
 
@@ -58,9 +57,7 @@ dispatch_queue_t _loop_queue;
     if (!_delegate || !_datasource) {
         [NSException raise:NSInternalInconsistencyException format:@"Must set delegate and datasource"];
     }
-    dispatch_async(_loop_queue, ^{
-        loop(TLS, &upd_cb);
-    });
+    start(TLS, config);
 }
 
 - (void)sendMessage:(NSString *)text toUserId:(int)userId {
@@ -72,7 +69,7 @@ dispatch_queue_t _loop_queue;
     if (self.dataSource.exportCard.length) {
         completion(self.dataSource.exportCard);
     } else {
-//        tgl_do_export_card(TLS, did_export_card, (__bridge_retained void *)[completion copy]);
+        tgl_do_export_card(TLS, did_export_card, (__bridge_retained void *)[completion copy]);
     }
 }
 
@@ -382,81 +379,57 @@ struct tgl_update_callback upd_cb = {
 
 #pragma mark - C Config
 
-int username_ok = 0;
-int has_username(struct tgl_state *TLS) {
-    return username_ok;
-}
-
-int sms_code_ok = 0;
-int has_sms_code(struct tgl_state *TLS) {
-    return sms_code_ok;
-}
-
-int first_name_ok = 0;
-int has_first_name(struct tgl_state *TLS) {
-    return first_name_ok;
-}
-
-int last_name_ok = 0;
-int has_last_name(struct tgl_state *TLS) {
-    return last_name_ok;
-}
-
 void set_default_username(const char* username) {
     _datasource.phoneNumber = NSStringFromUTF8String(username);
 }
 
 const char *get_default_username(void) {
-    username_ok = 0;
     if (_datasource.phoneNumber) {
         return _datasource.phoneNumber.UTF8String;
     }
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate getLoginUsernameWithCompletionBlock:^(NSString *text) {
-            username_ok = 1;
             _datasource.phoneNumber = text;
         }];
     });
-    wait_loop(TLS, has_username);
+    wait_semaphore(semaphore, NULL);
     return _datasource.phoneNumber.UTF8String;
 }
 
 const char *get_sms_code (void) {
-    sms_code_ok = 0;
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     __block NSString *code;
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate getLoginCodeWithCompletionBlock:^(NSString *text) {
-            sms_code_ok = 1;
             code = text;
         }];
     });
-    wait_loop(TLS, has_sms_code);
+    wait_semaphore(semaphore, NULL);
     return code.UTF8String;
 }
 
 const char *get_first_name (void) {
-    first_name_ok = 0;
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     __block NSString *first_name;
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate getSignupFirstNameWithCompletionBlock:^(NSString *text) {
-            first_name_ok = 1;
             first_name = text;
         }];
     });
-    wait_loop(TLS, has_first_name);
+    wait_semaphore(semaphore, NULL);
     return first_name.UTF8String;
 }
 
 const char *get_last_name (void) {
-    last_name_ok = 0;
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     __block NSString *last_name;
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate getSignupLastNameWithCompletionBlock:^(NSString *text) {
-            last_name_ok = 1;
             last_name = text;
         }];
     });
-    wait_loop(TLS, has_last_name);
+    wait_semaphore(semaphore, NULL);
     return last_name.UTF8String;
 }
 
