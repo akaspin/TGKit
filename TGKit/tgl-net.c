@@ -19,30 +19,13 @@
     Copyright Paul Eipper 2014
 */
 
-#include <string.h>
-#include <stdlib.h>
 #include <assert.h>
-#include <sys/types.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <netinet/tcp.h>
-#include <sys/fcntl.h>
-#include <sys/socket.h>
-#include <errno.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <poll.h>
-#include <openssl/rand.h>
-#include <arpa/inet.h>
-#include <sys/time.h>
-#include <time.h>
 
 #include "tgnet-c.h"
 #include "tgl-net-inner.h"
 #include "tgl-net.h"
 #include "tgl.h"
 #include "tgl-inner.h"
-#include "tree.h"
 #include "tools.h"
 
 static void fail_connection (struct connection *c);
