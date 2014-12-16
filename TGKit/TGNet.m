@@ -568,6 +568,9 @@ void tgnet_request_write(const void *_socket) {
     TGNetSocket *socket = (__bridge TGNetSocket *)(_socket);
     [socket dispatchSync:^{
         socket->write_requested = true;
+        if (CFWriteStreamCanAcceptBytes(socket.writeStream)) {
+            [socket writeData];
+        }
     }];
 }
 
