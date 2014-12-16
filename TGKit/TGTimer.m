@@ -49,13 +49,17 @@ struct tgl_timer *tgtimer_alloc (struct tgl_state *TLS, void (*callback)(struct 
         return NULL;
     }
     dispatch_source_set_event_handler(timer, ^{
-        dispatch_source_cancel(timer);
+        if (dispatch_get_context(timer) == NULL) {
+            return; // should be suspended
+        }
+        dispatch_suspend(timer);
+        dispatch_set_context(timer, NULL);
         callback(TLS, arg);
     });
     dispatch_source_set_cancel_handler(timer, ^{
         dispatch_set_context(timer, NULL);
     });
-    return (__bridge void *)timer;
+    return (__bridge_retained void *)(timer);
 }
 
 void tgtimer_insert (struct tgl_timer *t, double seconds) {
@@ -66,8 +70,10 @@ void tgtimer_insert (struct tgl_timer *t, double seconds) {
     dispatch_source_t timer = (__bridge dispatch_source_t)(t);
     uint64_t nanosecs = seconds < 0 ? 0 : seconds * NSEC_PER_SEC;
     dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), nanosecs, 1ull * NSEC_PER_SEC);
-    dispatch_set_context(timer, (__bridge void *)(timer));
-    dispatch_resume(timer);
+    if (dispatch_get_context(timer) == NULL) {
+        dispatch_set_context(timer, (__bridge void *)(timer));
+        dispatch_resume(timer);
+    }
 }
 
 void tgtimer_delete (struct tgl_timer *t) {
@@ -76,10 +82,17 @@ void tgtimer_delete (struct tgl_timer *t) {
         return;
     }
     dispatch_source_t timer = (__bridge dispatch_source_t)(t);
-    dispatch_source_cancel(timer);
+    dispatch_suspend(timer);
+    dispatch_set_context(timer, NULL);
 }
 
 void tgtimer_free (struct tgl_timer *t) {
+    dispatch_source_t timer = (__bridge_transfer dispatch_source_t)(t);
+    dispatch_source_cancel(timer);
+    if (dispatch_get_context(timer) == NULL) {
+        dispatch_resume(timer); // resume if suspended
+    }
+    timer = nil;
 }
 
 struct tgl_timer_methods tgtimer_timers = {
