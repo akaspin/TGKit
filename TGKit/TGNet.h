@@ -15,7 +15,7 @@
 @interface TGNetSocket : NSObject
 
 @property (atomic, weak, readwrite) id<TGNetSocketDelegate> delegate;
-@property (atomic, strong, readwrite) dispatch_queue_t delegateQueue;
+@property (atomic, weak, readwrite) dispatch_queue_t delegateQueue;
 @property (atomic, readonly) dispatch_queue_t socketQueue;
 
 - (BOOL)connectToHost:(NSString *)host onPort:(uint16_t)port;
@@ -36,6 +36,7 @@
 @interface TGNet : NSObject
 
 @property (atomic, readonly) dispatch_queue_t netQueue;
+@property (atomic, weak, readwrite) dispatch_queue_t responseQueue;
 
 + (instancetype)sharedInstance;
 - (TGNetSocket *)connectToHost:(NSString *)host onPort:(uint16_t)port;

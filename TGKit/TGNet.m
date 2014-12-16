@@ -11,6 +11,9 @@
 #import "tgnet-c.h"
 #import <CFNetwork/CFNetwork.h>
 
+#import "tgl.h"
+#import "tgl-net-inner.h"
+
 #import <netinet/in.h>
 #import <netinet/tcp.h>
 #import <arpa/inet.h>
@@ -648,4 +651,14 @@ void tgnet_timer_del (const void *_socket, int timer_index) {
             dispatch_source_cancel(timer);
         }
     }];
+}
+
+void tgnet_set_response_queue(void *_queue) {
+    TGNet.sharedInstance.responseQueue = (__bridge dispatch_queue_t)(_queue);
+}
+
+void tgnet_dispatch_response(struct connection *c, int op, int len) {
+    dispatch_sync(TGNet.sharedInstance.responseQueue, ^{
+        c->methods->execute(c->TLS, c, op, len);
+    });
 }

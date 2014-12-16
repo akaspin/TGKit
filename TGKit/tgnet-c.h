@@ -11,11 +11,22 @@
 
 #include <stdbool.h>
 
+struct connection;
 typedef long (*socket_function_t)(void *socket, uint8_t *buffer, long buffer_size);
 typedef void (*socket_callback_t)(socket_function_t socket_function, void *socket, void *extra);
 typedef void (*socket_timer_t)(void *extra);
 
 // TGNet C interface
+
+/**
+ * Set the queue where tgnet_dispatch_response will execute.
+ */
+void tgnet_set_response_queue(void *queue);
+
+/**
+ * Call the execute method in the set response queue.
+ */
+void tgnet_dispatch_response(struct connection *c, int op, int len);
 
 /**
  * Set the callback to be notified when there is data available on the socket stream for reading.

@@ -8,6 +8,7 @@
 
 #include "tgkit-c.h"
 #include "tgtimer-c.h"
+#include "tgnet-c.h"
 
 #include <dispatch/dispatch.h>
 
@@ -59,6 +60,7 @@ static void init (struct tgl_state *TLS, struct tgl_config config) {
     sign_in_wait = dispatch_semaphore_create(0);
     difference_wait = dispatch_semaphore_create(0);
     tgtimer_target_queue(main_queue);
+    tgnet_set_response_queue(main_queue);
     tgl_set_net_methods(TLS, &tgl_conn_methods);
     tgl_set_timer_methods(TLS, &tgtimer_timers);
     tgl_set_serialize_methods(TLS, &tgl_file_methods);
