@@ -34,4 +34,6 @@ void stop (void);
 void wait_semaphore (dispatch_semaphore_t semaphore, void (^block)(void));
 void wait_condition (struct tgl_state *TLS, int (*is_done)(struct tgl_state *TLS), void (^block)(void));
 
+void dispatch_when_connected (struct tgl_state *TLS, void (^block)(void));
+
 #endif /* defined(__TGKit__tgkit_c__) */

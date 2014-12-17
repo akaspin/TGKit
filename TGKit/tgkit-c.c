@@ -72,7 +72,14 @@ static void init (struct tgl_state *TLS, struct tgl_config config) {
     TLS->serialize_methods->load_secret_chats(TLS);
 }
 
+static int has_started (struct tgl_state *TLS) {
+    return TLS->started;
+}
+
 void start (struct tgl_state *TLS, struct tgl_config config) {
+    if (running) {
+        return;
+    }
     init(TLS, config);
     running = true;
     dispatch_source_t main_loop = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, wait_queue);
@@ -91,6 +98,14 @@ void start (struct tgl_state *TLS, struct tgl_config config) {
     dispatch_async(main_queue, ^{
         loop(TLS, config);
     });
+}
+
+void dispatch_when_connected (struct tgl_state *TLS, void (^block)(void)) {
+    if (TLS->started) {
+        block();
+    } else {
+        wait_condition(TLS, has_started, block);
+    }
 }
 
 void stop (void) {

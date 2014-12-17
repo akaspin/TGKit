@@ -46,7 +46,7 @@ id<TGKitDataSource> _datasource;
     sharedInstance = self;
     NSLog(@"Init with key path: [%@]", serverRsaKey);
     TLS = &_TLS;
-    TLS->verbosity = 6;
+    TLS->verbosity = 3;
     tgl_set_callback(TLS, &upd_cb);
     tgl_set_rsa_key(TLS, serverRsaKey.UTF8String);
     tgl_register_app_id(TLS, appId, appHash.UTF8String);
@@ -62,14 +62,18 @@ id<TGKitDataSource> _datasource;
 
 - (void)sendMessage:(NSString *)text toUserId:(int)userId {
     NSLog(@"Send msg:[%@] to user:[%d]", text, userId);
-    send_message_to_user_id(TLS, text.UTF8String, userId);
+    dispatch_when_connected(TLS, ^{
+        send_message_to_user_id(TLS, text.UTF8String, userId);
+    });
 }
 
 - (void)exportCardWithCompletionBlock:(TGKitStringCompletionBlock)completion {
     if (self.dataSource.exportCard.length) {
         completion(self.dataSource.exportCard);
     } else {
-        tgl_do_export_card(TLS, did_export_card, (__bridge_retained void *)[completion copy]);
+        dispatch_when_connected(TLS, ^{
+            tgl_do_export_card(TLS, did_export_card, (__bridge_retained void *)[completion copy]);
+        });
     }
 }
 
@@ -346,9 +350,11 @@ void secret_chat_update_gw(struct tgl_state *TLSR, struct tgl_secret_chat *U, un
 
 void our_id_gw(struct tgl_state *TLSR, int our_id) {
     NSLog(@"our_id_gw id:[%d]", our_id);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_delegate didLoginWithTelegramId:[NSString stringWithFormat:@"%i", our_id]];
-    });
+    if ([_delegate respondsToSelector:@selector(didLoginWithTelegramId:)]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_delegate didLoginWithTelegramId:[NSString stringWithFormat:@"%i", our_id]];
+        });
+    }
 }
 
 void nslog_logprintf(const char *format, ...) {
@@ -391,6 +397,7 @@ const char *get_default_username(void) {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate getLoginUsernameWithCompletionBlock:^(NSString *text) {
             _datasource.phoneNumber = text;
+            dispatch_semaphore_signal(semaphore);
         }];
     });
     wait_semaphore(semaphore, NULL);
@@ -403,6 +410,7 @@ const char *get_sms_code (void) {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate getLoginCodeWithCompletionBlock:^(NSString *text) {
             code = text;
+            dispatch_semaphore_signal(semaphore);
         }];
     });
     wait_semaphore(semaphore, NULL);
@@ -415,6 +423,7 @@ const char *get_first_name (void) {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate getSignupFirstNameWithCompletionBlock:^(NSString *text) {
             first_name = text;
+            dispatch_semaphore_signal(semaphore);
         }];
     });
     wait_semaphore(semaphore, NULL);
@@ -427,6 +436,7 @@ const char *get_last_name (void) {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate getSignupLastNameWithCompletionBlock:^(NSString *text) {
             last_name = text;
+            dispatch_semaphore_signal(semaphore);
         }];
     });
     wait_semaphore(semaphore, NULL);
