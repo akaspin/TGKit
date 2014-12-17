@@ -62,7 +62,7 @@ struct tgl_timer *tgtimer_alloc (struct tgl_state *TLS, void (*callback)(struct 
 void tgtimer_insert (struct tgl_timer *t, double seconds) {
     dispatch_source_t timer = (__bridge dispatch_source_t)(t);
     uint64_t nanosecs = seconds < 0 ? 0 : seconds * NSEC_PER_SEC;
-    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), nanosecs, 1ull * NSEC_PER_SEC);
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, nanosecs, 1ull * NSEC_PER_SEC);
     if (dispatch_get_context(timer) == NULL) {
         dispatch_set_context(timer, (__bridge void *)(timer));
         dispatch_resume(timer);
