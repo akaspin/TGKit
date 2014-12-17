@@ -11,6 +11,7 @@
 #include "tgnet-c.h"
 
 #include <dispatch/dispatch.h>
+#include <Block.h>
 
 #include "tgl.h"
 #include "tgl-net.h"
@@ -19,28 +20,31 @@
 #include "tgl-serialize.h"
 #include "tgl-structures.h"
 
-static bool running;
+static bool running = 0;
 static int should_register;
 static char *hash;
 static int signed_in_result;
-static struct tgl_dc *cur_a_dc;
 static void *main_queue_key;
 static void *wait_queue_key;
 static dispatch_queue_t main_queue;
 static dispatch_queue_t wait_queue;
+static dispatch_queue_t timer_queue;
+dispatch_queue_t tgtimer_target_queue;
 static dispatch_semaphore_t send_code_wait;
 static dispatch_semaphore_t sign_in_wait;
 static dispatch_semaphore_t difference_wait;
+static dispatch_semaphore_t main_login_done;
 
 
 #pragma mark - Forward declarations
 
-void loop (struct tgl_state *TLS, struct tgl_config config);
+void main_auth (struct tgl_state *TLS, struct tgl_config config);
+void main_login (struct tgl_state *TLS, struct tgl_config config);
+void main_signin (struct tgl_state *TLS, struct tgl_config config);
 void do_login (struct tgl_state *TLS, struct tgl_config config);
 void do_register (struct tgl_state *TLS, struct tgl_config config);
 
 int all_authorized (struct tgl_state *TLS);
-int dc_signed_in (struct tgl_state *TLS);
 
 void sign_in_callback (struct tgl_state *TLS, void *extra, int success, int registered, const char *mhash);
 void sign_in_result (struct tgl_state *TLS, void *extra, int success, struct tgl_user *U);
@@ -54,12 +58,14 @@ void dlist_cb (struct tgl_state *TLS, void *callback_extra, int success, int siz
 static void init (struct tgl_state *TLS, struct tgl_config config) {
     main_queue = dispatch_queue_create("tgkit-main", DISPATCH_QUEUE_SERIAL);
     wait_queue = dispatch_queue_create("tgkit-loop-wait", DISPATCH_QUEUE_CONCURRENT);
+    timer_queue = dispatch_queue_create("tgkit-loop-timer", DISPATCH_QUEUE_CONCURRENT);
+    tgtimer_target_queue = main_queue;
     dispatch_queue_set_specific(main_queue, &main_queue_key, NULL, NULL);
     dispatch_queue_set_specific(wait_queue, &wait_queue_key, NULL, NULL);
     send_code_wait = dispatch_semaphore_create(0);
     sign_in_wait = dispatch_semaphore_create(0);
     difference_wait = dispatch_semaphore_create(0);
-    tgtimer_target_queue(main_queue);
+    main_login_done = dispatch_semaphore_create(0);
     tgnet_set_response_queue(main_queue);
     tgl_set_net_methods(TLS, &tgl_conn_methods);
     tgl_set_timer_methods(TLS, &tgtimer_timers);
@@ -86,17 +92,18 @@ void start (struct tgl_state *TLS, struct tgl_config config) {
     dispatch_source_set_timer(main_loop, DISPATCH_TIME_NOW, 3600ull * NSEC_PER_SEC, 3600ull * NSEC_PER_SEC);
     dispatch_source_set_event_handler(main_loop, ^{
         vlogprintf(E_NOTICE, "main loop");
-        if (running) {
-            dispatch_async(main_queue, ^{
-                tgl_do_lookup_state(TLS);
-            });
+        if (running && TLS->started) {
+            tgl_do_lookup_state(TLS);
         } else {
             dispatch_source_cancel(main_loop);
         }
     });
+    dispatch_source_set_cancel_handler(main_loop, ^{
+        dispatch_release(main_loop);
+    });
     dispatch_resume(main_loop);
     dispatch_async(main_queue, ^{
-        loop(TLS, config);
+        main_auth(TLS, config);
     });
 }
 
@@ -114,7 +121,12 @@ void stop (void) {
     });
 }
 
-void wait_semaphore (dispatch_semaphore_t semaphore, void (^block)(void)) {
+
+#pragma mark - Task handlers
+
+typedef void (^then_block_t)(void);
+
+void wait_semaphore (dispatch_semaphore_t semaphore, dispatch_block_t block) {
     if (block) {
         dispatch_async(wait_queue, ^{
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
@@ -127,25 +139,106 @@ void wait_semaphore (dispatch_semaphore_t semaphore, void (^block)(void)) {
     }
 }
 
-void wait_condition (struct tgl_state *TLS, int (*is_done)(struct tgl_state *TLS), void (^block)(void)) {
+void wait_semaphore_then (dispatch_semaphore_t semaphore, then_block_t (^block)(void)) {
+    if (block) {
+        dispatch_async(wait_queue, ^{
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            dispatch_async(main_queue, ^{
+                then_block_t then_block = block();
+                if (then_block) {
+                    dispatch_async(main_queue, ^{
+                        then_block();
+                    });
+                }
+            });
+        });
+    } else {
+        wait_semaphore(semaphore, NULL);
+    }
+}
+
+void wait_semaphore_finally (dispatch_semaphore_t semaphore, dispatch_block_t block, dispatch_block_t finally_block) {
+    if (block && finally_block) {
+        dispatch_async(wait_queue, ^{
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            dispatch_semaphore_t finally_semaphore = dispatch_semaphore_create(0);
+            dispatch_async(main_queue, ^{
+                block();
+                dispatch_semaphore_signal(finally_semaphore);
+            });
+            dispatch_semaphore_wait(finally_semaphore, DISPATCH_TIME_FOREVER);
+            dispatch_release(finally_semaphore);
+            dispatch_async(main_queue, finally_block);
+        });
+    } else {
+        wait_semaphore(semaphore, block);
+    }
+}
+
+void wait_semaphore_then_finally (dispatch_semaphore_t semaphore, then_block_t (^block)(void), dispatch_block_t finally_block) {
+    if (block && finally_block) {
+        dispatch_async(wait_queue, ^{
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            dispatch_semaphore_t finally_semaphore = dispatch_semaphore_create(0);
+            dispatch_async(main_queue, ^{
+                then_block_t then_block = block();
+                if (then_block) {
+                    dispatch_async(main_queue, ^{
+                        then_block();
+                        dispatch_semaphore_signal(finally_semaphore);
+                    });
+                }
+            });
+            dispatch_semaphore_wait(finally_semaphore, DISPATCH_TIME_FOREVER);
+            dispatch_release(finally_semaphore);
+            dispatch_async(main_queue, finally_block);
+        });
+    } else if (block) {
+        wait_semaphore_then(semaphore, block);
+    } else {
+        wait_semaphore(semaphore, NULL);
+    }
+}
+
+dispatch_semaphore_t wait_condition_timer (struct tgl_state *TLS, int (*is_done)(struct tgl_state *TLS)) {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, wait_queue);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, timer_queue);
     dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC, 1ull * NSEC_PER_SEC);
     dispatch_source_set_event_handler(timer, ^{
-        vlogprintf(E_DEBUG, "condition timer loop");
-        if (is_done(TLS)) {
+        __block int response = 0;
+        dispatch_sync(main_queue, ^{
+            response = is_done(TLS);
+        });
+        if (response) {
             dispatch_source_cancel(timer);
             dispatch_semaphore_signal(semaphore);
         }
     });
     dispatch_source_set_cancel_handler(timer, ^{
-        vlogprintf(E_DEBUG, "condition timer end");
+        dispatch_release(timer);
     });
     dispatch_resume(timer);
-    wait_semaphore(semaphore, block);
+    return semaphore;
 }
 
-void loop (struct tgl_state *TLS, struct tgl_config config) {
+void wait_condition (struct tgl_state *TLS, int (*is_done)(struct tgl_state *TLS), dispatch_block_t block) {
+    dispatch_semaphore_t semaphore = wait_condition_timer(TLS, is_done);
+    wait_semaphore_finally(semaphore, block, ^{
+        dispatch_release(semaphore);
+    });
+}
+
+void wait_condition_then (struct tgl_state *TLS, int (*is_done)(struct tgl_state *TLS), then_block_t (^block)(void)) {
+    dispatch_semaphore_t semaphore = wait_condition_timer(TLS, is_done);
+    wait_semaphore_then_finally(semaphore, block, ^{
+        dispatch_release(semaphore);
+    });
+}
+
+
+# pragma mark - Main workflow
+
+void main_auth (struct tgl_state *TLS, struct tgl_config config) {
     if (config.reset_authorization) {
         tgl_peer_t *P = tgl_peer_get(TLS, TGL_MK_USER (TLS->our_id));
         if (P && P->user.phone && config.reset_authorization == 1) {
@@ -154,68 +247,89 @@ void loop (struct tgl_state *TLS, struct tgl_config config) {
         }
         bl_do_reset_authorization(TLS);
     }
-    wait_condition(TLS, all_authorized, NULL);
-    if (!tgl_signed_dc(TLS, TLS->DC_working)) {
-        vlogprintf(E_NOTICE, "Need to login first");
-        tgl_do_send_code(TLS, config.get_default_username(), sign_in_callback, 0);
-        wait_semaphore(send_code_wait, NULL);
+    wait_condition(TLS, all_authorized, ^{
+        if (!tgl_signed_dc(TLS, TLS->DC_working)) {
+            vlogprintf(E_NOTICE, "Need to login first");
+            main_login(TLS, config);
+        }
+    });
+    wait_semaphore(main_login_done, ^{
+        main_signin(TLS, config);
+    });
+}
+
+void main_login (struct tgl_state *TLS, struct tgl_config config) {
+    tgl_do_send_code(TLS, config.get_default_username(), sign_in_callback, 0);
+    wait_semaphore_then(send_code_wait, ^{
         vlogprintf(E_NOTICE, "%s\n", should_register ? "phone not registered" : "phone registered");
+        const char *username = config.get_default_username();
         if (!should_register) {
             vlogprintf(E_NOTICE, "Enter SMS code");
-            do_login(TLS, config);
+            __block dispatch_block_t do_login = Block_copy(^{
+                const char *sms_code = config.get_sms_code();
+                tgl_do_send_code_result(TLS, username, hash, sms_code, sign_in_result, 0);
+                wait_semaphore(sign_in_wait, ^{
+                    if (signed_in_result == 1) {
+                        dispatch_semaphore_signal(main_login_done);
+                        Block_release(do_login);
+                        return;
+                    }
+                    vlogprintf(E_WARNING, "Invalid code");
+                    signed_in_result = 0;
+                    dispatch_async(main_queue, do_login);
+                });
+            });
+            return do_login;
         } else {
             vlogprintf(E_NOTICE, "User is not registered");
-            do_register(TLS, config);
+            const char *first_name = config.get_first_name();
+            const char *last_name = config.get_last_name();
+            __block dispatch_block_t do_register = Block_copy(^{
+                const char *sms_code = config.get_sms_code();
+                tgl_do_send_code_result_auth(TLS, username, hash, sms_code, first_name, last_name, sign_in_result, 0);
+                wait_semaphore(sign_in_wait, ^{
+                    if (signed_in_result == 1) {
+                        dispatch_semaphore_signal(main_login_done);
+                        Block_release(do_register);
+                        return;
+                    }
+                    vlogprintf(E_WARNING, "Invalid code");
+                    signed_in_result = 0;
+                    dispatch_async(main_queue, do_register);
+                });
+            });
+            return do_register;
         }
-    }
+    });
+}
+
+void main_signin (struct tgl_state *TLS, struct tgl_config config) {
+    dispatch_group_t dc_group = dispatch_group_create();
     for (int i = 0; i <= TLS->max_dc_num; i++) {
         if (TLS->DC_list[i] && !tgl_signed_dc(TLS, TLS->DC_list[i])) {
-            tgl_do_export_auth(TLS, i, export_auth_callback, (void*)(long)TLS->DC_list[i]);
-            cur_a_dc = TLS->DC_list[i];
-            wait_condition(TLS, dc_signed_in, NULL);
-            assert(tgl_signed_dc(TLS, TLS->DC_list[i]));
+            dispatch_semaphore_t dc_semaphore = dispatch_semaphore_create(0);
+            tgl_do_export_auth(TLS, i, export_auth_callback, dc_semaphore);
+            dispatch_group_async(dc_group, wait_queue, ^{
+                dispatch_semaphore_wait(dc_semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_release(dc_semaphore);
+                assert(tgl_signed_dc(TLS, TLS->DC_list[i]));
+            });
         }
     }
-    TLS->serialize_methods->store_auth(TLS);
-    tglm_send_all_unsent(TLS);
-    tgl_do_get_difference(TLS, config.sync_from_start, get_difference_callback, 0);
-    wait_semaphore(difference_wait, NULL);
-    assert (!(TLS->locks & TGL_LOCK_DIFF));
-    TLS->started = 1;
-    if (config.wait_dialog_list) {
-        tgl_do_get_dialog_list(TLS, dlist_cb, 0);
-        wait_semaphore(difference_wait, NULL);
-    }
-}
-
-void do_login (struct tgl_state *TLS, struct tgl_config config) {
-    const char *username = config.get_default_username();
-    while (1) {
-        const char *sms_code = config.get_sms_code();
-        tgl_do_send_code_result(TLS, username, hash, sms_code, sign_in_result, 0);
-        wait_semaphore(sign_in_wait, NULL);
-        if (signed_in_result == 1) {
-            break;
-        }
-        vlogprintf(E_WARNING, "Invalid code");
-        signed_in_result = 0;
-    }
-}
-
-void do_register (struct tgl_state *TLS, struct tgl_config config) {
-    const char *username = config.get_default_username();
-    const char *first_name = config.get_first_name();
-    const char *last_name = config.get_last_name();
-    while (1) {
-        const char *sms_code = config.get_sms_code();
-        tgl_do_send_code_result_auth(TLS, username, hash, sms_code, first_name, last_name, sign_in_result, 0);
-        wait_semaphore(sign_in_wait, NULL);
-        if (signed_in_result == 1) {
-            break;
-        }
-        vlogprintf(E_WARNING, "Invalid code");
-        signed_in_result = 0;
-    }
+    dispatch_group_notify(dc_group, main_queue, ^{
+        TLS->serialize_methods->store_auth(TLS);
+        tglm_send_all_unsent(TLS);
+        tgl_do_get_difference(TLS, config.sync_from_start, get_difference_callback, 0);
+        wait_semaphore(difference_wait, ^{
+            assert (!(TLS->locks & TGL_LOCK_DIFF));
+            TLS->started = 1;
+            if (config.wait_dialog_list) {
+                tgl_do_get_dialog_list(TLS, dlist_cb, 0);
+                wait_semaphore(difference_wait, NULL);
+            }
+        });
+    });
+    dispatch_release(dc_group);
 }
 
 
@@ -232,10 +346,6 @@ int all_authorized (struct tgl_state *TLS) {
     return 1;
 }
 
-int dc_signed_in (struct tgl_state *TLS) {
-    return tgl_signed_dc (TLS, cur_a_dc);
-}
-
 
 #pragma mark - Callbacks
 
@@ -244,21 +354,27 @@ void sign_in_callback (struct tgl_state *TLS, void *extra, int success, int regi
         vlogprintf(E_ERROR, "Can not send code");
         stop();
     }
-    should_register = !registered;
-    hash = strdup(mhash);
-    dispatch_semaphore_signal(send_code_wait);
+    dispatch_async(main_queue, ^{
+        should_register = !registered;
+        hash = strdup(mhash);
+        dispatch_semaphore_signal(send_code_wait);
+    });
 }
 
 void sign_in_result (struct tgl_state *TLS, void *extra, int success, struct tgl_user *U) {
-    signed_in_result = success ? 1 : 2;
-    dispatch_semaphore_signal(sign_in_wait);
+    dispatch_async(main_queue, ^{
+        signed_in_result = success ? 1 : 2;
+        dispatch_semaphore_signal(sign_in_wait);
+    });
 }
 
-void export_auth_callback (struct tgl_state *TLS, void *DC, int success) {
+void export_auth_callback (struct tgl_state *TLS, void *dc_semaphore, int success) {
     if (!success) {
         vlogprintf (E_ERROR, "Can not export auth\n");
         stop();
     }
+    dispatch_semaphore_signal(dc_semaphore);
+    dispatch_release(dc_semaphore);
 }
 
 void get_difference_callback (struct tgl_state *TLS, void *extra, int success) {
