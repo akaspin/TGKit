@@ -445,7 +445,9 @@ static void try_rpc_read (struct connection *c) {
         len *= 4;
         int op;
         assert (tgln_read_in_lookup (c, &op, 4) == 4);
-        tgnet_dispatch_response (c, op, len);
+        if (tgnet_dispatch_response (c, op, len) < 0) {
+            return;
+        };
     }
 }
 

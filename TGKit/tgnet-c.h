@@ -26,7 +26,7 @@ void tgnet_set_response_queue(void *queue);
 /**
  * Call the execute method in the set response queue.
  */
-void tgnet_dispatch_response(struct connection *c, int op, int len);
+int tgnet_dispatch_response(struct connection *c, int op, int len);
 
 /**
  * Set the callback to be notified when there is data available on the socket stream for reading.

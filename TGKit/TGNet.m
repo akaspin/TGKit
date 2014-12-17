@@ -660,8 +660,10 @@ void tgnet_set_response_queue(void *_queue) {
     TGNet.sharedInstance.responseQueue = (__bridge dispatch_queue_t)(_queue);
 }
 
-void tgnet_dispatch_response(struct connection *c, int op, int len) {
+int tgnet_dispatch_response(struct connection *c, int op, int len) {
+    __block int response = 0;
     dispatch_sync(TGNet.sharedInstance.responseQueue, ^{
-        c->methods->execute(c->TLS, c, op, len);
+        response = c->methods->execute(c->TLS, c, op, len);
     });
+    return response;
 }
