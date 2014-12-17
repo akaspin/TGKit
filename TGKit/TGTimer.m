@@ -40,8 +40,7 @@ void tgtimer_target_queue (dispatch_queue_t target_queue) {
 }
 
 struct tgl_timer *tgtimer_alloc (struct tgl_state *TLS, void (*callback)(struct tgl_state *TLS, void *arg), void *arg) {
-    dispatch_queue_t queue = TGTimer.sharedInstance.targetQueue;
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
     if (!timer) {
         return NULL;
     }
@@ -51,7 +50,9 @@ struct tgl_timer *tgtimer_alloc (struct tgl_state *TLS, void (*callback)(struct 
         }
         dispatch_suspend(timer);
         dispatch_set_context(timer, NULL);
-        callback(TLS, arg);
+        dispatch_async(TGTimer.sharedInstance.targetQueue, ^{
+            callback(TLS, arg);
+        });
     });
     dispatch_source_set_cancel_handler(timer, ^{
         dispatch_set_context(timer, NULL);
