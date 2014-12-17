@@ -13,7 +13,6 @@
 #include <dispatch/dispatch.h>
 
 extern struct tgl_timer_methods tgtimer_timers;
-
-void tgtimer_target_queue (dispatch_queue_t target_queue);
+extern dispatch_queue_t tgtimer_target_queue;
 
 #endif
