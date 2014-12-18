@@ -47,6 +47,10 @@ id<TGKitDataSource> _datasource;
     NSLog(@"Init with key path: [%@]", serverRsaKey);
     TLS = &_TLS;
     TLS->verbosity = 3;
+#ifdef DEBUG
+    TLS->test_mode = 1;
+    TLS->verbosity = 7;
+#endif
     tgl_set_callback(TLS, &upd_cb);
     tgl_set_rsa_key(TLS, serverRsaKey.UTF8String);
     tgl_register_app_id(TLS, appId, appHash.UTF8String);
